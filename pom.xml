@@ -14,11 +14,6 @@
         <jdk.version>1.8</jdk.version>
     </properties>
 
-    <properties>
-        <spring.version>4.2.5.RELEASE</spring.version>
-        <jdk.version>1.8</jdk.version>
-    </properties>
-
     <dependencies>
         <!--Spring frame work-->
         <dependency>
