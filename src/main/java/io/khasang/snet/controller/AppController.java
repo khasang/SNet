@@ -3,11 +3,13 @@ package io.khasang.snet.controller;
 import io.khasang.snet.model.By;
 import io.khasang.snet.model.Hello;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@ComponentScan("io.khasang.snet.model.By")
 public class AppController {
     @Autowired
     Hello hello;
