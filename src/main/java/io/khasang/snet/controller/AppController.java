@@ -1,8 +1,6 @@
 package io.khasang.snet.controller;
 
-import io.khasang.snet.model.By;
-import io.khasang.snet.model.CreateTable;
-import io.khasang.snet.model.Hello;
+import io.khasang.snet.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
@@ -17,18 +15,37 @@ public class AppController {
     @Autowired
     By by;
     @Autowired
-    CreateTable createTable;
+    CompanyCrud companyCrud;
+
 
     @RequestMapping("/")
-    public String hello(Model model){
+    public String hello(Model model) {
         model.addAttribute("hello", hello.getHelloMessage());
         model.addAttribute("by", by.getByMessage());
         return "hello";
     }
 
     @RequestMapping("/create")
-    public String createTableCompany(Model model){
-        model.addAttribute("create", createTable.tableCreation());
-        return "create";
+    public String createTableCompany(Model model) {
+        model.addAttribute("company", companyCrud.tableCreation());
+        return "company";
+    }
+
+    @RequestMapping("/insert")
+    public String insertToTableCompany(Model model) {
+        model.addAttribute("company", companyCrud.insert());
+        return "company";
+    }
+
+    @RequestMapping("/truncate")
+    public String truncateTableCompany(Model model) {
+        model.addAttribute("company", companyCrud.truncate());
+        return "company";
+    }
+
+    @RequestMapping("/select")
+    public String selectAllTableCompany(Model model) {
+        model.addAttribute("company", companyCrud.selectAll());
+        return "company";
     }
 }
