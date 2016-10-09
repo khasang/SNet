@@ -1,5 +1,6 @@
 package io.khasang.snet.controller;
 
+import io.khasang.snet.model.BackupBase;
 import io.khasang.snet.model.By;
 import io.khasang.snet.model.CreateTable;
 import io.khasang.snet.model.Hello;
@@ -18,6 +19,8 @@ public class AppController {
     By by;
     @Autowired
     CreateTable createTable;
+    @Autowired
+    BackupBase backupBase;
 
     @RequestMapping("/")
     public String hello(Model model){
@@ -31,4 +34,11 @@ public class AppController {
         model.addAttribute("create", createTable.tableCreation());
         return "create";
     }
+
+    @RequestMapping("/backup")
+    public String makeBasebackUp(Model model){
+        model.addAttribute("backUpMessage",backupBase.makeBackUp());
+        return "backUp";
+    }
+
 }

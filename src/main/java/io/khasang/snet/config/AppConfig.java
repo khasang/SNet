@@ -1,5 +1,6 @@
 package io.khasang.snet.config;
 
+import io.khasang.snet.model.BackupBase;
 import io.khasang.snet.model.CreateTable;
 import io.khasang.snet.model.Hello;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,11 @@ public class AppConfig {
     @Bean
     public Hello hello() {
         return new Hello("Hello My First Bean");
+    }
+
+    @Bean
+    public BackupBase backupBase(){
+        return new BackupBase();
     }
 
     @Bean
