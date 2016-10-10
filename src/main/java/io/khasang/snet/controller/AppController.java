@@ -31,4 +31,10 @@ public class AppController {
         model.addAttribute("create", createTable.tableCreation());
         return "create";
     }
+
+    @RequestMapping("/confidential/page")
+    public String secureTable(Model model){
+        model.addAttribute("secure", "This is a very secure place");
+        return "secure";
+    }
 }
