@@ -5,10 +5,11 @@
 <html>
 <head>
     <title>All Company</title>
-
+    <spring:url value="css/cssTable.css" var="mainCss" />
+    <link href="${mainCss}" rel="stylesheet"  type="text/css"/>
 </head>
 <body>
-<table>
+<table class="simple-little-table" >
     <tr >
         <td>ID</td>
         <td>Name</td>
