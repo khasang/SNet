@@ -1,5 +1,6 @@
 package io.khasang.snet.config;
 
+import io.khasang.snet.controller.QueryHandler;
 import io.khasang.snet.model.CreateTable;
 import io.khasang.snet.model.Hello;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,11 @@ public class AppConfig {
         dataSource.setUsername(environment.getProperty("jdbc.postgresql.username"));
         dataSource.setPassword(environment.getProperty("jdbc.postgresql.password"));
         return dataSource;
+    }
+
+    @Bean
+    public QueryHandler queryHandler() {
+        return new QueryHandler(jdbcTemplate());
     }
 
     @Bean
