@@ -2,6 +2,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.Assert;
 import org.postgresql.Driver;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 
 import java.sql.Connection;
@@ -9,6 +13,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 
+@PropertySource("src/main/resource/dbconfig.properties")
 public class TestConnection {
     private Connection connection;
     private StringBuilder url;
@@ -53,6 +58,21 @@ public class TestConnection {
         }
 
         Assert.assertNotNull(connection);
+    }
+
+    @Test
+    public void dataSourceTest() {
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName("org.postgresql.Driver");
+        dataSource.setUrl(environment.getProperty("url"));
+        dataSource.setUsername(environment.getProperty("user"));
+        dataSource.setPassword(environment.getProperty("password"));
+
+        try {
+            Assert.assertTrue(dataSource.getConnection()==null);
+        } catch (SQLException exc) {
+            Assert.fail();
+        }
     }
 
 }
