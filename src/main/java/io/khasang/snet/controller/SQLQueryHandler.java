@@ -1,15 +1,24 @@
 package io.khasang.snet.controller;
 
-/**
- * Created by cresh on 09.10.16.
- */
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.stereotype.Component;
+
+@Component
 public class SQLQueryHandler {
-    private static SQLQueryHandler ourInstance = new SQLQueryHandler();
+    private JdbcTemplate jdbcTemplate;
 
-    public static SQLQueryHandler getInstance() {
-        return ourInstance;
+    public SQLQueryHandler(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
 
-    private SQLQueryHandler() {
+    public Integer executeUpdate(PreparedStatementCreator preparedStatementCreator) {
+        try {
+            return jdbcTemplate.update(preparedStatementCreator);
+        } catch (Exception exc) {
+            return -1;
+        }
     }
+
+
 }
