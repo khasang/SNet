@@ -1,6 +1,7 @@
 package io.khasang.snet.config;
 
 import io.khasang.snet.model.CreateTable;
+import io.khasang.snet.model.DeleteTable;
 import io.khasang.snet.model.Hello;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -19,6 +20,11 @@ public class AppConfig {
     @Bean
     public Hello hello() {
         return new Hello("Hello My First Bean");
+    }
+
+    @Bean
+    public DeleteTable deleteTable(){
+        return new DeleteTable(jdbcTemplate());
     }
 
     @Bean
