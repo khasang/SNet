@@ -5,10 +5,10 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SQLQueryHandler {
+public class QueryHandler {
     private JdbcTemplate jdbcTemplate;
 
-    public SQLQueryHandler(JdbcTemplate jdbcTemplate) {
+    public QueryHandler(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
