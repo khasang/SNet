@@ -16,6 +16,7 @@ import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
 @Configuration
 @PropertySource(value = {"classpath:util.properties"})
 @PropertySource(value = {"classpath:auth.properties"})
+@PropertySource(value = {"classpath:backup.properties"})
 public class AppConfig {
     @Autowired
     Environment environment;

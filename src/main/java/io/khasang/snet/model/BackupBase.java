@@ -45,7 +45,7 @@ public class BackupBase {
         final Map<String, String> env = processBuilder.environment();
         env.put("PGPASSWORD", environment.getProperty("jdbc.postgresql.password"));
 
-        try{
+        try {
             final Process process = processBuilder.start();
             final BufferedReader reader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
             String line = reader.readLine();
