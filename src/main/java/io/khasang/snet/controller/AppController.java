@@ -1,7 +1,7 @@
 package io.khasang.snet.controller;
 
 import io.khasang.snet.model.By;
-import io.khasang.snet.model.CreateTable;
+import io.khasang.snet.model.TableConfiguration;
 import io.khasang.snet.model.Hello;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
@@ -21,7 +21,7 @@ public class AppController {
     @Autowired
     By by;
     @Autowired
-    CreateTable createTable;
+    TableConfiguration tableConfiguration;
 
     @RequestMapping("/")
     public String hello(Model model){
@@ -32,21 +32,22 @@ public class AppController {
 
     @RequestMapping("/create")
     public String createTableCompany(Model model){
-        model.addAttribute("create", createTable.tableCreation());
+        model.addAttribute("createEmployees", tableConfiguration.employeesTableCreation());
+        model.addAttribute("createCities",tableConfiguration.citiesTableCreation());
         return "create";
     }
 
-    @RequestMapping("/confidential/page")
-    public String secureTable(Model model){
-        model.addAttribute("secure", "This is a very secure place");
-        return "secure";
-    }
-
-    @RequestMapping(value = {"hello/{name}"}, method = RequestMethod.GET)
-    public ModelAndView hello(@PathVariable("name") String name) {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("encode");
-        modelAndView.addObject("crypt", new BCryptPasswordEncoder().encode(name));
-        return modelAndView;
-    }
+//    @RequestMapping("/confidential/page")
+//    public String secureTable(Model model){
+//        model.addAttribute("secure", "This is a very secure place");
+//        return "secure";
+//    }
+//
+//    @RequestMapping(value = {"hello/{name}"}, method = RequestMethod.GET)
+//    public ModelAndView hello(@PathVariable("name") String name) {
+//        ModelAndView modelAndView = new ModelAndView();
+//        modelAndView.setViewName("encode");
+//        modelAndView.addObject("crypt", new BCryptPasswordEncoder().encode(name));
+//        return modelAndView;
+//    }
 }

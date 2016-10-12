@@ -1,6 +1,6 @@
 package io.khasang.snet.config;
 
-import io.khasang.snet.model.CreateTable;
+import io.khasang.snet.model.TableConfiguration;
 import io.khasang.snet.model.Hello;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -30,7 +30,7 @@ public class AppConfig {
 
     @Bean
     public Hello hello() {
-        return new Hello(" ");
+        return new Hello("My first Bean");
     }
 
     @Bean
@@ -51,7 +51,7 @@ public class AppConfig {
     }
 
     @Bean
-    public CreateTable createTable(){
-        return new CreateTable(jdbcTemplate());
+    public TableConfiguration createTable(){
+        return new TableConfiguration(jdbcTemplate());
     }
 }
