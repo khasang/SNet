@@ -4,14 +4,14 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.sql.SQLException;
 
-public class CreateTable {
+public class TableConfiguration {
     private JdbcTemplate jdbcTemplate;
 
-    public CreateTable(JdbcTemplate jdbcTemplate) {
+    public TableConfiguration(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public CreateTable() {
+    public TableConfiguration() {
     }
 
     public String tableCreation() {
