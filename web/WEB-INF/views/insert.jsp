@@ -8,9 +8,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>$Title$</title>
+    <title>Insert In Teble</title>
 </head>
 <body>
-$END$
+${insertEmployees}
+<br>
+${insertCities}
 </body>
 </html>

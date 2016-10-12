@@ -3,6 +3,7 @@ package io.khasang.snet.model;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.sql.SQLException;
+import java.sql.Struct;
 
 public class TableConfiguration {
     private JdbcTemplate jdbcTemplate;
@@ -65,5 +66,15 @@ public class TableConfiguration {
         } catch (Exception e) {
             return "Error: " + e;
         }
+    }
+
+    public String selectEmployeesByCountry(String counry) {
+        StringBuilder sb = new StringBuilder();
+        jdbcTemplate.query(
+                "SELECT * FROM EMPLOYEES WHERE city in (select city_name from cities where country = ?);", new Object[]{counry},
+                (rs, rowNum) ->
+                        new Employee(rs.getInt("id"), rs.getString("name"), rs.getInt("age"), rs.getString("city"), rs.getDouble("salary"))
+        ).forEach(employee -> sb.append(employee.toString()));
+        return sb.toString();
     }
 }
