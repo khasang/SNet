@@ -1,9 +1,6 @@
 package io.khasang.snet.controller;
 
-import io.khasang.snet.model.By;
 import io.khasang.snet.model.*;
-import io.khasang.snet.model.CreateTable;
-import io.khasang.snet.model.Hello;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -41,7 +38,7 @@ public class AppController {
         return "create";
     }
 
-<<<<<<< HEAD
+
     @RequestMapping("/insert")
     public String insertInTableCompany(Model model) {
         model.addAttribute("create", createTable.insert());
@@ -65,11 +62,18 @@ public class AppController {
         List<Company> componies = createTable.selectAll();
         model.addAttribute("allCompany", componies);
         return "allCompany";
+    }
 
     @RequestMapping("/confidential/page")
     public String secureTable(Model model){
         model.addAttribute("secure", "This is a very secure place");
         return "secure";
+    }
+
+    @RequestMapping("/masterZone/page")
+    public String secureMaster(Model model){
+        model.addAttribute("master", "This is my secure place");
+        return "secureMaster";
     }
 
     @RequestMapping(value = {"hello/{name}"}, method = RequestMethod.GET)
@@ -78,6 +82,6 @@ public class AppController {
         modelAndView.setViewName("encode");
         modelAndView.addObject("crypt", new BCryptPasswordEncoder().encode(name));
         return modelAndView;
->>>>>>> development
+
     }
 }
