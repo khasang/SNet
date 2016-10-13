@@ -54,6 +54,13 @@ public class AppController {
         return modelAndView;
     }
 
+    /* @param login: user's login from database
+    *  @param newPassword new password of user, will be automatically encoded
+    *  Request example:
+    *  http://localhost:8080/confidential/changepwd?login=user_login&newPwd=new_password
+    *  were, login = @param login newPwd = @param newPassword
+    *  WARNING: take parameters without any quotes or apostrophe
+    *  */
     @RequestMapping("/confidential/changepwd")
     public ModelAndView changepwd(@RequestParam(value = "login") String login,
                                   @RequestParam(value = "newPwd") String newPassword) {
