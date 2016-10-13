@@ -21,13 +21,15 @@ public class TableCreator {
         this.createSql = createSql;
     }
 
-    public void dropAndCreate() {
+    public String dropAndCreate() {
         try {
             queryHandler.createAndDropTable(this.dropSql);
             queryHandler.createAndDropTable(this.createSql);
         } catch (Exception exc) {
             // logged
-            exc.printStackTrace();
+            return exc.toString();
         }
+
+        return "Creation new table weather was successful.";
     }
 }
