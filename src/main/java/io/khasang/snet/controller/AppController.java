@@ -59,7 +59,7 @@ public class AppController {
                                   @RequestParam(value = "newPwd") String newPassword) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("change");
-        String response = usersPasswordChanger.change(login, newPassword);
+        String response = usersPasswordChanger.change(login, new BCryptPasswordEncoder().encode(newPassword));
         modelAndView.addObject("response", response);
         return modelAndView;
     }
