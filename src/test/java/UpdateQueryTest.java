@@ -2,6 +2,7 @@ import io.khasang.snet.config.AppConfig;
 import io.khasang.snet.controller.QueryHandler;
 import io.khasang.snet.controller.UsersPasswordChanger;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +27,9 @@ public class UpdateQueryTest {
      * this value tell that some error
      * occur
      */
-    @Test
+    @Test@Ignore
     public void queryUpdateTest() {
-        Integer rowAffected = queryHandler.executeUpdate(preparedStatementCreate("user","god"));
+        Integer rowAffected = queryHandler.executeUpdate(preparedStatementCreate("god","user"));
         Assert.assertNotEquals("Error while quering.",new Integer(-1),rowAffected);
     }
 
@@ -37,9 +38,11 @@ public class UpdateQueryTest {
     *  @param key value
     *  */
     private PreparedStatementCreator preparedStatementCreate(String value, String key) {
+        /* WARNING: Configure your query */
+        String sql = "UPDATE users SET password = ? WHERE login = ?";
         return connection -> {
             PreparedStatement statement =
-                    connection.prepareStatement("UPDATE users SET password = ? WHERE login = ?");
+                    connection.prepareStatement(sql);
             statement.setString(1,value);
             statement.setString(2,key);
             return statement;
