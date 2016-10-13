@@ -6,16 +6,25 @@ import org.springframework.stereotype.Component;
 public class TableCreator {
 
     private QueryHandler queryHandler;
+    private String dropSql;
+    private String createSql;
 
-    public TableCreator(QueryHandler queryHandler, String dropSql, String createSql) {
+    public TableCreator(QueryHandler queryHandler) {
         this.queryHandler = queryHandler;
-        this.dropAndCreate(dropSql, createSql);
     }
 
-    private void dropAndCreate(String drop, String create) {
+    public void setDropSql(String dropSql) {
+        this.dropSql = dropSql;
+    }
+
+    public void setCreateSql(String createSql) {
+        this.createSql = createSql;
+    }
+
+    public void dropAndCreate() {
         try {
-            queryHandler.createAndDropTable(drop);
-            queryHandler.createAndDropTable(create);
+            queryHandler.createAndDropTable(this.dropSql);
+            queryHandler.createAndDropTable(this.createSql);
         } catch (Exception exc) {
             // logged
             exc.printStackTrace();
