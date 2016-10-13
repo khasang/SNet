@@ -1,4 +1,4 @@
-package io.khasang.snet.controller;
+package io.khasang.snet.service;
 
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.stereotype.Component;

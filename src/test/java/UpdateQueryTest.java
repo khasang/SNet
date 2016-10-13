@@ -1,12 +1,11 @@
 import io.khasang.snet.config.AppConfig;
-import io.khasang.snet.controller.QueryHandler;
-import io.khasang.snet.controller.UsersPasswordChanger;
+import io.khasang.snet.service.QueryHandler;
+import io.khasang.snet.service.UsersPasswordChanger;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;

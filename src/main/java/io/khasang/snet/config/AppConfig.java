@@ -1,7 +1,7 @@
 package io.khasang.snet.config;
 
-import io.khasang.snet.controller.QueryHandler;
-import io.khasang.snet.controller.UsersPasswordChanger;
+import io.khasang.snet.service.QueryHandler;
+import io.khasang.snet.service.UsersPasswordChanger;
 import io.khasang.snet.model.CreateTable;
 import io.khasang.snet.model.Hello;
 import org.springframework.beans.factory.annotation.Autowired;
