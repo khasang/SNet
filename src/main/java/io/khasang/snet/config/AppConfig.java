@@ -61,9 +61,10 @@ public class AppConfig {
 
     @Bean
     public TableCreator weatherTableCreator() {
-        String drop = environment.getProperty("weather.drop");
-        String create = environment.getProperty("weather.create");
-        return new TableCreator(queryHandler(),drop,create);
+        TableCreator creator = new TableCreator(queryHandler());
+        creator.setDropSql(environment.getProperty("weather.drop"));
+        creator.setCreateSql(environment.getProperty("weather.create"));
+        return creator;
     }
 
     @Bean
