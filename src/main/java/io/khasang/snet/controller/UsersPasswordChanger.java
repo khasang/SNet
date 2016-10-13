@@ -26,7 +26,7 @@ public class UsersPasswordChanger {
     private PreparedStatementCreator preparedStatementCreate(String key, String value) {
         return connection -> {
             PreparedStatement statement =
-                    connection.prepareStatement("UPDATE users SET users.password = ? WHERE users.login = ?");
+                    connection.prepareStatement("UPDATE users SET password = ? WHERE login = ?");
             statement.setString(1,value);
             statement.setString(2,key);
             return statement;
