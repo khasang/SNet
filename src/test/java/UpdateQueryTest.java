@@ -12,9 +12,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.sql.PreparedStatement;
 
-/* Test for update query, specific for test table weather columns
-* city, temp_lo, temp_hi, prcp, date
-*/
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = AppConfig.class)
 public class UpdateQueryTest {
