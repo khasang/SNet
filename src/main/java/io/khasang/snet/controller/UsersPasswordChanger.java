@@ -14,7 +14,7 @@ public class UsersPasswordChanger {
     }
 
     public String change(String login, String newPassword) {
-        int res = queryHandler.executeUpdate(this.preparedStatementCreate(newPassword, login));
+        int res = queryHandler.executeUpdate(this.preparedStatementCreate(login, newPassword));
         if (res > 0) return String.format("Row affected %d", res);
         else return "Fail to change password";
     }
@@ -23,12 +23,12 @@ public class UsersPasswordChanger {
     *  @param updating value
     *  @param key value
     *  */
-    private PreparedStatementCreator preparedStatementCreate(String value, String key) {
+    private PreparedStatementCreator preparedStatementCreate(String key, String value) {
         return connection -> {
             PreparedStatement statement =
                     connection.prepareStatement("UPDATE users SET users.password = ? WHERE users.login = ?");
-            statement.setObject(1,value);
-            statement.setObject(2,key);
+            statement.setString(1,value);
+            statement.setString(2,key);
             return statement;
         };
     }
