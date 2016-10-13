@@ -54,7 +54,7 @@ public class AppController {
         return modelAndView;
     }
 
-    @RequestMapping("/changepwd")
+    @RequestMapping("/confidential/changepwd")
     public ModelAndView changepwd(@RequestParam(value = "login") String login,
                                   @RequestParam(value = "newPwd") String newPassword) {
         ModelAndView modelAndView = new ModelAndView();
