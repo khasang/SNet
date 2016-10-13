@@ -1,9 +1,11 @@
 import io.khasang.snet.config.AppConfig;
 import io.khasang.snet.controller.QueryHandler;
+import io.khasang.snet.controller.UsersPasswordChanger;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -26,7 +28,7 @@ public class UpdateQueryTest {
      */
     @Test
     public void queryUpdateTest() {
-        Integer rowAffected = queryHandler.executeUpdate(preparedStatementCreate(7,11));
+        Integer rowAffected = queryHandler.executeUpdate(preparedStatementCreate("user","god"));
         Assert.assertNotEquals("Error while quering.",new Integer(-1),rowAffected);
     }
 
@@ -34,14 +36,20 @@ public class UpdateQueryTest {
     *  @param updating value
     *  @param key value
     *  */
-    private PreparedStatementCreator preparedStatementCreate(Integer value, Integer key) {
+    private PreparedStatementCreator preparedStatementCreate(String value, String key) {
         return connection -> {
             PreparedStatement statement =
-                    connection.prepareStatement("UPDATE weather SET temp_lo = ? WHERE temp_hi = ?");
-            statement.setInt(1,value);
-            statement.setInt(2,key);
+                    connection.prepareStatement("UPDATE users SET password = ? WHERE login = ?");
+            statement.setString(1,value);
+            statement.setString(2,key);
             return statement;
         };
     }
 
+    @Test
+    public void changerTest() {
+        String response = new UsersPasswordChanger(queryHandler).change("user","wooow");
+        if (response.contains("Fail")) Assert.fail("Failed");
+        System.out.println(response);
+    }
 }
