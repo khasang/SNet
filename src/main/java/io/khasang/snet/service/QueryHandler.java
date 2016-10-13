@@ -12,12 +12,16 @@ public class QueryHandler {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public Integer executeUpdate(PreparedStatementCreator preparedStatementCreator) {
+    public int executeUpdate(PreparedStatementCreator preparedStatementCreator) {
         try {
             return jdbcTemplate.update(preparedStatementCreator);
         } catch (Exception exc) {
             return -1;
         }
+    }
+
+    public void createAndDropTable(String sql) throws Exception {
+        jdbcTemplate.execute(sql);
     }
 
 
