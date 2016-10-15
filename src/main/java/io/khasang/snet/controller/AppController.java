@@ -3,9 +3,13 @@ package io.khasang.snet.controller;
 import io.khasang.snet.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @ComponentScan("io.khasang.snet.model.By")
@@ -36,5 +40,19 @@ public class AppController {
     public String truncateTable(Model model) {
         model.addAttribute("truncate", truncateTable.truncate());
         return "truncate";
+    }
+
+    @RequestMapping("/confidential/page")
+    public String secureTable(Model model){
+        model.addAttribute("secure", "This is a very secure place");
+        return "secure";
+    }
+
+    @RequestMapping(value = {"hello/{name}"}, method = RequestMethod.GET)
+    public ModelAndView hello(@PathVariable("name") String name) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("encode");
+        modelAndView.addObject("crypt", new BCryptPasswordEncoder().encode(name));
+        return modelAndView;
     }
 }

@@ -15,7 +15,7 @@ public class TruncateTable {
     public String truncate() {
         try {
             jdbcTemplate.execute("TRUNCATE TABLE COMPANY");
-            return "TRUNCATED";
+            return "Table Company truncated";
         } catch (Exception e) {
             return "Error: " + e;
         }
