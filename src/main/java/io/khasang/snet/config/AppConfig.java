@@ -39,15 +39,12 @@ public class AppConfig {
     }
 
     @Bean
-    public NamedParameterJdbcTemplate namedParameterJdbcTemplate() {
-        NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource());
-        return namedParameterJdbcTemplate;
+    public CreateTable createTable() {
+        return new CreateTable(jdbcTemplate());
     }
 
     @Bean
-    public CompanyCrud companyCrud() {
-        return new CompanyCrud(jdbcTemplate(),namedParameterJdbcTemplate());
+    public TruncateTable truncateTable() {
+        return new TruncateTable(jdbcTemplate());
     }
-
-
 }

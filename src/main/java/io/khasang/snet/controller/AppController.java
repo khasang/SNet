@@ -15,8 +15,9 @@ public class AppController {
     @Autowired
     By by;
     @Autowired
-    CompanyCrud companyCrud;
-
+    CreateTable createTable;
+    @Autowired
+    TruncateTable truncateTable;
 
     @RequestMapping("/")
     public String hello(Model model) {
@@ -27,25 +28,13 @@ public class AppController {
 
     @RequestMapping("/create")
     public String createTableCompany(Model model) {
-        model.addAttribute("company", companyCrud.tableCreation());
-        return "company";
-    }
-
-    @RequestMapping("/insert")
-    public String insertToTableCompany(Model model) {
-        model.addAttribute("company", companyCrud.insert());
-        return "company";
+        model.addAttribute("create", createTable.tableCreation());
+        return "create";
     }
 
     @RequestMapping("/truncate")
-    public String truncateTableCompany(Model model) {
-        model.addAttribute("company", companyCrud.truncate());
-        return "company";
-    }
-
-    @RequestMapping("/select")
-    public String selectAllTableCompany(Model model) {
-        model.addAttribute("company", companyCrud.selectAll());
-        return "company";
+    public String truncateTable(Model model) {
+        model.addAttribute("truncate", truncateTable.truncate());
+        return "truncate";
     }
 }
