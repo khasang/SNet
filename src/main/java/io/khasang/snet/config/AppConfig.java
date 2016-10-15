@@ -32,7 +32,7 @@ public class AppConfig {
 
     @Bean
     public Hello hello() {
-        return new Hello(" ");
+        return new Hello("This is hello message");
     }
 
     @Bean

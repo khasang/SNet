@@ -83,8 +83,7 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <!--Тут тоже у меня что то с версией-->
-            <version>9.4.1210.jre7</version>
+            <version>9.4.1211.jre7</version>
         </dependency>
     </dependencies>
 
