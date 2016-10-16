@@ -1,6 +1,7 @@
 package io.khasang.snet.config;
 
 import io.khasang.snet.controller.QueryHandler;
+import io.khasang.snet.controller.UsersPasswordChanger;
 import io.khasang.snet.model.CreateTable;
 import io.khasang.snet.model.Hello;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,5 +60,10 @@ public class AppConfig {
     @Bean
     public CreateTable createTable(){
         return new CreateTable(jdbcTemplate());
+    }
+
+    @Bean
+    public UsersPasswordChanger usersPasswordChanger() {
+        return new UsersPasswordChanger(queryHandler());
     }
 }
