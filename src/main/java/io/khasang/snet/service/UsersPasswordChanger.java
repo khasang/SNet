@@ -19,7 +19,7 @@ public class UsersPasswordChanger {
         else return "Fail to change password";
     }
 
-    /* Creation PreparedStatementCreator implementation
+    /* Creates PreparedStatementCreator implementation
     *  @param updating value
     *  @param key value
     *  */
