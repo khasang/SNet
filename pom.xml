@@ -11,8 +11,9 @@
 
     <properties>
         <spring.version>4.3.2.RELEASE</spring.version>
-        <jdk.version>1.8</jdk.version>
         <spring.security.version>4.0.4.RELEASE</spring.security.version>
+        <hibernate-version>5.2.3.Final</hibernate-version>
+        <jdk.version>1.8</jdk.version>
     </properties>
 
     <dependencies>
@@ -58,6 +59,12 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-orm</artifactId>
             <version>${spring.version}</version>
+        </dependency>
+        <!-- Hibernate -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate-version}</version>
         </dependency>
         <!--JSP -->
         <dependency>
