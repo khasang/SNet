@@ -50,17 +50,17 @@ public class AppController {
         return "select";
     }
 
-//    @RequestMapping("/confidential/page")
-//    public String secureTable(Model model){
-//        model.addAttribute("secure", "This is a very secure place");
-//        return "secure";
-//    }
-//
-//    @RequestMapping(value = {"hello/{name}"}, method = RequestMethod.GET)
-//    public ModelAndView hello(@PathVariable("name") String name) {
-//        ModelAndView modelAndView = new ModelAndView();
-//        modelAndView.setViewName("encode");
-//        modelAndView.addObject("crypt", new BCryptPasswordEncoder().encode(name));
-//        return modelAndView;
-//    }
+    @RequestMapping("/confidential/page")
+    public String secureTable(Model model){
+        model.addAttribute("secure", "This is a very secure place");
+        return "secure";
+    }
+
+    @RequestMapping(value = {"hello/{name}"}, method = RequestMethod.GET)
+    public ModelAndView hello(@PathVariable("name") String name) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("encode");
+        modelAndView.addObject("crypt", new BCryptPasswordEncoder().encode(name));
+        return modelAndView;
+    }
 }
