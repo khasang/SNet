@@ -2,7 +2,7 @@ package io.khasang.snet.entity;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "location")
 public class CityLocation {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
