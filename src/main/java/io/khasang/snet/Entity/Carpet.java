@@ -1,9 +1,11 @@
-package io.khasang.snet.entity;
+package io.khasang.snet.Entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "Carpet")
 public class Carpet {
     public int getId() {
         return id;
