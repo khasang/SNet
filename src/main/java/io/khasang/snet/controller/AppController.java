@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -22,6 +23,9 @@ public class AppController {
     By by;
     @Autowired
     CreateTable createTable;
+
+    @Autowired
+    UsersPasswordChanger usersPasswordChanger;
 
     @RequestMapping("/")
     public String hello(Model model){
@@ -47,6 +51,16 @@ public class AppController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("encode");
         modelAndView.addObject("crypt", new BCryptPasswordEncoder().encode(name));
+        return modelAndView;
+    }
+
+    @RequestMapping("/changepwd")
+    public ModelAndView changepwd(@RequestParam(value = "login") String login,
+                                  @RequestParam(value = "newPwd") String newPassword) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("change");
+        String response = usersPasswordChanger.change(login, newPassword);
+        modelAndView.addObject("response", response);
         return modelAndView;
     }
 }
