@@ -70,12 +70,6 @@ public class AppController {
         return "secure";
     }
 
-    @RequestMapping("/masterZone/page")
-    public String secureMaster(Model model){
-        model.addAttribute("master", "This is my secure place");
-        return "secureMaster";
-    }
-
     @RequestMapping(value = {"hello/{name}"}, method = RequestMethod.GET)
     public ModelAndView hello(@PathVariable("name") String name) {
         ModelAndView modelAndView = new ModelAndView();
