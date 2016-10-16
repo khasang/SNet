@@ -5,10 +5,12 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Component
+@Transactional
 public class CityLocationService implements DataUtility<CityLocation, Long> {
 
     private SessionFactory sessionFactory;
