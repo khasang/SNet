@@ -1,4 +1,4 @@
-package io.khasang.snet.controller;
+package io.khasang.snet.service;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
@@ -12,12 +12,16 @@ public class QueryHandler {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public Integer executeUpdate(PreparedStatementCreator preparedStatementCreator) {
+    public int executeUpdate(PreparedStatementCreator preparedStatementCreator) {
         try {
             return jdbcTemplate.update(preparedStatementCreator);
         } catch (Exception exc) {
             return -1;
         }
+    }
+
+    public void createAndDropTable(String sql) throws Exception {
+        jdbcTemplate.execute(sql);
     }
 
 

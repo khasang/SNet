@@ -1,9 +1,10 @@
 package io.khasang.snet.config;
 
-import io.khasang.snet.controller.QueryHandler;
-import io.khasang.snet.controller.UsersPasswordChanger;
+import io.khasang.snet.service.QueryHandler;
+import io.khasang.snet.service.UsersPasswordChanger;
 import io.khasang.snet.model.CreateTable;
 import io.khasang.snet.model.Hello;
+import io.khasang.snet.service.TableCreator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,6 +18,7 @@ import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
 @Configuration
 @PropertySource(value = {"classpath:util.properties"})
 @PropertySource(value = {"classpath:auth.properties"})
+@PropertySource(value = {"classpath:queries.properties"})
 public class AppConfig {
     @Autowired
     Environment environment;
@@ -55,6 +57,14 @@ public class AppConfig {
         JdbcTemplate jdbcTemplate = new JdbcTemplate();
         jdbcTemplate.setDataSource(dataSource());
         return jdbcTemplate;
+    }
+
+    @Bean
+    public TableCreator weatherTableCreator() {
+        TableCreator creator = new TableCreator(queryHandler());
+        creator.setDropSql(environment.getProperty("weather.drop"));
+        creator.setCreateSql(environment.getProperty("weather.create"));
+        return creator;
     }
 
     @Bean

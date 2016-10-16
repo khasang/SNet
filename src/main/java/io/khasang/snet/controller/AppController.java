@@ -3,6 +3,8 @@ package io.khasang.snet.controller;
 import io.khasang.snet.model.By;
 import io.khasang.snet.model.CreateTable;
 import io.khasang.snet.model.Hello;
+import io.khasang.snet.service.TableCreator;
+import io.khasang.snet.service.UsersPasswordChanger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -23,6 +25,9 @@ public class AppController {
     By by;
     @Autowired
     CreateTable createTable;
+
+    @Autowired
+    TableCreator weatherTableCreator;
 
     @Autowired
     UsersPasswordChanger usersPasswordChanger;
@@ -46,6 +51,13 @@ public class AppController {
         return "secure";
     }
 
+    /* Weather table creation request */
+    @RequestMapping("/confidential/create/weather")
+    public String createTableWeather(Model model) {
+        model.addAttribute("create", weatherTableCreator.dropAndCreate());
+        return "create";
+    }
+
     @RequestMapping(value = {"hello/{name}"}, method = RequestMethod.GET)
     public ModelAndView hello(@PathVariable("name") String name) {
         ModelAndView modelAndView = new ModelAndView();
@@ -54,12 +66,19 @@ public class AppController {
         return modelAndView;
     }
 
-    @RequestMapping("/changepwd")
+    /* @param login: user's login from database
+    *  @param newPassword new password of user, will be automatically encoded
+    *  Request example:
+    *  http://localhost:8080/confidential/changepwd?login=user_login&newPwd=new_password
+    *  were, login = @param login newPwd = @param newPassword
+    *  WARNING: take parameters without any quotes or apostrophe
+    *  */
+    @RequestMapping("/confidential/changepwd")
     public ModelAndView changepwd(@RequestParam(value = "login") String login,
                                   @RequestParam(value = "newPwd") String newPassword) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("change");
-        String response = usersPasswordChanger.change(login, newPassword);
+        String response = usersPasswordChanger.change(login, new BCryptPasswordEncoder().encode(newPassword));
         modelAndView.addObject("response", response);
         return modelAndView;
     }
