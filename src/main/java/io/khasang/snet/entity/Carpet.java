@@ -10,6 +10,7 @@ public class Carpet {
     private int id;
     @Column(name ="carpet_description")
     private String description;
+    private String text;
 
     public Carpet() {
     }
@@ -28,5 +29,13 @@ public class Carpet {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 }
