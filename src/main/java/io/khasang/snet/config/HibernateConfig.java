@@ -39,7 +39,7 @@ public class HibernateConfig {
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
-        sessionFactory.setPackagesToScan("io.khasang.snet.entity");
+        sessionFactory.setPackagesToScan("io.khasang.snet.Entity");
         sessionFactory.setHibernateProperties(hibernateProperties());
         return sessionFactory;
     }
