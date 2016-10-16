@@ -1,4 +1,4 @@
-package io.khasang.snet.Entity;
+package io.khasang.snet.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
