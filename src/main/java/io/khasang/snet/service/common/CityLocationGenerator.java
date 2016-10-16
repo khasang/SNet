@@ -23,6 +23,12 @@ public class CityLocationGenerator implements Generator<CityLocation>, Iterable<
         cities = Cities.values();
     }
 
+    public CityLocationGenerator() {
+        this.amount = 0;
+        random = new Random(42);
+        cities = Cities.values();
+    }
+
     @Override
     public CityLocation create() {
         CityLocation location = new CityLocation();
