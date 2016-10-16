@@ -1,13 +1,14 @@
 package io.khasang.snet.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Carpet {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    @Column(name ="carpet_description")
     private String description;
 
     public Carpet() {
