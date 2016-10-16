@@ -1,9 +1,7 @@
 package io.khasang.snet.model;
 
+import io.khasang.snet.entity.Employee;
 import org.springframework.jdbc.core.JdbcTemplate;
-
-import java.sql.SQLException;
-import java.sql.Struct;
 
 public class TableConfiguration {
     private JdbcTemplate jdbcTemplate;
