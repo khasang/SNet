@@ -23,20 +23,25 @@ public class AppController {
     @Autowired
     CreateTable createTable;
     @Autowired
+
     DeleteTable deleteTable;
+@Autowired
+    TruncateTable truncateTable;
+
 
     @RequestMapping("/")
-    public String hello(Model model){
+    public String hello(Model model) {
         model.addAttribute("hello", hello.getHelloMessage());
         model.addAttribute("by", by.getByMessage());
         return "hello";
     }
 
     @RequestMapping("/create")
-    public String createTableCompany(Model model){
+    public String createTableCompany(Model model) {
         model.addAttribute("create", createTable.tableCreation());
         return "create";
     }
+
 
 
     @RequestMapping("/insert")
@@ -63,6 +68,18 @@ public class AppController {
         model.addAttribute("allCompany", componies);
         return "allCompany";
     }
+
+    @RequestMapping("/truncate")
+    public String truncateTable(Model model) {
+        model.addAttribute("truncate", truncateTable.truncate());
+        return "truncate";
+    }
+
+    @RequestMapping("/rest")
+    public String rest() {
+        return "rest";
+    }
+
 
     @RequestMapping("/confidential/page")
     public String secureTable(Model model){

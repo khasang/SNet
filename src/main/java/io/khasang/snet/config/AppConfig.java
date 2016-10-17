@@ -1,8 +1,14 @@
 package io.khasang.snet.config;
 
+
 import io.khasang.snet.model.CreateTable;
 import io.khasang.snet.model.DeleteTable;
 import io.khasang.snet.model.Hello;
+
+import io.khasang.snet.dao.QuestionDAO;
+import io.khasang.snet.dao.impl.QuestionDAOImpl;
+import io.khasang.snet.model.*;
+import io.khasang.snet.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +18,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
+import org.hibernate.SessionFactory;
 
 @Configuration
 @PropertySource(value = {"classpath:util.properties"})
@@ -57,7 +64,17 @@ public class AppConfig {
     }
 
     @Bean
-    public CreateTable createTable(){
+    public CreateTable createTable() {
         return new CreateTable(jdbcTemplate());
+    }
+
+    @Bean
+    public TruncateTable truncateTable() {
+        return new TruncateTable(jdbcTemplate());
+    }
+
+    @Bean
+    public QuestionService questionService(){
+        return new QuestionService();
     }
 }

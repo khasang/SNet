@@ -2,6 +2,7 @@ package io.khasang.snet.model;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+
 import java.util.List;
 
 public class CreateTable {
