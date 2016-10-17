@@ -43,6 +43,11 @@ public class AppController {
         return "truncate";
     }
 
+    @RequestMapping("/rest")
+    public String rest() {
+        return "rest";
+    }
+
 
     @RequestMapping("/confidential/page")
     public String secureTable(Model model){

@@ -1,5 +1,7 @@
 package io.khasang.snet.config;
 
+import io.khasang.snet.dao.QuestionDAO;
+import io.khasang.snet.dao.impl.QuestionDAOImpl;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -10,6 +12,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
@@ -27,8 +30,8 @@ public class HibernateConfig {
     private Environment environment;
 
     @Bean
-    public org.springframework.orm.hibernate5.LocalSessionFactoryBean sessionFactory() {
-        org.springframework.orm.hibernate5.LocalSessionFactoryBean sessionFactory = new org.springframework.orm.hibernate5.LocalSessionFactoryBean();
+    public LocalSessionFactoryBean sessionFactory() {
+        LocalSessionFactoryBean sessionFactory = new org.springframework.orm.hibernate5.LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
         sessionFactory.setPackagesToScan("io.khasang.snet.entity");
         sessionFactory.setHibernateProperties(hibernateProperties());

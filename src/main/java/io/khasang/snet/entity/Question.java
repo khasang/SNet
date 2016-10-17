@@ -1,14 +1,12 @@
 package io.khasang.snet.entity;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "question")
 public class Question {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private int id;
 
@@ -30,7 +28,7 @@ public class Question {
     @Column(length = 1255)
     private String answer4;
 
-       public Question() {
+    public Question() {
     }
 
     public int getId() {

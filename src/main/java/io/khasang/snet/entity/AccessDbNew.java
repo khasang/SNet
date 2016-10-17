@@ -1,4 +1,4 @@
-package io.khasang.snet.model;
+package io.khasang.snet.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

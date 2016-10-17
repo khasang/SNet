@@ -23,20 +23,20 @@ public class QuestionDAOImpl implements QuestionDAO {
     }
 
     @Override
-        public void addQuestion(Question question) {
-            sessionFactory.getCurrentSession().save(question);
-        }
+    public void addQuestion(Question question) {
+        sessionFactory.getCurrentSession().save(question);
+    }
 
     @Override
     public void updateQuestion(Question question) {
         // saving old password if do not provided new
-            final String query = "SELECT question from question WHERE id=:id";
-            String oldQuestion = (String) sessionFactory.
-                    getCurrentSession().
-                    createSQLQuery(query).
-                    setParameter("id", question.getId()).
-                    uniqueResult();
-            question.setQuestion(oldQuestion);
+        final String query = "SELECT question from question WHERE id=:id";
+        String oldQuestion = (String) sessionFactory.
+                getCurrentSession().
+                createSQLQuery(query).
+                setParameter("id", question.getId()).
+                uniqueResult();
+        question.setQuestion(oldQuestion);
         sessionFactory.getCurrentSession().update(question);
     }
 
