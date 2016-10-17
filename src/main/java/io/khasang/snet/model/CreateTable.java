@@ -2,8 +2,6 @@ package io.khasang.snet.model;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.sql.SQLException;
-
 public class CreateTable {
     private JdbcTemplate jdbcTemplate;
 
