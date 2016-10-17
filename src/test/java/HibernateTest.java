@@ -5,6 +5,7 @@ import io.khasang.snet.service.DataUtility;
 import io.khasang.snet.service.common.CityLocationGenerator;
 import io.khasang.snet.util.Generator;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,14 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class HibernateTest {
 
     @Autowired
-    DataUtility<CityLocation,Long> cityLocationUtility;
+    private DataUtility<CityLocation,Long> cityLocationUtility;
+
+    private Generator<CityLocation> generator;
+
+    @Before
+    public void setUp() {
+        generator = new CityLocationGenerator();
+    }
 
     @Test
     public void assertIFNull() {
@@ -25,7 +33,6 @@ public class HibernateTest {
 
     @Test
     public void entityEqulation() {
-        Generator<CityLocation> generator = new CityLocationGenerator();
         CityLocation first = generator.create();
         CityLocation same = first;
         CityLocation another = generator.create();
@@ -35,15 +42,16 @@ public class HibernateTest {
     }
 
     @Test
-    public void push() {
-        CityLocation location = new CityLocation();
-        location.setId(1);
-        location.setCityName("Saint-Petersburg");
-        location.setLocation(new int[]{30,60});
+    public void pushAndCompareAfter() {
+        CityLocation location = generator.create();
         try {
             cityLocationUtility.add(location);
         } catch (Exception exc) {
             Assert.fail(String.format("Failed writing DB operation: %s",exc));
         }
+
+        CityLocation deSerialized = cityLocationUtility.get(location.getId());
+        Assert.assertEquals(location,deSerialized);
+        System.out.println(deSerialized);
     }
 }
