@@ -11,6 +11,7 @@ Backup operation is provided by `pg_dump`.
 To make it work correctly,you need to create `backup.properties` in resourses folder. It have two options:
  - postgresql.dumpAppPath
  - postgresql.dumpFolder
+
 >Example of correct options:
 >```
 >postgresql.dumpAppPath=C:\\Program Files\\PostgreSQL\\9.4\\bin\\pg_dump
@@ -20,6 +21,7 @@ To make it work correctly,you need to create `backup.properties` in resourses fo
 It also use connection to [PostgreSQL](https://www.postgresql.org/) database. Properties for connection are used from `auth.properties`
 
 >Example of method in class,which provides this operation:
+
 ```java
 ...
 public String makeBackUp() {
