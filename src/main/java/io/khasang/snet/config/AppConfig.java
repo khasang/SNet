@@ -1,15 +1,17 @@
 package io.khasang.snet.config;
 
 
+import io.khasang.snet.dao.impl.QuestionDAOImpl;
 import io.khasang.snet.model.CreateTable;
 import io.khasang.snet.model.DeleteTable;
 import io.khasang.snet.model.Hello;
 
 import io.khasang.snet.dao.QuestionDAO;
-import io.khasang.snet.dao.impl.QuestionDAOImpl;
 import io.khasang.snet.model.*;
 import io.khasang.snet.service.QuestionService;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -18,7 +20,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
-import org.hibernate.SessionFactory;
 
 @Configuration
 @PropertySource(value = {"classpath:util.properties"})
@@ -26,6 +27,20 @@ import org.hibernate.SessionFactory;
 public class AppConfig {
     @Autowired
     Environment environment;
+
+    @Bean
+    @Autowired
+    @Qualifier(value = "sessionFactory")
+    public QuestionDAO questionDAO(SessionFactory sessionFactory){
+        return new QuestionDAOImpl(sessionFactory);
+    }
+
+    @Bean
+    public QuestionService questionService(){
+        return new QuestionService();
+
+    }
+
 
     @Bean
     public UserDetailsService userDetailsService() {
@@ -73,8 +88,4 @@ public class AppConfig {
         return new TruncateTable(jdbcTemplate());
     }
 
-    @Bean
-    public QuestionService questionService(){
-        return new QuestionService();
-    }
 }
