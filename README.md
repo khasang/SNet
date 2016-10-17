@@ -1,16 +1,16 @@
 # SNet
 
 ## KPavlov
-#### Backup operation
-##### `Mapping`
+### Backup operation
+#### `Mapping`
 Operation is mapped on URL :  [/backup](). 
 
 ![](http://i12.pixs.ru/storage/2/5/1/backuppng_3849920_23694251.png)
 
-##### `Security`
+#### `Security`
 Back up operation is also provided by Spring security. The user must have a specific role `BACKUP_ROLE` to make this operation.
 
-##### `pg_dump`
+#### `pg_dump`
 Backup operation is provided by `pg_dump`.
 To make it work correctly,you need to create `backup.properties` in resourses folder. It have two options:
  - postgresql.dumpAppPath
@@ -29,7 +29,7 @@ Example of method in class,which provides this operation:
 
 ```java
 ...
-public String makeBackUp() {
+    public String makeBackUp() {
         String pgDump = environment.getProperty("postgresql.dumpAppPath");
         String dumpFile = environment.getProperty("postgresql.dumpFolder") + getBackupFileName();
         //add commands to start pg_dump
@@ -60,6 +60,7 @@ public String makeBackUp() {
         ...
         }
     }
+...
 ```
 Some parameters for `pg_dump`
 
