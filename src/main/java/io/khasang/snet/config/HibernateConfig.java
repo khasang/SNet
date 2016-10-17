@@ -23,6 +23,7 @@ import java.util.Properties;
 @EnableTransactionManagement
 @ComponentScan({"io.khasang.snet.config"})
 @PropertySource(value = {"classpath:hibernate.properties"})
+@ComponentScan({"io.khasang.snet.config"})
 public class HibernateConfig {
     @Autowired
     private Environment environment;
@@ -69,4 +70,3 @@ public class HibernateConfig {
         return new PersistenceExceptionTranslationPostProcessor();
     }
 }
-

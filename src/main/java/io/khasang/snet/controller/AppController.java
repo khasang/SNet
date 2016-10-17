@@ -22,6 +22,8 @@ public class AppController {
     CreateTable createTable;
     @Autowired
     TruncateTable truncateTable;
+ 	@Autowired
+    BackupBase backupBase;
 
     @RequestMapping("/")
     public String hello(Model model) {
@@ -36,7 +38,6 @@ public class AppController {
         return "create";
     }
 
-
     @RequestMapping("/truncate")
     public String truncateTable(Model model) {
         model.addAttribute("truncate", truncateTable.truncate());
@@ -48,6 +49,11 @@ public class AppController {
         return "rest";
     }
 
+    @RequestMapping("/backup")
+    public String makeBasebackUp(Model model){
+        model.addAttribute("backUpMessage",backupBase.makeBackUp());
+        return "backUp";
+    }
 
     @RequestMapping("/confidential/page")
     public String secureTable(Model model){
@@ -62,4 +68,5 @@ public class AppController {
         modelAndView.addObject("crypt", new BCryptPasswordEncoder().encode(name));
         return modelAndView;
     }
+
 }

@@ -34,6 +34,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/confidential/**").access("hasRole('ADMIN')")
                 .antMatchers("/truncate").access("hasRole('DIRECTOR')")
+                .antMatchers("/backup/**").access("hasRole('BACKUP')")
                 .and().formLogin().defaultSuccessUrl("/", false)
                 .defaultSuccessUrl("/", false)
                 .and().csrf().disable()
