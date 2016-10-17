@@ -13,7 +13,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-
 @Configuration
 @EnableWebSecurity
 public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -35,9 +34,10 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/confidential/**").access("hasRole('ADMIN')")
                 .and().formLogin().defaultSuccessUrl("/", false)
+                .antMatchers("/truncate").access("hasRole('DIRECTOR')")
+                .and().formLogin().defaultSuccessUrl("/", false)
                 .defaultSuccessUrl("/", false)
                 .and().csrf().disable()
-//                .sessionManagement().maximumSessions(1).sessionRegistry(sessionRegistry()).and().and()
                 .logout().invalidateHttpSession(true).deleteCookies();
     }
 
@@ -45,6 +45,5 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
     public SessionRegistry sessionRegistry() {
         return new SessionRegistryImpl();
     }
-
 }
 
