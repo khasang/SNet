@@ -18,33 +18,30 @@ public class BackupBase {
     public String makeBackUp() {
         String pgDump = environment.getProperty("postgresql.dumpAppPath");
         String dumpFile = environment.getProperty("postgresql.dumpFolder") + getBackupFileName();
-        //Добавление комманд для запуска pg_dump
+        //add commands to start pg_dump
         final List<String> baseCmds = new ArrayList<>();
-        //Путь до утилиты pg_dump
+        //Path to pg_dump
         baseCmds.add(pgDump);
         baseCmds.add("-h");
         baseCmds.add("localhost");
-        //Порт
+        //Port
         baseCmds.add("-p");
         baseCmds.add("5432");
-        //Пользователь
+        //User
         baseCmds.add("-U");
         baseCmds.add(environment.getProperty("jdbc.postgresql.username"));
-        //Включить большие объекты в выгрузку
+        //Add BLOB object into dump file
         baseCmds.add("-b");
-        //Включить подробный режим. pg_dump будет выводить в стандартный поток ошибок подробные комментарии к объектам, включая время начала и окончания выгрузки, а также сообщения о прогрессе выполнения.
         baseCmds.add("-v");
-        //Отправить вывод в указанный файл. Параметр можно не указывать, если используется формат с выводом в файл.
+        //Path to dump file
         baseCmds.add("-f");
         baseCmds.add(dumpFile);
-        //Имя базы
+        //Base name
         baseCmds.add("snet");
         final ProcessBuilder processBuilder = new ProcessBuilder(baseCmds);
-
-        // Устанавливаем пароль для пользователя
+        // Password for PostgreSQL user
         final Map<String, String> env = processBuilder.environment();
         env.put("PGPASSWORD", environment.getProperty("jdbc.postgresql.password"));
-
         try {
             final Process process = processBuilder.start();
             final BufferedReader reader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
