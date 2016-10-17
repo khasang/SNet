@@ -1,5 +1,7 @@
 package io.khasang.snet.entity;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -11,6 +13,7 @@ public class BackupLog {
     private long id;
     @Column(name = "path_to_dump_file")
     private String pathToDumpFile;
+    @Type(type = "calendar_date")
     private Date dumpDate;
     @Transient
     private boolean dumpExist=false;

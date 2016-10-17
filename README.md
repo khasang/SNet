@@ -32,7 +32,7 @@ Example of method in class,which provides this operation:
     public String makeBackUp() {
         String pgDump = environment.getProperty("postgresql.dumpAppPath");
         String dumpFile = environment.getProperty("postgresql.dumpFolder") + getBackupFileName();
-        //add commands to start pg_dump
+        //Add commands to start pg_dump
         final List<String> baseCmds = new ArrayList<>();
         //Path to pg_dump
         baseCmds.add(pgDump);
@@ -53,7 +53,7 @@ Example of method in class,which provides this operation:
         //Base name
         baseCmds.add("snet");
         final ProcessBuilder processBuilder = new ProcessBuilder(baseCmds);
-        // Password for PostgreSQL user
+        //Password for PostgreSQL user
         final Map<String, String> env = processBuilder.environment();
         env.put("PGPASSWORD", environment.getProperty("jdbc.postgresql.password"));
         try {
