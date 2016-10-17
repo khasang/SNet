@@ -6,7 +6,7 @@
 Operation is mapped on URL :  [/backup](). 
 
 ![](http://i12.pixs.ru/storage/2/5/1/backuppng_3849920_23694251.png)
-
+>Example of sucsessful backup.
 #### `Security`
 Back up operation is also provided by Spring security. The user must have a specific role `BACKUP_ROLE` to make this operation.
 
@@ -62,7 +62,7 @@ Example of method in class,which provides this operation:
     }
 ...
 ```
-Some parameters for `pg_dump`
+Some parameters for `pg_dump` :
 
 | Parameter    | Description   |
 | --------|---------|
