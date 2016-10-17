@@ -6,6 +6,10 @@
 Operation is mapped on URL :  [/backup](). 
 
 ![](http://i12.pixs.ru/storage/2/5/1/backuppng_3849920_23694251.png)
+
+##### `Security`
+Back up operation is also provided by Spring security. The user must have a specific role `BACKUP_ROLE` to make this operation.
+
 ##### `pg_dump`
 Backup operation is provided by `pg_dump`.
 To make it work correctly,you need to create `backup.properties` in resourses folder. It have two options:
@@ -19,8 +23,9 @@ To make it work correctly,you need to create `backup.properties` in resourses fo
 >```
 >
 It also use connection to [PostgreSQL](https://www.postgresql.org/) database. Properties for connection are used from `auth.properties`
+>
 
->Example of method in class,which provides this operation:
+Example of method in class,which provides this operation:
 
 ```java
 ...
@@ -67,7 +72,5 @@ Some parameters for `pg_dump`
 
 >You can also read about another options [here](https://www.postgresql.org/docs/9.2/static/app-pgdump.html).
 
-##### `Security`
-Back up operation is also provided by Spring security. The user must have a specific role `BACKUP_ROLE` to make this operation.
 
 
