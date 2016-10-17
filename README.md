@@ -57,13 +57,16 @@ public String makeBackUp() {
     }
 ```
 Some parameters for `pg_dump`
+
 | Parameter    | Description   |
 | --------|---------|
 | -a | Dump only the data, not the schema (data definitions). Table data, large objects, and sequence values are dumped.   |
 | -b | Include large objects in the dump. This is the default behavior except when --schema, --table, or --schema-only is specified, so the -b switch is only useful to add large objects to selective dumps. |
 | -f | Send output to the specified file. This parameter can be omitted for file based output formats, in which case the standard output is used. It must be given for the directory output format however, where it specifies the target directory instead of a file. In this case the directory is created by pg_dump and must not exist before. |
 | -v| Specifies verbose mode. This will cause pg_dump to output detailed object comments and start/stop times to the dump file, and progress messages to standard error.|
+
 >You can also read about another options [here](https://www.postgresql.org/docs/9.2/static/app-pgdump.html).
+
 ##### `Security`
 Back up operation is also provided by Spring security. The user must have a specific role `BACKUP_ROLE` to make this operation.
 
