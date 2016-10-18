@@ -33,6 +33,18 @@
     <orderEntry type="library" name="Maven: org.hibernate:hibernate-core:5.0.11.Final" level="project" />
     <orderEntry type="library" name="Maven: org.jboss:jandex:2.0.0.Final" level="project" />
     <orderEntry type="library" name="Maven: org.hibernate.common:hibernate-commons-annotations:5.0.1.Final" level="project" />
+    <orderEntry type="library" name="Maven: org.hibernate:hibernate-core:5.0.11.Final" level="project" />
+    <orderEntry type="library" name="Maven: org.jboss:jandex:2.0.0.Final" level="project" />
+    <orderEntry type="library" name="Maven: org.hibernate.common:hibernate-commons-annotations:5.0.1.Final" level="project" />
+    <orderEntry type="library" name="Maven: org.hibernate:hibernate-entitymanager:5.0.11.Final" level="project" />
+    <orderEntry type="library" name="Maven: org.hibernate:hibernate-osgi:5.0.11.Final" level="project" />
+    <orderEntry type="library" name="Maven: org.hibernate:hibernate-envers:5.0.11.Final" level="project" />
+    <orderEntry type="library" name="Maven: org.hibernate:hibernate-c3p0:5.0.11.Final" level="project" />
+    <orderEntry type="library" name="Maven: org.hibernate:hibernate-proxool:5.0.11.Final" level="project" />
+    <orderEntry type="library" name="Maven: org.hibernate:hibernate-infinispan:5.0.11.Final" level="project" />
+    <orderEntry type="library" name="Maven: org.infinispan:infinispan-core:7.2.5.Final" level="project" />
+    <orderEntry type="library" name="Maven: org.infinispan:infinispan-commons:7.2.5.Final" level="project" />
+    <orderEntry type="library" name="Maven: org.hibernate:hibernate-ehcache:5.0.11.Final" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-core:4.3.2.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: commons-logging:commons-logging:1.2" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-web:4.3.2.RELEASE" level="project" />
