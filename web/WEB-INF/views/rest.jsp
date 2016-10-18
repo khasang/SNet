@@ -28,6 +28,7 @@
             'answer3': $('#postAnswer3').val(),
             'answer4': $('#postAnswer4').val(),
             'correectAnswers': $('#postCorrectAnswer').val(),
+
         };
         $.ajax({
             type: 'POST',

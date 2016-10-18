@@ -1,11 +1,6 @@
 package io.khasang.snet.config;
 
-
 import io.khasang.snet.dao.impl.QuestionDAOImpl;
-import io.khasang.snet.model.CreateTable;
-import io.khasang.snet.model.DeleteTable;
-import io.khasang.snet.model.Hello;
-
 import io.khasang.snet.dao.QuestionDAO;
 import io.khasang.snet.model.*;
 import io.khasang.snet.service.QuestionService;
@@ -24,6 +19,7 @@ import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
 @Configuration
 @PropertySource(value = {"classpath:util.properties"})
 @PropertySource(value = {"classpath:auth.properties"})
+@PropertySource(value = {"classpath:backup.properties"})
 public class AppConfig {
     @Autowired
     Environment environment;
@@ -45,7 +41,12 @@ public class AppConfig {
 
     @Bean
     public Hello hello() {
-        return new Hello(" ");
+        return new Hello("This is hello message");
+    }
+
+    @Bean
+    public BackupBase backupBase(){
+        return new BackupBase();
     }
 
     @Bean
