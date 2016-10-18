@@ -1,11 +1,12 @@
 package io.khasang.snet.config;
 
+import io.khasang.snet.dao.impl.QuestionDAOImpl;
+import io.khasang.snet.dao.QuestionDAO;
 import io.khasang.snet.model.*;
 import io.khasang.snet.service.QuestionService;
-import io.khasang.snet.model.BackupBase;
-import io.khasang.snet.model.CreateTable;
-import io.khasang.snet.model.Hello;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -24,6 +25,12 @@ public class AppConfig {
     Environment environment;
 
     @Bean
+    public QuestionService questionService(){
+        return new QuestionService();
+
+    }
+
+    @Bean
     public UserDetailsService userDetailsService() {
         JdbcDaoImpl jdbcImpl = new JdbcDaoImpl();
         jdbcImpl.setDataSource(dataSource());
@@ -40,6 +47,11 @@ public class AppConfig {
     @Bean
     public BackupBase backupBase(){
         return new BackupBase();
+    }
+
+    @Bean
+    public DeleteTable deleteTable(){
+        return new DeleteTable(jdbcTemplate());
     }
 
     @Bean
@@ -69,8 +81,4 @@ public class AppConfig {
         return new TruncateTable(jdbcTemplate());
     }
 
-    @Bean
-    public QuestionService questionService(){
-        return new QuestionService();
-    }
 }

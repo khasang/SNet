@@ -1,11 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Hello Page</title>
+    <title>Delete record!</title>
 </head>
 <body>
-${hello}
-<br>
-${by}
+${delete}
 </body>
 </html>

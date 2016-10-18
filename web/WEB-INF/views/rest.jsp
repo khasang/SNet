@@ -6,7 +6,6 @@
 
 <script type="text/javascript">
     var service = '/api/question';
-
     var RestGet = function (id) {
         $.ajax({
             type: 'GET',
@@ -21,7 +20,6 @@
             }
         });
     };
-
     var RestPost = function () {
         var JSONObject = {
             'question': $('#postQuestion').val(),
@@ -47,7 +45,6 @@
             }
         });
     };
-
     var RestPut = function () {
         var JSONObject = {
             'id': $('#putId').val(),
@@ -72,7 +69,6 @@
             }
         });
     };
-
     var RestDelete = function () {
         $.ajax({
             type: 'DELETE',
@@ -176,4 +172,3 @@
 </div>
 
 <jsp:include page="inc/footer.jsp"/>
-

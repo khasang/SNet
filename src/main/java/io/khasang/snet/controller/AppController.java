@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+
 @Controller
 @ComponentScan("io.khasang.snet.model.By")
 public class AppController {
@@ -20,6 +22,8 @@ public class AppController {
     By by;
     @Autowired
     CreateTable createTable;
+    @Autowired
+    DeleteTable deleteTable;
     @Autowired
     TruncateTable truncateTable;
  	@Autowired
@@ -36,6 +40,32 @@ public class AppController {
     public String createTableCompany(Model model) {
         model.addAttribute("create", createTable.tableCreation());
         return "create";
+    }
+
+
+    @RequestMapping("/insert")
+    public String insertInTableCompany(Model model) {
+        model.addAttribute("create", createTable.insert());
+        return "create";
+    }
+
+    @RequestMapping("/delete")
+    public String deleteTableCompany(Model model){
+        model.addAttribute("create", deleteTable.delete());
+        return "create";
+    }
+
+    @RequestMapping("/delete/{companyId}")
+    public String deleteRecord(@PathVariable int companyId, Model model) {
+        model.addAttribute("delete", deleteTable.deleteRecord(companyId));
+        return "deleteID";
+    }
+
+    @RequestMapping("/allCompany")
+    public String selectAllCompany(Model model) {
+        List<Company> componies = createTable.selectAll();
+        model.addAttribute("allCompany", componies);
+        return "allCompany";
     }
 
     @RequestMapping("/truncate")
@@ -67,6 +97,7 @@ public class AppController {
         modelAndView.setViewName("encode");
         modelAndView.addObject("crypt", new BCryptPasswordEncoder().encode(name));
         return modelAndView;
+
     }
 
 }
