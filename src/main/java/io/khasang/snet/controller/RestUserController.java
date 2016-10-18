@@ -29,11 +29,11 @@ public class RestUserController {
                 return question;
             } else {
                 response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-                return "User with id: " + questionId + " not found.";
+                return "Question with id: " + questionId + " not found.";
             }
         } catch (NumberFormatException e) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            return "Bad user id format: " + inputId;
+            return "Bad question id format: " + inputId;
         }
     }
 
@@ -47,16 +47,6 @@ public class RestUserController {
     public Object addQuestion(@RequestBody Question question, HttpServletResponse response) {
         try {
             questionService.addQuestion(question);
-
-            JsonFactory factory = new JsonFactory();
-            JsonParser parser  = factory.createParser(response.toString());
-
-            while(!parser.isClosed()){
-                JsonToken jsonToken = parser.nextToken();
-
-                System.out.println("jsonToken = " + jsonToken);
-            }
-
             return question;
         } catch (Exception e) {
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
@@ -72,7 +62,7 @@ public class RestUserController {
             return question;
         } catch (Exception e) {
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-            return "Error updating user: " + e.getMessage();
+            return "Error updating question: " + e.getMessage();
         }
     }
 

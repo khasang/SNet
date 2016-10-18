@@ -25,7 +25,12 @@
     var RestPost = function () {
         var JSONObject = {
             'question': $('#postQuestion').val(),
-            'answer': $('#postAnswer').val(),
+            'answer1': $('#postAnswer1').val(),
+            'answer2': $('#postAnswer2').val(),
+            'answer3': $('#postAnswer3').val(),
+            'answer4': $('#postAnswer4').val(),
+            'correectAnswers': $('#postCorrectAnswer').val(),
+
         };
         $.ajax({
             type: 'POST',
@@ -46,9 +51,11 @@
     var RestPut = function () {
         var JSONObject = {
             'id': $('#putId').val(),
-            'login': $('#putLogin').val(),
-            'password': $('#putPassword').val(),
-            'role': $('#putRole').val()
+            'answer1': $('#putAnswer1').val(),
+            'answer2': $('#putAnswer2').val(),
+            'answer3': $('#putAnswer3').val(),
+            'answer4': $('#putAnswer4').val(),
+            'correectAnswers': $('#putCorrectAnswer').val(),
         };
         $.ajax({
             type: 'PUT',
@@ -69,7 +76,7 @@
     var RestDelete = function () {
         $.ajax({
             type: 'DELETE',
-            url: service + "/" + $('#deleteId').val(),
+            url: service + "/" + $('#deleteQuestionId').val(),
             dataType: 'json',
             async: false,
             success: function (result) {
@@ -107,8 +114,8 @@
                 <td>Get question by id</td>
                 <td><code><strong>GET</strong> /api/question/{id}</code></td>
                 <td>
-                    Id: <input id="questionID" value="3">
-                    <button type="button" onclick="RestGet($('#questionId').val())">Try</button>
+                    Id: <input id="getQuestionID" value="3">
+                    <button type="button" onclick="RestGet($('#getQuestionID').val())">Try</button>
                 </td>
             </tr>
             <tr>
@@ -117,7 +124,14 @@
                 <td>
                     <form class="form-inline">
                         question: <input type="text" value="question" id="postQuestion">
-                        answer: <input type="text" id="postAnswer" value="answer">
+                        <br>
+                        answer1: <input type="text" id="postAnswer1" value="answer1">
+                        answer2: <input type="text" id="postAnswer2" value="answer2">
+                        <br>
+                        answer3: <input type="text" id="postAnswer3" value="answer3">
+                        answer4: <input type="text" id="postAnswer4" value="answer4">
+                        <br>
+                        CorrectAnswers: <input type="text" id="postCorrectAnswer" value="answer1">
                         <button type="button" onclick="RestPost()">Try</button>
                     </form>
                 </td>
@@ -128,13 +142,14 @@
                 <td>
                     <form class="form-inline">
                         Id: <input type="text" value="3" id="putId">
-                        Login: <input type="text" value="login" id="putLogin">
-                        Password: <input type="password" id="putPassword" value="pass">
-                        Role:
-                        <select id="putRole" class="form-control">
-                            <option value="ROLE_ADMIN">admin</option>
-                            <option value="ROLE_USER">user</option>
-                        </select>
+                        <br>
+                        answer1: <input type="text" id="putAnswer1" value="another answer1">
+                        answer2: <input type="text" id="putAnswer2" value="another answer2">
+                        <br>
+                        answer3: <input type="text" id="putAnswer3" value="another answer3">
+                        answer4: <input type="text" id="putAnswer4" value="another answer4">
+                        <br>
+                        CorrectAnswers: <input type="text" id="putCorrectAnswer" value="another answer1">
                         <button type="button" onclick="RestPut()">Try</button>
                     </form>
                 </td>
@@ -143,7 +158,7 @@
                 <td>Delete question by id</td>
                 <td><code><strong>DELETE</strong> /api/question/{id}</code></td>
                 <td>
-                    Id: <input id="questionId" value="4">
+                    Id: <input id="deleteQuestionId" value="4">
                     <button type="button" onclick="RestDelete()">Try</button>
                 </td>
             </tr>
