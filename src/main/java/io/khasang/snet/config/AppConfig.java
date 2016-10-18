@@ -29,18 +29,10 @@ public class AppConfig {
     Environment environment;
 
     @Bean
-    @Autowired
-    @Qualifier(value = "sessionFactory")
-    public QuestionDAO questionDAO(SessionFactory sessionFactory){
-        return new QuestionDAOImpl(sessionFactory);
-    }
-
-    @Bean
     public QuestionService questionService(){
         return new QuestionService();
 
     }
-
 
     @Bean
     public UserDetailsService userDetailsService() {

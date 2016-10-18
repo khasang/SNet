@@ -23,11 +23,9 @@ public class AppController {
     @Autowired
     CreateTable createTable;
     @Autowired
-
     DeleteTable deleteTable;
-@Autowired
+    @Autowired
     TruncateTable truncateTable;
-
 
     @RequestMapping("/")
     public String hello(Model model) {
@@ -41,8 +39,6 @@ public class AppController {
         model.addAttribute("create", createTable.tableCreation());
         return "create";
     }
-
-
 
     @RequestMapping("/insert")
     public String insertInTableCompany(Model model) {

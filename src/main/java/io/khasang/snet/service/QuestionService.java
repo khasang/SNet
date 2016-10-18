@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Component("QuestionService")
 @Transactional
 public class QuestionService {
     @Autowired

@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Company {
     @Id
     @Column (name = "id")
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue (strategy = GenerationType.AUTO)
     private int id;
 
     @Column (name = "name")
@@ -61,8 +61,6 @@ public class Company {
     public void setAge(int age) {
         this.age = age;
     }
-
-
 
     public double getSalary() {
         return salary;

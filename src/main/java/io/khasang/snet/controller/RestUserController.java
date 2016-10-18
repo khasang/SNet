@@ -47,16 +47,6 @@ public class RestUserController {
     public Object addQuestion(@RequestBody Question question, HttpServletResponse response) {
         try {
             questionService.addQuestion(question);
-
-            JsonFactory factory = new JsonFactory();
-            JsonParser parser  = factory.createParser(response.toString());
-
-            while(!parser.isClosed()){
-                JsonToken jsonToken = parser.nextToken();
-
-                System.out.println("jsonToken = " + jsonToken);
-            }
-
             return question;
         } catch (Exception e) {
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
