@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
+
 @Controller
 @ComponentScan("io.khasang.snet.model.By")
 public class AppController {
