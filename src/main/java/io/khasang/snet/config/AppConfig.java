@@ -1,14 +1,11 @@
 package io.khasang.snet.config;
 
-
-
 import io.khasang.snet.model.*;
 import io.khasang.snet.service.QueryHandler;
 
 import io.khasang.snet.model.CreateTable;
 import io.khasang.snet.model.Hello;
 import io.khasang.snet.model.TruncateTable;
-
 import io.khasang.snet.service.QuestionService;
 import io.khasang.snet.service.TableCreator;
 import io.khasang.snet.service.UsersPasswordChanger;
@@ -30,11 +27,6 @@ import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
 public class AppConfig {
     @Autowired
     Environment environment;
-
-    @Bean
-    public QuestionService questionService(){
-        return new QuestionService();
-    }
 
     @Bean
     public UserDetailsService userDetailsService() {
@@ -108,8 +100,9 @@ public class AppConfig {
     @Bean
     public UsersPasswordChanger usersPasswordChanger() {
         return new UsersPasswordChanger(queryHandler());
+    }
 
-@Bean        
+    @Bean
     public QuestionService questionService() {
         return new QuestionService();
 
