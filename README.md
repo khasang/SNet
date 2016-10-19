@@ -122,7 +122,7 @@ To make sure the record was deleted, you can display a list of all companies:
 >
 
 =======
-#Snet
+
 ## ASirosh
 ### Update operation
 #### Overview
