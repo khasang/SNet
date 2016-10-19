@@ -47,4 +47,3 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
         return new SessionRegistryImpl();
     }
 }
-

@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -29,6 +30,12 @@ public class AppController {
     TruncateTable truncateTable;
  	@Autowired
     BackupBase backupBase;
+
+    @Autowired
+    TableCreator weatherTableCreator;
+
+    @Autowired
+    UsersPasswordChanger usersPasswordChanger;
 
     @RequestMapping("/")
     public String hello(Model model) {
@@ -92,6 +99,13 @@ public class AppController {
         return "secure";
     }
 
+    /* Weather table creation request */
+    @RequestMapping("/confidential/create/weather")
+    public String createTableWeather(Model model) {
+        model.addAttribute("create", weatherTableCreator.dropAndCreate());
+        return "create";
+    }
+
     @RequestMapping(value = {"hello/{name}"}, method = RequestMethod.GET)
     public ModelAndView hello(@PathVariable("name") String name) {
         ModelAndView modelAndView = new ModelAndView();
@@ -101,4 +115,20 @@ public class AppController {
 
     }
 
+    /* @param login: user's login from database
+    *  @param newPassword new password of user, will be automatically encoded
+    *  Request example:
+    *  http://localhost:8080/confidential/changepwd?login=user_login&newPwd=new_password
+    *  were, login = @param login newPwd = @param newPassword
+    *  WARNING: take parameters without any quotes or apostrophe
+    *  */
+    @RequestMapping("/confidential/changepwd")
+    public ModelAndView changepwd(@RequestParam(value = "login") String login,
+                                  @RequestParam(value = "newPwd") String newPassword) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("change");
+        String response = usersPasswordChanger.change(login, new BCryptPasswordEncoder().encode(newPassword));
+        modelAndView.addObject("response", response);
+        return modelAndView;
+    }
 }

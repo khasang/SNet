@@ -16,6 +16,7 @@ import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
 @PropertySource(value = {"classpath:util.properties"})
 @PropertySource(value = {"classpath:auth.properties"})
 @PropertySource(value = {"classpath:backup.properties"})
+@PropertySource(value = {"classpath:queries.properties"})
 public class AppConfig {
     @Autowired
     Environment environment;
@@ -61,6 +62,11 @@ public class AppConfig {
     }
 
     @Bean
+    public QueryHandler queryHandler() {
+        return new QueryHandler(jdbcTemplate());
+    }
+
+    @Bean
     public JdbcTemplate jdbcTemplate() {
         JdbcTemplate jdbcTemplate = new JdbcTemplate();
         jdbcTemplate.setDataSource(dataSource());
@@ -68,7 +74,15 @@ public class AppConfig {
     }
 
     @Bean
-    public CreateTable createTable() {
+    public TableCreator weatherTableCreator() {
+        TableCreator creator = new TableCreator(queryHandler());
+        creator.setDropSql(environment.getProperty("weather.drop"));
+        creator.setCreateSql(environment.getProperty("weather.create"));
+        return creator;
+    }
+
+    @Bean
+    public CreateTable createTable(){
         return new CreateTable(jdbcTemplate());
     }
 
@@ -77,4 +91,8 @@ public class AppConfig {
         return new TruncateTable(jdbcTemplate());
     }
 
+    @Bean
+    public UsersPasswordChanger usersPasswordChanger() {
+        return new UsersPasswordChanger(queryHandler());
+    }
 }
