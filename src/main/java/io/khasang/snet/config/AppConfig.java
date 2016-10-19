@@ -74,7 +74,7 @@ public class AppConfig {
     }
     
     @Bean
-    public TableConfiguration createTable(){
+    public TableConfiguration createTableEmployee(){
         return new TableConfiguration(jdbcTemplate());
     }
 
