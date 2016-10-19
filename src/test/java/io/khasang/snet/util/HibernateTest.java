@@ -1,3 +1,5 @@
+package io.khasang.snet.util;
+
 import io.khasang.snet.config.AppConfig;
 import io.khasang.snet.config.HibernateConfig;
 import io.khasang.snet.config.application.WebConfig;

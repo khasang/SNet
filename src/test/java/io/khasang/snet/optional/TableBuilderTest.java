@@ -1,3 +1,5 @@
+package io.khasang.snet.optional;
+
 import io.khasang.snet.config.AppConfig;
 import io.khasang.snet.service.TableCreator;
 import org.junit.Assert;
