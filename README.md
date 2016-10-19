@@ -1,17 +1,16 @@
- ## ASirosh
- ### Update operation
- #### Overview
- This operation use for changing password for account
- that exists in database. For this needs login of user,
- by login will found account and current password will
- be changed to new one. Update operation requires autorization.
- #### Setting up
- This feature work depends on tables **users** and **roles**, 
- also  existance of some accounts in that table requared. 
- Table must contains **admin** and **user** account. If you 
- haven't yet that table, there few test for creation table, 
- and inserting required accounts.
- ```java
+#Snet
+## ASirosh
+### Update operation
+#### Overview
+
+This operation use for changing password for account that exists in database. For this needs login of user,
+by login will found account and current password will be changed to new one. Update operation requires autorization.
+
+#### Setting up
+
+This feature work depends on tables **users** and **roles**, also  existance of some accounts in that table requared. Table must contains **admin** and **user** account. If you haven't yet that table, there few test for creation table,and inserting required accounts.
+
+```java
  @Test@Ignore
 public void createNewTableUsers() {
     String droping = "DROP TABLE IF EXISTS users";
