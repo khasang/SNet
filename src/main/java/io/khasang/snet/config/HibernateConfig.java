@@ -73,7 +73,7 @@ public class HibernateConfig {
         return new PersistenceExceptionTranslationPostProcessor();
     }
 
-    @Bean
+    @Bean(name = "cityLocationUtility")
     public DataUtility<CityLocation, Long> getCityLocationUtility() {
         return new CityLocationService(sessionFactory().getObject());
     }
