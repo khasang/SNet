@@ -40,18 +40,20 @@ public class CreateUsersTableInstance {
     }
 
     @Test
+    @Ignore
     public void createPrimeEntry() {
         Assert.assertEquals("Unable to create prime entry",1,createUser(1,"admin","admin",1));
     }
 
     @Test
+    @Ignore
     public void createExampleRole() {
         Assert.assertEquals("Unable to create example user",1,createUser(2,"user","example",1));
     }
 
     private int createUser(int id, String login, String password, int role) {
         String encryptedPwd = bCryptPasswordEncoder.encode(password);
-        return queryHandler.executeUpdate(createUserPSCreator(login,encryptedPwd,role,2));
+        return queryHandler.executeUpdate(createUserPSCreator(login,encryptedPwd,role,id));
     }
 
     private PreparedStatementCreator createUserPSCreator(String login, String encryptedPwd,int role, int id) {
