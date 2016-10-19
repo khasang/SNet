@@ -98,13 +98,13 @@ CREATE TABLE company
 
 #####Description of methods to work with operations insert and delete:
 
- |Method|Description|Secure|Mapping|
- |--------|---------|--------|---------|
- |tableCreation()|create table| no | localhost:8080/create|
- |insert()|add some record in table| no | localhost:8080/insert|
- |selectAll()|show all records of table| no | localhost:8080/allCompany|
- |deleteRecord(int recordId)|delete from table record with id = `recordId`| yes | localhost:8080/delete/{companyId}|
- |delete()|delete table| yes | localhost:8080/delete|
+|Method|Description|Secure|Mapping|
+|--------|---------|--------|---------|
+|tableCreation()|create table| no | localhost:8080/create|
+|insert()|add some record in table| no | localhost:8080/insert|
+|selectAll()|show all records of table| no | localhost:8080/allCompany|
+|deleteRecord(int recordId)|delete from table record with id = `recordId`| yes | localhost:8080/delete/{companyId}|
+|delete()|delete table| yes | localhost:8080/delete|
  
 ##### `Security`
  Delete operation provided by Spring security. For this, you must have role `ROLE_MASTER`.
