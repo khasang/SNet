@@ -1,5 +1,6 @@
 package io.khasang.snet.config;
 
+
 import io.khasang.snet.model.*;
 import io.khasang.snet.service.QueryHandler;
 import io.khasang.snet.service.QuestionService;
@@ -86,6 +87,11 @@ public class AppConfig {
     @Bean
     public CreateTable createTable(){
         return new CreateTable(jdbcTemplate());
+    }
+    
+    @Bean
+    public TableConfiguration createTableEmployee(){
+        return new TableConfiguration(jdbcTemplate());
     }
 
     @Bean

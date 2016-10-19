@@ -32,6 +32,8 @@ public class AppController {
     TruncateTable truncateTable;
  	@Autowired
     BackupBase backupBase;
+    @Autowired
+    TableConfiguration tableConfiguration;
 
     @Autowired
     TableCreator weatherTableCreator;
@@ -50,8 +52,7 @@ public class AppController {
     public String createTableCompany(Model model) {
         model.addAttribute("create", createTable.tableCreation());
         return "create";
-    }
-
+	}
 
     @RequestMapping("/insert")
     public String insertInTableCompany(Model model) {
@@ -77,6 +78,27 @@ public class AppController {
         model.addAttribute("allCompany", componies);
         return "allCompany";
     }
+
+    @RequestMapping("/createEmployees")
+    public String createTableEmployeesAndCities(Model model){
+        model.addAttribute("createEmployees", tableConfiguration.employeesTableCreation());
+        model.addAttribute("createCities",tableConfiguration.citiesTableCreation());
+        return "createEmployees";
+    }
+
+    @RequestMapping("/insertEmployees")
+    public String insertInTableEmployeesAndCities(Model model){
+        model.addAttribute("insertEmployees", tableConfiguration.insertEmployees());
+        model.addAttribute("insertCities",tableConfiguration.insertCities());
+        return "insertEmployees";
+    }
+
+    @RequestMapping("/selectEmployees")
+    public String selectEmployeesByCountry(Model model){
+        model.addAttribute("selectEmployees", tableConfiguration.selectEmployeesByCountry("Англия"));
+        return "selectEmployees";
+    }
+
 
     @RequestMapping("/truncate")
     public String truncateTable(Model model) {
