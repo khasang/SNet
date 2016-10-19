@@ -1,5 +1,6 @@
 package io.khasang.snet.config;
 
+
 import io.khasang.snet.model.*;
 import io.khasang.snet.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,6 +71,11 @@ public class AppConfig {
     @Bean
     public CreateTable createTable() {
         return new CreateTable(jdbcTemplate());
+    }
+    
+    @Bean
+    public TableConfiguration createTable(){
+        return new TableConfiguration(jdbcTemplate());
     }
 
     @Bean
