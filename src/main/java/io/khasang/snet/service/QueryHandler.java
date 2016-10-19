@@ -20,7 +20,7 @@ public class QueryHandler {
         }
     }
 
-    public void createAndDropTable(String sql) throws Exception {
+    public void execute(String sql) throws Exception {
         jdbcTemplate.execute(sql);
     }
 

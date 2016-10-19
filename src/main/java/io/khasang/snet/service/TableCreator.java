@@ -23,8 +23,8 @@ public class TableCreator {
 
     public String dropAndCreate() {
         try {
-            queryHandler.createAndDropTable(this.dropSql);
-            queryHandler.createAndDropTable(this.createSql);
+            queryHandler.execute(this.dropSql);
+            queryHandler.execute(this.createSql);
         } catch (Exception exc) {
             // logged
             return exc.toString();
