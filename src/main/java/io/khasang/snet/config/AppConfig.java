@@ -1,7 +1,10 @@
 package io.khasang.snet.config;
 
 import io.khasang.snet.model.*;
+import io.khasang.snet.service.QueryHandler;
 import io.khasang.snet.service.QuestionService;
+import io.khasang.snet.service.TableCreator;
+import io.khasang.snet.service.UsersPasswordChanger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,7 +27,6 @@ public class AppConfig {
     @Bean
     public QuestionService questionService(){
         return new QuestionService();
-
     }
 
     @Bean

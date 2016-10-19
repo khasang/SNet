@@ -1,6 +1,8 @@
 package io.khasang.snet.controller;
 
 import io.khasang.snet.model.*;
+import io.khasang.snet.service.TableCreator;
+import io.khasang.snet.service.UsersPasswordChanger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

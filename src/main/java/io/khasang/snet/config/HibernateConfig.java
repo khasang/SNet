@@ -74,7 +74,8 @@ public class HibernateConfig {
     }
 
     @Bean
-    public DataUtility<CityLocation,Long> getCityLocationUtility() {
+    public DataUtility<CityLocation, Long> getCityLocationUtility() {
         return new CityLocationService(sessionFactory().getObject());
     }
+}
 
