@@ -27,6 +27,9 @@ public class CreateUsersTableInstance {
         this.bCryptPasswordEncoder = new BCryptPasswordEncoder();
     }
 
+    /* Drop old roles table and creates new one.
+    * WARNING: All data will be loss!
+    * */
     @Test
     @Ignore
     public void createNewTableRoles() {
@@ -42,6 +45,9 @@ public class CreateUsersTableInstance {
 
     }
 
+    /* Drop old users table and creates new one.
+    * WARNING: All data will be loss!
+    * */
     @Test
     @Ignore
     public void createNewTableUsers() {
@@ -56,6 +62,7 @@ public class CreateUsersTableInstance {
         }
     }
 
+    /* Creates administrator's role */
     @Test
     @Ignore
     public void createAdminRole() {
@@ -63,12 +70,14 @@ public class CreateUsersTableInstance {
         Assert.assertEquals("Unable create admin role",1,rowAffected);
     }
 
+    /* Creates administrator user account */
     @Test
     @Ignore
     public void createPrimeEntry() {
         Assert.assertEquals("Unable to create prime entry",1,createUser(1,"admin","admin",1));
     }
 
+    /* Creates example user account */
     @Test
     @Ignore
     public void createExampleUser() {
@@ -80,6 +89,13 @@ public class CreateUsersTableInstance {
         return queryHandler.executeUpdate(createUserPSCreator(login,encryptedPwd,role,id));
     }
 
+    /* Creates PreparedStatementCreator for a new user account insertion
+    * @param login: user's login in base
+    * @param encryptedPwd: encrypted password
+    * @param role: role id
+    * @param id: user's id
+    * @return PreparedStatementCreator instance
+    * */
     private PreparedStatementCreator createUserPSCreator(String login, String encryptedPwd,int role, int id) {
         return connection -> {
             PreparedStatement statement = connection.prepareStatement("INSERT INTO users VALUES (?,?,?,?)");
@@ -91,6 +107,11 @@ public class CreateUsersTableInstance {
         };
     }
 
+    /* Creates PreparedStatementCreator for a new role insertion
+    * @param id: role's id
+    * @param roleName: role's name
+    * @return PreparedStatementCreator instance
+    * */
     private PreparedStatementCreator createRolePSCreator(int id, String roleName) {
         return connection -> {
             PreparedStatement statement = connection.prepareStatement("INSERT INTO roles VALUES (?,?)");
@@ -99,4 +120,5 @@ public class CreateUsersTableInstance {
             return statement;
         };
     }
+
 }
