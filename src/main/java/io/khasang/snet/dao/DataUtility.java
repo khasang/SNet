@@ -1,4 +1,4 @@
-package io.khasang.snet.service;
+package io.khasang.snet.dao;
 
 import java.util.List;
 

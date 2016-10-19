@@ -1,5 +1,6 @@
-package io.khasang.snet.service;
+package io.khasang.snet.dao.impl;
 
+import io.khasang.snet.dao.DataUtility;
 import io.khasang.snet.entity.CityLocation;
 import org.hibernate.Query;
 import org.hibernate.Session;
