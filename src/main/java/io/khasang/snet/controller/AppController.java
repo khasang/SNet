@@ -30,24 +30,24 @@ public class AppController {
         return "hello";
     }
 
-    @RequestMapping("/create")
+    @RequestMapping("/createEmployees")
     public String createTableEmployeesAndCities(Model model){
         model.addAttribute("createEmployees", tableConfiguration.employeesTableCreation());
         model.addAttribute("createCities",tableConfiguration.citiesTableCreation());
-        return "create";
+        return "createEmployees";
     }
 
-    @RequestMapping("/insert")
+    @RequestMapping("/insertEmployees")
     public String insertInTableEmployeesAndCities(Model model){
         model.addAttribute("insertEmployees", tableConfiguration.insertEmployees());
         model.addAttribute("insertCities",tableConfiguration.insertCities());
-        return "insert";
+        return "insertEmployees";
     }
 
-    @RequestMapping("/select")
+    @RequestMapping("/selectEmployees")
     public String selectEmployeesByCountry(Model model){
         model.addAttribute("selectEmployees", tableConfiguration.selectEmployeesByCountry("Англия"));
-        return "select";
+        return "selectEmployees";
     }
 
     @RequestMapping("/confidential/page")
