@@ -20,8 +20,9 @@ public class UsersPasswordChanger {
     }
 
     /* Creates PreparedStatementCreator implementation
-    *  @param updating value
-    *  @param key value
+    *  @param value: encrypted password
+    *  @param key: login user in database
+    *  @return PreparedStatementCreator instance
     *  */
     private PreparedStatementCreator preparedStatementCreate(String key, String value) {
         return connection -> {
