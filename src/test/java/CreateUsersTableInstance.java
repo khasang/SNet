@@ -27,7 +27,22 @@ public class CreateUsersTableInstance {
 
     @Test
     @Ignore
-    public void createNewTable() {
+    public void createNewTableRoles() {
+        String droping = "DROP TABLE IF EXISTS roles";
+        String create = "CREATE TABLE roles ( id integer NOT NULL, role_name character varying(255), " +
+                "CONSTRAINT p_key PRIMARY KEY (id))";
+        try {
+            queryHandler.execute(droping);
+            queryHandler.execute(create);
+        } catch (Exception exc) {
+            Assert.fail("Failed execute statement, error was thrown: " + exc);
+        }
+
+    }
+
+    @Test
+    @Ignore
+    public void createNewTableUsers() {
         String droping = "DROP TABLE IF EXISTS users";
         String creation = "CREATE TABLE users(  id integer NOT NULL,  login character varying(255),  " +
                 "password character varying(255),  role_id integer,  CONSTRAINT users_pkey PRIMARY KEY (id))";
@@ -41,13 +56,20 @@ public class CreateUsersTableInstance {
 
     @Test
     @Ignore
+    public void createAdminRole() {
+        int rowAffected = queryHandler.executeUpdate(createRolePSCreator(1,"ROLE_ADMIN"));
+        Assert.assertEquals("Unable create admin role",1,rowAffected);
+    }
+
+    @Test
+    @Ignore
     public void createPrimeEntry() {
         Assert.assertEquals("Unable to create prime entry",1,createUser(1,"admin","admin",1));
     }
 
     @Test
     @Ignore
-    public void createExampleRole() {
+    public void createExampleUser() {
         Assert.assertEquals("Unable to create example user",1,createUser(2,"user","example",1));
     }
 
@@ -58,11 +80,20 @@ public class CreateUsersTableInstance {
 
     private PreparedStatementCreator createUserPSCreator(String login, String encryptedPwd,int role, int id) {
         return connection -> {
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO users VALUES (?,?,?,?);");
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO users VALUES (?,?,?,?)");
             statement.setInt(1,id);
             statement.setString(2,login);
             statement.setString(3,encryptedPwd);
             statement.setInt(4,role);
+            return statement;
+        };
+    }
+
+    private PreparedStatementCreator createRolePSCreator(int id, String roleName) {
+        return connection -> {
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO roles VALUES (?,?)");
+            statement.setInt(1,id);
+            statement.setString(2,roleName);
             return statement;
         };
     }
