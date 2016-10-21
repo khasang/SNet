@@ -1,6 +1,5 @@
 package io.khasang.snet.config;
 
-import io.khasang.snet.entity.CityLocation;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -71,9 +70,5 @@ public class HibernateConfig {
         return new PersistenceExceptionTranslationPostProcessor();
     }
 
-    @Bean(name = "cityLocationUtility")
-    public HibernateDAO<CityLocation, Long> getCityLocationUtility() {
-        return new HibernateDAO(sessionFactory().getObject());
-    }
 }
 

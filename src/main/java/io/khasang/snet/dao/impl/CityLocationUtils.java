@@ -12,11 +12,11 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class HibernateDAO implements HibernateDAO<CityLocation, Long> {
+public class CityLocationUtils implements HibernateDAO<CityLocation, Long> {
 
     private SessionFactory sessionFactory;
 
-    public HibernateDAO(SessionFactory sessionFactory) {
+    public CityLocationUtils(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
