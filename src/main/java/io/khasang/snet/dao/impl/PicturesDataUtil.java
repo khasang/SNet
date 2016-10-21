@@ -17,10 +17,10 @@ import java.util.List;
  */
 @Repository
 @Transactional
-public class PicturesDateUtil implements HibernateDAO<Picture,Long> {
+public class PicturesDataUtil implements HibernateDAO<Picture,Long> {
     private final SessionFactory sessionFactory;
 
-    public PicturesDateUtil(SessionFactory sessionFactory) {
+    public PicturesDataUtil(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
