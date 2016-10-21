@@ -32,6 +32,7 @@ public class PictureDataUtilTest {
     @Autowired
     private HibernateDAO<Picture, Long> picturesDataUtil;
 
+    /* There test equals method of Picture */
     @Test
     public void pictureEqualsTest() {
         Picture first = generator.create();
@@ -41,42 +42,65 @@ public class PictureDataUtilTest {
         assertNotEquals(first, another);
     }
 
+    /* Tested saving and loading of entities,
+     * from database */
     @Test
     public void saveAndLoadTest() {
         Picture original = generator.create();
         picturesDataUtil.add(original);
 
+        /* If loaded picture will differs from
+        * original test fails */
         Picture deSerialized = picturesDataUtil.get(original.getId());
         assertEquals(original,deSerialized);
     }
 
+    /* Tested updating of exists entity instance */
     @Test
     public void updateTest() {
         Picture original = generator.create();
         picturesDataUtil.add(original);
 
+        /* Will create new different picture, but
+        * fields id, description and ownerId sets from
+        * original. Will differ just imageBody and
+        * if it's field was same test fails */
         Picture differed = generator.create();
         differed.setId(original.getId());
         differed.setDescription(original.getDescription());
         differed.setOwnerId(original.getOwnerId());
         assertNotEquals("Failed: original and differed haven't difference", original, differed);
 
+        /* Will edited picture in database, and after
+        * it's loaded and deserialized if it will be
+        * not same as different picture, already in program memory
+        * test will failed unlike first checking, in next if
+        * deserialized objectwill be same as original
+        * (not edited) test fails */
         picturesDataUtil.edit(differed);
         Picture deSerialized = picturesDataUtil.get(differed.getId());
         assertEquals("Failed: objects differs after serialization", differed, deSerialized);
         assertNotEquals("Failed original and edited object haven't defference", original, deSerialized);
     }
 
+    /* Tested deletion from data base */
     @Test
     public void deleteTest() {
         Picture picture = generator.create();
         picturesDataUtil.add(picture);
 
+        /* if deleted picture not will be null test
+        * will be failed*/
         picturesDataUtil.delete(picture.getId());
         Picture deleted = picturesDataUtil.get(picture.getId());
         assertNull(deleted);
     }
 
+    /* Tested list returned by dao
+    * saved set of pictures, and pictures
+    * also saved into data base, after loading list
+    * all same instances was deleted
+    * */
     @Test
     public void listReturnTest() {
         Set<Picture> pictureSet = new HashSet<>();
@@ -85,6 +109,7 @@ public class PictureDataUtilTest {
             pictureSet.add(picture);
         }
 
+        // if some picture retains in set test fails
         List<Picture> pictures = picturesDataUtil.getAll();
         pictureSet.removeAll(pictures);
         assertEquals(0,pictureSet.size());
