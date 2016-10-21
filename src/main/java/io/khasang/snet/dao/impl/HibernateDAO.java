@@ -1,11 +1,10 @@
 package io.khasang.snet.dao.impl;
 
-import io.khasang.snet.dao.DataUtility;
+import io.khasang.snet.dao.HibernateDAO;
 import io.khasang.snet.entity.CityLocation;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,11 +12,11 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class CityLocationUtils implements DataUtility<CityLocation, Long> {
+public class HibernateDAO implements HibernateDAO<CityLocation, Long> {
 
     private SessionFactory sessionFactory;
 
-    public CityLocationUtils(SessionFactory sessionFactory) {
+    public HibernateDAO(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 

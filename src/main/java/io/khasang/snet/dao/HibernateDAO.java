@@ -2,7 +2,7 @@ package io.khasang.snet.dao;
 
 import java.util.List;
 
-public interface DataUtility<Element, Key> {
+public interface HibernateDAO<Element, Key> {
 
     /*
     * Adds new object into ORM

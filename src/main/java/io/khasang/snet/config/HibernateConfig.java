@@ -1,8 +1,6 @@
 package io.khasang.snet.config;
 
 import io.khasang.snet.entity.CityLocation;
-import io.khasang.snet.dao.impl.CityLocationUtils;
-import io.khasang.snet.dao.DataUtility;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -74,8 +72,8 @@ public class HibernateConfig {
     }
 
     @Bean(name = "cityLocationUtility")
-    public DataUtility<CityLocation, Long> getCityLocationUtility() {
-        return new CityLocationUtils(sessionFactory().getObject());
+    public HibernateDAO<CityLocation, Long> getCityLocationUtility() {
+        return new HibernateDAO(sessionFactory().getObject());
     }
 }
 
