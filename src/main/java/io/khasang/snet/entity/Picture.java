@@ -90,7 +90,7 @@ public class Picture {
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
-        result.append(String.format("%d: '%s' owner: %d size: ",id,description,ownerId));
+        result.append(String.format("%d: Description: '%s', owner: %d, size: ",id,description,ownerId));
 
         if (imageBody.length < 1024) {
             result.append(String.format("%d bytes", imageBody.length));
