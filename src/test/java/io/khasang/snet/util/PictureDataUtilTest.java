@@ -3,6 +3,8 @@ package io.khasang.snet.util;
 import io.khasang.snet.config.AppConfig;
 import io.khasang.snet.config.HibernateConfig;
 import io.khasang.snet.config.application.WebConfig;
+import io.khasang.snet.dao.HibernateDAO;
+import io.khasang.snet.dao.impl.PicturesDataUtil;
 import io.khasang.snet.entity.Picture;
 import static org.junit.Assert.*;
 import org.junit.Before;
@@ -21,6 +23,9 @@ public class PictureDataUtilTest {
     @Autowired
     private Generator<Picture> generator;
 
+    @Autowired
+    private HibernateDAO<Picture, Long> picturesDataUtil;
+
     @Test
     public void pictureEqualsTest() {
         Picture first = generator.create();
@@ -30,4 +35,12 @@ public class PictureDataUtilTest {
         assertNotEquals(first, another);
     }
 
+    @Test
+    public void saveAndLoadTest() {
+        Picture original = generator.create();
+        picturesDataUtil.add(original);
+
+        Picture deSerialized = picturesDataUtil.get(original.getId());
+        assertEquals(original,deSerialized);
+    }
 }
