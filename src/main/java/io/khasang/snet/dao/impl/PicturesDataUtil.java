@@ -49,6 +49,7 @@ public class PicturesDataUtil implements HibernateDAO<Picture,Long> {
         final Session session = this.getCurrentSession();
         Picture picture = this.get(id);
         session.delete(picture);
+        session.flush();
     }
 
     @Override

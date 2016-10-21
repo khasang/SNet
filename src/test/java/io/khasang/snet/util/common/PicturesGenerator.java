@@ -42,6 +42,7 @@ public class PicturesGenerator implements Generator<Picture>, Iterable<Picture> 
 
             @Override
             public Picture next() {
+                index++;
                 return PicturesGenerator.this.create();
             }
         };
