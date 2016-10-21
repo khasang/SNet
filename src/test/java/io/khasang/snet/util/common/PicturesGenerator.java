@@ -2,6 +2,7 @@ package io.khasang.snet.util.common;
 
 import io.khasang.snet.entity.Picture;
 import io.khasang.snet.util.Generator;
+import org.springframework.stereotype.Component;
 
 import java.util.Iterator;
 import java.util.Random;
@@ -9,6 +10,7 @@ import java.util.Random;
 /**
  * Generate random Picture objects
  */
+@Component
 public class PicturesGenerator implements Generator<Picture>, Iterable<Picture> {
 
     private final String desc = "Random generated picture entity instance.";
