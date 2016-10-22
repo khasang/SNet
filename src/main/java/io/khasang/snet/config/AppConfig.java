@@ -1,12 +1,15 @@
 package io.khasang.snet.config;
 
-import io.khasang.snet.dao.impl.QuestionDAOImpl;
-import io.khasang.snet.dao.QuestionDAO;
 import io.khasang.snet.model.*;
+import io.khasang.snet.service.QueryHandler;
+
+import io.khasang.snet.model.CreateTable;
+import io.khasang.snet.model.Hello;
+import io.khasang.snet.model.TruncateTable;
 import io.khasang.snet.service.QuestionService;
-import org.hibernate.SessionFactory;
+import io.khasang.snet.service.TableCreator;
+import io.khasang.snet.service.UsersPasswordChanger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -20,15 +23,10 @@ import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
 @PropertySource(value = {"classpath:util.properties"})
 @PropertySource(value = {"classpath:auth.properties"})
 @PropertySource(value = {"classpath:backup.properties"})
+@PropertySource(value = {"classpath:queries.properties"})
 public class AppConfig {
     @Autowired
     Environment environment;
-
-    @Bean
-    public QuestionService questionService(){
-        return new QuestionService();
-
-    }
 
     @Bean
     public UserDetailsService userDetailsService() {
@@ -65,6 +63,11 @@ public class AppConfig {
     }
 
     @Bean
+    public QueryHandler queryHandler() {
+        return new QueryHandler(jdbcTemplate());
+    }
+
+    @Bean
     public JdbcTemplate jdbcTemplate() {
         JdbcTemplate jdbcTemplate = new JdbcTemplate();
         jdbcTemplate.setDataSource(dataSource());
@@ -72,8 +75,21 @@ public class AppConfig {
     }
 
     @Bean
-    public CreateTable createTable() {
+    public TableCreator weatherTableCreator() {
+        TableCreator creator = new TableCreator(queryHandler());
+        creator.setDropSql(environment.getProperty("weather.drop"));
+        creator.setCreateSql(environment.getProperty("weather.create"));
+        return creator;
+    }
+
+    @Bean
+    public CreateTable createTable(){
         return new CreateTable(jdbcTemplate());
+    }
+    
+    @Bean
+    public TableConfiguration createTableEmployee(){
+        return new TableConfiguration(jdbcTemplate());
     }
 
     @Bean
@@ -81,4 +97,14 @@ public class AppConfig {
         return new TruncateTable(jdbcTemplate());
     }
 
+    @Bean
+    public UsersPasswordChanger usersPasswordChanger() {
+        return new UsersPasswordChanger(queryHandler());
+    }
+
+    @Bean
+    public QuestionService questionService() {
+        return new QuestionService();
+
+    }
 }
