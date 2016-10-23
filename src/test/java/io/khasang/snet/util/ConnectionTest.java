@@ -1,3 +1,5 @@
+package io.khasang.snet.util;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.Assert;
@@ -9,7 +11,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 
-public class TestConnection {
+public class ConnectionTest {
     private Connection connection;
     private StringBuilder url;
 

@@ -1,21 +1,22 @@
-package io.khasang.snet.service;
+package io.khasang.snet.dao.impl;
 
+import io.khasang.snet.dao.HibernateDAO;
 import io.khasang.snet.entity.CityLocation;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Component
+@Repository
 @Transactional
-public class CityLocationService implements DataUtility<CityLocation, Long> {
+public class CityLocationUtils implements HibernateDAO<CityLocation, Long> {
 
     private SessionFactory sessionFactory;
 
-    public CityLocationService(SessionFactory sessionFactory) {
+    public CityLocationUtils(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
@@ -45,14 +46,15 @@ public class CityLocationService implements DataUtility<CityLocation, Long> {
         Session session = getCurrentSession();
         CityLocation location = session.get(CityLocation.class, key);
         session.delete(location);
+        session.flush();
     }
 
     @Override
-    @SuppressWarnings("unchekced")
+    @SuppressWarnings("unchecked")
     public List<CityLocation> getAll() {
         Session session = getCurrentSession();
         Query query = session.createQuery("FROM io.khasang.snet.entity.CityLocation");
-        return query.list();
+        return (List<CityLocation>) query.list();
     }
 
     private Session getCurrentSession() {
