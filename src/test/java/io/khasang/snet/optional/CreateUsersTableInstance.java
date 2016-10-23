@@ -12,10 +12,12 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.sql.PreparedStatement;
 
 @RunWith(SpringJUnit4ClassRunner.class)
+@WebAppConfiguration
 @ContextConfiguration(classes = {AppConfig.class})
 public class CreateUsersTableInstance {
     @Autowired
@@ -31,7 +33,7 @@ public class CreateUsersTableInstance {
     * WARNING: All data will be loss!
     * */
     @Test
-    @Ignore
+//    @Ignore
     public void createNewTableRoles() {
         String droping = "DROP TABLE IF EXISTS roles";
         String create = "CREATE TABLE roles ( id integer NOT NULL, role_name character varying(255), " +
