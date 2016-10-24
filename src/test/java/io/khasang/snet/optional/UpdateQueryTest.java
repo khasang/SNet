@@ -25,7 +25,8 @@ public class UpdateQueryTest {
      * this value tell that some error
      * occur
      */
-    @Test@Ignore
+    @Test
+    @Ignore
     public void queryUpdateTest() {
         Integer rowAffected = queryHandler.executeUpdate(preparedStatementCreate("god","user"));
         Assert.assertNotEquals("Error while quering.",new Integer(-1),rowAffected);
