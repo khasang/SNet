@@ -1,10 +1,11 @@
+package io.khasang.snet.util;
+
 import io.khasang.snet.config.AppConfig;
 import io.khasang.snet.config.HibernateConfig;
 import io.khasang.snet.config.application.WebConfig;
 import io.khasang.snet.entity.CityLocation;
-import io.khasang.snet.service.DataUtility;
+import io.khasang.snet.dao.HibernateDAO;
 import io.khasang.snet.service.common.CityLocationGenerator;
-import io.khasang.snet.util.Generator;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,7 +21,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 public class HibernateTest {
 
     @Autowired
-    private DataUtility<CityLocation,Long> cityLocationUtility;
+    private HibernateDAO<CityLocation,Long> cityLocationUtility;
 
     private Generator<CityLocation> generator;
 

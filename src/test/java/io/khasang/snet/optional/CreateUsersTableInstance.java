@@ -1,3 +1,5 @@
+package io.khasang.snet.optional;
+
 import io.khasang.snet.config.AppConfig;
 import io.khasang.snet.service.QueryHandler;
 import org.junit.Assert;
@@ -10,10 +12,12 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.sql.PreparedStatement;
 
 @RunWith(SpringJUnit4ClassRunner.class)
+@WebAppConfiguration
 @ContextConfiguration(classes = {AppConfig.class})
 public class CreateUsersTableInstance {
     @Autowired
@@ -25,8 +29,11 @@ public class CreateUsersTableInstance {
         this.bCryptPasswordEncoder = new BCryptPasswordEncoder();
     }
 
+    /* Drop old roles table and creates new one.
+    * WARNING: All data will be loss!
+    * */
     @Test
-    @Ignore
+//    @Ignore
     public void createNewTableRoles() {
         String droping = "DROP TABLE IF EXISTS roles";
         String create = "CREATE TABLE roles ( id integer NOT NULL, role_name character varying(255), " +
@@ -40,6 +47,9 @@ public class CreateUsersTableInstance {
 
     }
 
+    /* Drop old users table and creates new one.
+    * WARNING: All data will be loss!
+    * */
     @Test
     @Ignore
     public void createNewTableUsers() {
@@ -54,6 +64,7 @@ public class CreateUsersTableInstance {
         }
     }
 
+    /* Creates administrator's role */
     @Test
     @Ignore
     public void createAdminRole() {
@@ -61,12 +72,14 @@ public class CreateUsersTableInstance {
         Assert.assertEquals("Unable create admin role",1,rowAffected);
     }
 
+    /* Creates administrator user account */
     @Test
     @Ignore
     public void createPrimeEntry() {
         Assert.assertEquals("Unable to create prime entry",1,createUser(1,"admin","admin",1));
     }
 
+    /* Creates example user account */
     @Test
     @Ignore
     public void createExampleUser() {
@@ -78,6 +91,13 @@ public class CreateUsersTableInstance {
         return queryHandler.executeUpdate(createUserPSCreator(login,encryptedPwd,role,id));
     }
 
+    /* Creates PreparedStatementCreator for a new user account insertion
+    * @param login: user's login in base
+    * @param encryptedPwd: encrypted password
+    * @param role: role id
+    * @param id: user's id
+    * @return PreparedStatementCreator instance
+    * */
     private PreparedStatementCreator createUserPSCreator(String login, String encryptedPwd,int role, int id) {
         return connection -> {
             PreparedStatement statement = connection.prepareStatement("INSERT INTO users VALUES (?,?,?,?)");
@@ -89,6 +109,11 @@ public class CreateUsersTableInstance {
         };
     }
 
+    /* Creates PreparedStatementCreator for a new role insertion
+    * @param id: role's id
+    * @param roleName: role's name
+    * @return PreparedStatementCreator instance
+    * */
     private PreparedStatementCreator createRolePSCreator(int id, String roleName) {
         return connection -> {
             PreparedStatement statement = connection.prepareStatement("INSERT INTO roles VALUES (?,?)");
@@ -97,4 +122,5 @@ public class CreateUsersTableInstance {
             return statement;
         };
     }
+
 }
