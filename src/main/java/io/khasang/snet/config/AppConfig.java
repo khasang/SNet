@@ -99,11 +99,6 @@ public class AppConfig {
         return new UsersPasswordChanger(queryHandler());
     }
 
-    @Bean
-    public QuestionService questionService() {
-        return new QuestionService();
-
-    }
 
     @Bean
     public PostService postService(){
