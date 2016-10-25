@@ -20,7 +20,6 @@ import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
 @PropertySource(value = {"classpath:util.properties"})
 @PropertySource(value = {"classpath:auth.properties"})
 @PropertySource(value = {"classpath:backup.properties"})
-@PropertySource(value = {"classpath:queries.properties"})
 public class AppConfig {
     @Autowired
     Environment environment;
@@ -69,14 +68,6 @@ public class AppConfig {
         JdbcTemplate jdbcTemplate = new JdbcTemplate();
         jdbcTemplate.setDataSource(dataSource());
         return jdbcTemplate;
-    }
-
-    @Bean
-    public TableCreator weatherTableCreator() {
-        TableCreator creator = new TableCreator(queryHandler());
-        creator.setDropSql(environment.getProperty("weather.drop"));
-        creator.setCreateSql(environment.getProperty("weather.create"));
-        return creator;
     }
 
     @Bean
