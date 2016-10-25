@@ -4,10 +4,10 @@ import io.khasang.snet.config.AppConfig;
 import io.khasang.snet.config.HibernateConfig;
 import io.khasang.snet.config.application.WebConfig;
 import io.khasang.snet.dao.HibernateDAO;
-import io.khasang.snet.dao.impl.PicturesDataUtil;
 import io.khasang.snet.entity.Picture;
 import static org.junit.Assert.*;
 
+import io.khasang.snet.model.DataBaseTestUtilities4Entities;
 import io.khasang.snet.util.common.PicturesGenerator;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,7 +18,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -32,11 +31,11 @@ public class PictureDataUtilTest {
     @Autowired
     private HibernateDAO<Picture> picturesDataUtil;
 
-    private EntitiesTest<Picture> entitiesTest;
+    private DataBaseTestUtilities4Entities<Picture> testUtil;
 
     @Before
     public void setUp() {
-        if (entitiesTest==null) entitiesTest = new EntitiesTest<>(picturesDataUtil);
+        if (testUtil ==null) testUtil = new DataBaseTestUtilities4Entities<>(picturesDataUtil);
     }
 
     /* There test equals method of Picture */
@@ -45,7 +44,7 @@ public class PictureDataUtilTest {
         Picture first = generator.create();
         Picture same = first;
         Picture another = generator.create();
-        assertTrue(entitiesTest.testEquals(first,same,another));
+        assertTrue(testUtil.testEquals(first,same,another));
     }
 
     /* Tested saving and loading of entities,
@@ -56,7 +55,7 @@ public class PictureDataUtilTest {
 
         /* If loaded picture will differs from
         * original test fails */
-        Picture deSerialized = entitiesTest.testSaveAndLoad(original);
+        Picture deSerialized = testUtil.testSaveAndLoad(original);
         assertEquals(original,deSerialized);
 
     }
@@ -80,7 +79,7 @@ public class PictureDataUtilTest {
         * test will failed unlike first checking, in next if
         * deserialized objectwill be same as original
         * (not edited) test fails */
-        Picture deSerialized = entitiesTest.testUpdate(original, differed);
+        Picture deSerialized = testUtil.testUpdate(original, differed);
         assertEquals("Failed: objects differs after serialization", differed, deSerialized);
         assertNotEquals("Failed original and edited object haven't defference", original, deSerialized);
     }
@@ -92,7 +91,7 @@ public class PictureDataUtilTest {
 
         /* if deleted picture not will be null test
         * will be failed*/
-        assertNull(entitiesTest.testDelete(picture));
+        assertNull(testUtil.testDelete(picture));
     }
 
     /* Tested list returned by dao
@@ -108,6 +107,6 @@ public class PictureDataUtilTest {
         }
 
         // if some picture retains in set test fails
-        assertEquals(0,entitiesTest.testForLists(pictureSet));
+        assertEquals(0, testUtil.testForLists(pictureSet));
     }
 }
