@@ -21,7 +21,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 public class HibernateTest {
 
     @Autowired
-    private HibernateDAO<CityLocation,Long> cityLocationUtility;
+    private HibernateDAO<CityLocation> cityLocationUtility;
 
     private Generator<CityLocation> generator;
 
@@ -45,17 +45,4 @@ public class HibernateTest {
         System.out.println(first);
     }
 
-    @Test
-    public void pushAndCompareAfter() {
-        CityLocation location = generator.create();
-        try {
-            cityLocationUtility.add(location);
-        } catch (Exception exc) {
-            Assert.fail(String.format("Failed writing DB operation: %s",exc));
-        }
-
-        CityLocation deSerialized = cityLocationUtility.get(location.getId());
-        Assert.assertEquals(location,deSerialized);
-        System.out.println(deSerialized);
-    }
 }

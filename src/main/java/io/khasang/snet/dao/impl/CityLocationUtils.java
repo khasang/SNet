@@ -12,7 +12,7 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class CityLocationUtils implements HibernateDAO<CityLocation, Long> {
+public class CityLocationUtils implements HibernateDAO<CityLocation> {
 
     private SessionFactory sessionFactory;
 
@@ -27,24 +27,24 @@ public class CityLocationUtils implements HibernateDAO<CityLocation, Long> {
     }
 
     @Override
-    public CityLocation get(Long key) {
+    public CityLocation get(CityLocation cityLocation) {
         Session session = getCurrentSession();
-        return session.get(CityLocation.class,key);
+        return session.get(CityLocation.class,cityLocation.getID());
     }
 
     @Override
     public void edit(CityLocation cityLocation) {
         Session session = getCurrentSession();
-        CityLocation oldLocation = session.get(CityLocation.class,cityLocation.getId());
+        CityLocation oldLocation = session.get(CityLocation.class,cityLocation.getID());
         oldLocation.setCityName(cityLocation.getCityName());
         oldLocation.setLocation(cityLocation.getLocation());
         session.save(oldLocation);
     }
 
     @Override
-    public void delete(Long key) {
+    public void delete(CityLocation cityLocation) {
         Session session = getCurrentSession();
-        CityLocation location = session.get(CityLocation.class, key);
+        CityLocation location = session.get(CityLocation.class, cityLocation.getID());
         session.delete(location);
         session.flush();
     }

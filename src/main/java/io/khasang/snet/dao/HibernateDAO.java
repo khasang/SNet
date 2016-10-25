@@ -1,8 +1,10 @@
 package io.khasang.snet.dao;
 
+import io.khasang.snet.entity.AbstractEntity;
+
 import java.util.List;
 
-public interface HibernateDAO<Element, Key> {
+public interface HibernateDAO<Element extends AbstractEntity> {
 
     /*
     * Adds new object into ORM
@@ -12,7 +14,7 @@ public interface HibernateDAO<Element, Key> {
     /* Gets one of the existed objects
      * by key value
      */
-    Element get(Key key);
+    Element get(Element element);
 
     /* Edit object that already exist
     * */
@@ -21,7 +23,7 @@ public interface HibernateDAO<Element, Key> {
     /* Delete's one of the existed objects
      * by key value
      */
-    void delete(Key key);
+    void delete(Element element);
 
     /* Gets all objects in table
     * */

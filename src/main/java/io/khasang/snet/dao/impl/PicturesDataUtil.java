@@ -17,7 +17,7 @@ import java.util.List;
  */
 @Repository
 @Transactional
-public class PicturesDataUtil implements HibernateDAO<Picture,Long> {
+public class PicturesDataUtil implements HibernateDAO<Picture> {
     private final SessionFactory sessionFactory;
 
     public PicturesDataUtil(SessionFactory sessionFactory) {
@@ -30,24 +30,23 @@ public class PicturesDataUtil implements HibernateDAO<Picture,Long> {
     }
 
     @Override
-    public Picture get(Long id) {
+    public Picture get(Picture picture) {
         Criteria criteria = this.getCurrentSession().createCriteria(Picture.class);
-        criteria.add(Restrictions.eq("id",id));
+        criteria.add(Restrictions.eq("id",picture.getID()));
         return (Picture) criteria.uniqueResult();
     }
 
     @Override
     public void edit(Picture picture) {
-        Picture oldOne = this.getCurrentSession().get(Picture.class, picture.getId());
+        Picture oldOne = this.getCurrentSession().get(Picture.class, picture.getID());
         oldOne.setDescription(picture.getDescription());
         oldOne.setImageBody(picture.getImageBody());
         this.getCurrentSession().update(oldOne);
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(Picture picture) {
         final Session session = this.getCurrentSession();
-        Picture picture = this.get(id);
         session.delete(picture);
         session.flush();
     }
