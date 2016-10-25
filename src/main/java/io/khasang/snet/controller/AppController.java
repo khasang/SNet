@@ -116,6 +116,11 @@ public class AppController {
         return "posts";
     }
 
+    @RequestMapping("/employees")
+    public String employees() {
+        return "employees";
+    }
+
     @RequestMapping("/backup")
     public String makeBasebackUp(Model model){
         model.addAttribute("backUpMessage",backupBase.makeBackUp());
