@@ -1,5 +1,8 @@
 package io.khasang.snet.config;
 
+import io.khasang.snet.dao.HibernateDAO;
+import io.khasang.snet.dao.impl.WeatherReportUnils;
+import io.khasang.snet.entity.WeatherReport;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -68,6 +71,11 @@ public class HibernateConfig {
     @Bean
     public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
         return new PersistenceExceptionTranslationPostProcessor();
+    }
+
+    @Bean
+    public HibernateDAO<WeatherReport> weatherReportHibernateDAO() {
+        return new WeatherReportUnils(sessionFactory().getObject());
     }
 
 }

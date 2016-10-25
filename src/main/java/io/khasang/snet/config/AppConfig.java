@@ -1,11 +1,10 @@
 package io.khasang.snet.config;
 
 import io.khasang.snet.model.*;
-import io.khasang.snet.service.*;
-
-import io.khasang.snet.model.CreateTable;
-import io.khasang.snet.model.Hello;
-import io.khasang.snet.model.TruncateTable;
+import io.khasang.snet.service.PostService;
+import io.khasang.snet.service.QueryHandler;
+import io.khasang.snet.service.QuestionService;
+import io.khasang.snet.service.UsersPasswordChanger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

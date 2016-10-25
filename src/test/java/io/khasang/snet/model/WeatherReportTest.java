@@ -6,8 +6,6 @@ import io.khasang.snet.config.application.WebConfig;
 import io.khasang.snet.dao.HibernateDAO;
 import io.khasang.snet.entity.WeatherReport;
 import io.khasang.snet.util.Generator;
-import static org.junit.Assert.*;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,41 +14,51 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.HashSet;
 
-/**
- * Test weather report
- */
+import static org.junit.Assert.*;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration(classes = {AppConfig.class, HibernateConfig.class, WebConfig.class})
 public class WeatherReportTest {
 
+@Autowired
+    private HibernateDAO<WeatherReport> weatherReportHibernateDAO;
 
-    private HibernateDAO<WeatherReport> reportUtils;
-
+    @Autowired
     private Generator<WeatherReport> generator;
 
     private DataBaseTestUtilities4Entities<WeatherReport> entitiesTestUtil;
 
+    public WeatherReportTest() {
+    }
+
     @Before
     public void setUp() {
         if (this.entitiesTestUtil==null)
-            this.entitiesTestUtil = new DataBaseTestUtilities4Entities<>(reportUtils);
+            this.entitiesTestUtil = new DataBaseTestUtilities4Entities<>(weatherReportHibernateDAO);
+    }
+
+    @Test
+    public void DaoTest(){
+        assertNotNull(weatherReportHibernateDAO);
     }
 
     @Test
     public void equalsTest() {
         WeatherReport first = generator.create();
         WeatherReport same = new WeatherReport(
-                first.getID(),
-                first.getCity(),
-                first.getLowestTemp(),
+                first.getCityName(),
+                first.getLowesrTemp(),
                 first.getHighestTemp(),
-                first.getTimeStamp());
+                first.getTimeStamp()
+        );
+//        WeatherReport same = first;
         WeatherReport another = generator.create();
-        entitiesTestUtil.testEquals(first, same, another);
+        assertTrue(entitiesTestUtil.testEquals(first, same, another));
     }
 
     @Test
@@ -64,18 +72,18 @@ public class WeatherReportTest {
     public void updateTest() {
         WeatherReport original = generator.create();
         WeatherReport different = generator.create();
-        different.setCity(original.getCity());
-        different.setTimeStamp(original.getTimeStamp());
+        assertNotEquals("Original and different must differs",original, different);
+        different.setCityName(original.getCityName());
+        different.setTimeStamp((Calendar) original.getTimeStamp());
 
         WeatherReport deSerialized = entitiesTestUtil.testUpdate(original,different);
-        assertNotEquals("Original and different must differs",original, different);
         assertEquals("Edited report differ from deSerialized",different,deSerialized);
     }
 
     @Test
     public void deleteTest() {
         WeatherReport report = generator.create();
-        assertNull(report);
+        assertNull(entitiesTestUtil.testDelete(report));
     }
 
     @Test
