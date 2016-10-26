@@ -56,7 +56,7 @@ public class WeatherReportTest {
                 first.getHighestTemp(),
                 first.getTimeStamp()
         );
-//        WeatherReport same = first;
+
         WeatherReport another = generator.create();
         assertTrue(entitiesTestUtil.testEquals(first, same, another));
     }
@@ -74,7 +74,7 @@ public class WeatherReportTest {
         WeatherReport different = generator.create();
         assertNotEquals("Original and different must differs",original, different);
         different.setCityName(original.getCityName());
-        different.setTimeStamp((Calendar) original.getTimeStamp());
+        different.setTimeStamp(original.getTimeStamp());
 
         WeatherReport deSerialized = entitiesTestUtil.testUpdate(original,different);
         assertEquals("Edited report differ from deSerialized",different,deSerialized);
@@ -89,6 +89,8 @@ public class WeatherReportTest {
     @Test
     public void collectionTest() {
         Collection<WeatherReport> collection = new HashSet<>();
+        for (int i = 0; i < 10; i++) collection.add(generator.create());
+        
         assertEquals(0, entitiesTestUtil.testForLists(collection));
     }
 }
