@@ -4,8 +4,7 @@ import io.khasang.snet.config.AppConfig;
 import io.khasang.snet.config.HibernateConfig;
 import io.khasang.snet.config.application.WebConfig;
 import io.khasang.snet.dao.HibernateDAO;
-import io.khasang.snet.entity.WeatherReport;
-import io.khasang.snet.entity.common.DataBaseTestUtilities4Entities;
+import io.khasang.snet.entity.common.EntityBasicCRUDTestSuite;
 import io.khasang.snet.util.Generator;
 import org.junit.Before;
 import org.junit.Test;
@@ -31,7 +30,7 @@ public class WeatherReportTest {
     @Autowired
     private Generator<WeatherReport> generator;
 
-    private DataBaseTestUtilities4Entities<WeatherReport> entitiesTestUtil;
+    private EntityBasicCRUDTestSuite<WeatherReport> entitiesTestUtil;
 
     public WeatherReportTest() {
     }
@@ -39,7 +38,7 @@ public class WeatherReportTest {
     @Before
     public void setUp() {
         if (this.entitiesTestUtil==null)
-            this.entitiesTestUtil = new DataBaseTestUtilities4Entities<>(weatherReportHibernateDAO);
+            this.entitiesTestUtil = new EntityBasicCRUDTestSuite<>(weatherReportHibernateDAO);
     }
 
     @Test

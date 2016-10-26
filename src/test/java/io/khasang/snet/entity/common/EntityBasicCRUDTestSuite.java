@@ -13,11 +13,11 @@ import java.util.HashSet;
  * 2) Implement in your DAO class HibernateDAO interface
  * Also you can create generator, for quick generating your entities
  */
-public class DataBaseTestUtilities4Entities<Entity extends AbstractEntity> {
+public class EntityBasicCRUDTestSuite<Entity extends AbstractEntity> {
 
     private HibernateDAO<Entity> utils;
 
-    public DataBaseTestUtilities4Entities(HibernateDAO<Entity> utils) {
+    public EntityBasicCRUDTestSuite(HibernateDAO<Entity> utils) {
         this.utils = utils;
     }
 
@@ -35,7 +35,7 @@ public class DataBaseTestUtilities4Entities<Entity extends AbstractEntity> {
     /* Testing for saving and loading entity from db
     * @param entity: object that you want to test
     * @return object loaded from db
-    * if loaded differs from whose that was saved
+    * if loaded differs from whose that was given
      * you should fail test
     * */
     public Entity testSaveAndLoad(Entity entity) {

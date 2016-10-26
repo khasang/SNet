@@ -7,7 +7,7 @@ import io.khasang.snet.dao.HibernateDAO;
 
 import static org.junit.Assert.*;
 
-import io.khasang.snet.entity.common.DataBaseTestUtilities4Entities;
+import io.khasang.snet.entity.common.EntityBasicCRUDTestSuite;
 import io.khasang.snet.util.Generator;
 import io.khasang.snet.entity.common.PicturesGenerator;
 import org.junit.Before;
@@ -32,11 +32,11 @@ public class PictureTest {
     @Autowired
     private HibernateDAO<Picture> picturesDataUtil;
 
-    private DataBaseTestUtilities4Entities<Picture> testUtil;
+    private EntityBasicCRUDTestSuite<Picture> testUtil;
 
     @Before
     public void setUp() {
-        if (testUtil ==null) testUtil = new DataBaseTestUtilities4Entities<>(picturesDataUtil);
+        if (testUtil ==null) testUtil = new EntityBasicCRUDTestSuite<>(picturesDataUtil);
     }
 
     /* There test equals method of Picture */
