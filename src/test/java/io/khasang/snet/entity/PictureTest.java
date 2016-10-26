@@ -24,7 +24,7 @@ import java.util.Set;
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration(classes = {AppConfig.class, WebConfig.class, HibernateConfig.class})
-public class PictureBasicTest {
+public class PictureTest {
 
     @Autowired
     private Generator<Picture> generator;
