@@ -26,10 +26,10 @@ import java.util.HashSet;
 public class ChatTest {
 
     @Autowired
-    private AbstractCRUD<Chat> dataUtilChats;
+    private AbstractCRUD<Chat> dataUtilChats;// FIXME: 27.10.16 Имплементировать интерфейс
 
     @Autowired
-    private Generator<Chat> generator;
+    private Generator<Chat> generator;// FIXME: 27.10.16 Опционально: создать генератор, в противном случае удалить
 
     private EntityBasicCRUDTestSuite<Chat> suite;
 

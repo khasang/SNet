@@ -28,10 +28,10 @@ import static org.junit.Assert.assertEquals;
 @ContextConfiguration(classes = {AppConfig.class, WebConfig.class, HibernateConfig.class})
 public class MessageTest {
     @Autowired
-    private AbstractCRUD<Message> dataUtilMesseges;
+    private AbstractCRUD<Message> dataUtilMesseges;// FIXME: 27.10.16 Имплементировать интерфейс
 
     @Autowired
-    private Generator<Message> generator;
+    private Generator<Message> generator;// FIXME: 27.10.16 Опционально: создать генератор, в противном случае удалить
 
     private EntityBasicCRUDTestSuite<Message> suite;
 

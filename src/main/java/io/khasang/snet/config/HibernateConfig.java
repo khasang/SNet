@@ -85,5 +85,7 @@ public class HibernateConfig {
         return new PictureUtils(sessionFactory().getObject());
     }
 
+    // FIXME: 27.10.16 Добавить бин здесь, и в аннотации, имя бина явно задать
+
 }
 
