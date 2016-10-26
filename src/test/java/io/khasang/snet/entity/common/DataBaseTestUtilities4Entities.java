@@ -1,4 +1,4 @@
-package io.khasang.snet.model;
+package io.khasang.snet.entity.common;
 
 import io.khasang.snet.dao.HibernateDAO;
 import io.khasang.snet.entity.AbstractEntity;

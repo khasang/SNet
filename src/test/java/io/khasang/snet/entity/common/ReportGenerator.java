@@ -1,4 +1,4 @@
-package io.khasang.snet.util.common;
+package io.khasang.snet.entity.common;
 
 import io.khasang.snet.entity.WeatherReport;
 import io.khasang.snet.util.Generator;
@@ -8,10 +8,10 @@ import java.util.GregorianCalendar;
 import java.util.Random;
 
 @Component
-public class GeneratorReport implements Generator<WeatherReport> {
+public class ReportGenerator implements Generator<WeatherReport> {
     private Random random;
 
-    public GeneratorReport() {
+    public ReportGenerator() {
         this.random = new Random(20);
     }
 

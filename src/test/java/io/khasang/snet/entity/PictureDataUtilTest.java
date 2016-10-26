@@ -1,14 +1,15 @@
-package io.khasang.snet.util;
+package io.khasang.snet.entity;
 
 import io.khasang.snet.config.AppConfig;
 import io.khasang.snet.config.HibernateConfig;
 import io.khasang.snet.config.application.WebConfig;
 import io.khasang.snet.dao.HibernateDAO;
-import io.khasang.snet.entity.Picture;
+
 import static org.junit.Assert.*;
 
-import io.khasang.snet.model.DataBaseTestUtilities4Entities;
-import io.khasang.snet.util.common.PicturesGenerator;
+import io.khasang.snet.entity.common.DataBaseTestUtilities4Entities;
+import io.khasang.snet.util.Generator;
+import io.khasang.snet.entity.common.PicturesGenerator;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

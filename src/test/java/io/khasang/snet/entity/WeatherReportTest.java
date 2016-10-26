@@ -1,10 +1,11 @@
-package io.khasang.snet.model;
+package io.khasang.snet.entity;
 
 import io.khasang.snet.config.AppConfig;
 import io.khasang.snet.config.HibernateConfig;
 import io.khasang.snet.config.application.WebConfig;
 import io.khasang.snet.dao.HibernateDAO;
 import io.khasang.snet.entity.WeatherReport;
+import io.khasang.snet.entity.common.DataBaseTestUtilities4Entities;
 import io.khasang.snet.util.Generator;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,7 +15,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import java.util.Calendar;
 import java.util.Collection;
 import java.util.HashSet;
 
