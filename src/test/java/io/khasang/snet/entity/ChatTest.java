@@ -1,0 +1,80 @@
+package io.khasang.snet.entity;
+
+import io.khasang.snet.config.AppConfig;
+import io.khasang.snet.config.HibernateConfig;
+import io.khasang.snet.config.application.WebConfig;
+import io.khasang.snet.dao.AbstractCRUD;
+import io.khasang.snet.entity.common.EntityBasicCRUDTestSuite;
+import io.khasang.snet.util.Generator;
+import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
+
+import java.util.HashSet;
+
+/**
+ * Basic tests for entity Chat
+ */
+@RunWith(SpringJUnit4ClassRunner.class)
+@WebAppConfiguration
+@ContextConfiguration(classes = {AppConfig.class, WebConfig.class, HibernateConfig.class})
+public class ChatTest {
+
+    @Autowired
+    private AbstractCRUD<Chat> dataUtilChats;
+
+    @Autowired
+    private Generator<Chat> generator;
+
+    private EntityBasicCRUDTestSuite<Chat> suite;
+
+    @Before
+    public void setUp() {
+        if (suite==null) suite = new EntityBasicCRUDTestSuite<>(dataUtilChats);
+    }
+
+    @Test
+    public void equalsTest() {
+        Chat first = generator.create();
+        Chat same = new Chat(first.getDescription());
+        Chat different = generator.create();
+
+        assertTrue("Failed equals test", suite.testEquals(first,same,different));
+    }
+
+    @Test
+    public void saveLoadTest() {
+        Chat one = generator.create();
+        Chat another = suite.testSaveAndLoad(one);
+        assertEquals("Failed saving and load: object must equals", one, another);
+    }
+
+    @Test
+    public void udateTest() {
+        Chat one = generator.create();
+        Chat edited = generator.create();
+        edited = suite.testUpdate(one,edited);
+        assertNotEquals("Failed updating: object must differs", one, edited);
+    }
+
+    @Test
+    public void deleteTest() {
+        Chat one = generator.create();
+        assertNull("Failed delete test: returned Chat must be null", suite.testDelete(one));
+    }
+
+    @Test
+    public void listTest() {
+        HashSet<Chat> chats = new HashSet<>();
+        for (int i = 0; i < 10; i++) {
+            chats.add(generator.create());
+        }
+
+        assertEquals("Failed packet test: returned quatity must be zero", 0,suite.testForLists(chats));
+    }
+}
