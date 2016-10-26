@@ -23,7 +23,7 @@ import static org.junit.Assert.*;
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration(classes = {AppConfig.class, HibernateConfig.class, WebConfig.class})
-public class WeatherReportTest {
+public class WeatherReportBasicTest {
 
 @Autowired
     private HibernateDAO<WeatherReport> weatherReportHibernateDAO;
@@ -33,7 +33,7 @@ public class WeatherReportTest {
 
     private DataBaseTestUtilities4Entities<WeatherReport> entitiesTestUtil;
 
-    public WeatherReportTest() {
+    public WeatherReportBasicTest() {
     }
 
     @Before
