@@ -1,6 +1,6 @@
 package io.khasang.snet.dao.impl;
 
-import io.khasang.snet.dao.HibernateDAO;
+import io.khasang.snet.dao.AbstractCRUD;
 import io.khasang.snet.entity.CityLocation;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -12,7 +12,7 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class CityLocationUtils implements HibernateDAO<CityLocation> {
+public class CityLocationUtils implements AbstractCRUD<CityLocation> {
 
     private SessionFactory sessionFactory;
 

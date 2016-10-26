@@ -1,7 +1,9 @@
 package io.khasang.snet.config;
 
-import io.khasang.snet.dao.HibernateDAO;
+import io.khasang.snet.dao.AbstractCRUD;
+import io.khasang.snet.dao.impl.PictureUtils;
 import io.khasang.snet.dao.impl.WeatherReportUnils;
+import io.khasang.snet.entity.Picture;
 import io.khasang.snet.entity.WeatherReport;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,8 +76,13 @@ public class HibernateConfig {
     }
 
     @Bean
-    public HibernateDAO<WeatherReport> weatherReportHibernateDAO() {
+    public AbstractCRUD<WeatherReport> weatherReportCRUD() {
         return new WeatherReportUnils(sessionFactory().getObject());
+    }
+
+    @Bean(name = "picturesUtils")
+    public AbstractCRUD<Picture> pictureAbstractCRUD() {
+        return new PictureUtils(sessionFactory().getObject());
     }
 
 }

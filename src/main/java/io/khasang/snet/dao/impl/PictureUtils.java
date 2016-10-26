@@ -1,6 +1,6 @@
 package io.khasang.snet.dao.impl;
 
-import io.khasang.snet.dao.HibernateDAO;
+import io.khasang.snet.dao.AbstractCRUD;
 import io.khasang.snet.entity.Picture;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -17,10 +17,10 @@ import java.util.List;
  */
 @Repository
 @Transactional
-public class PicturesDataUtil implements HibernateDAO<Picture> {
+public class PictureUtils implements AbstractCRUD<Picture> {
     private final SessionFactory sessionFactory;
 
-    public PicturesDataUtil(SessionFactory sessionFactory) {
+    public PictureUtils(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 

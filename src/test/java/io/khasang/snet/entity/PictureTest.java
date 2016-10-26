@@ -3,7 +3,7 @@ package io.khasang.snet.entity;
 import io.khasang.snet.config.AppConfig;
 import io.khasang.snet.config.HibernateConfig;
 import io.khasang.snet.config.application.WebConfig;
-import io.khasang.snet.dao.HibernateDAO;
+import io.khasang.snet.dao.AbstractCRUD;
 
 import static org.junit.Assert.*;
 
@@ -14,6 +14,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -30,13 +31,13 @@ public class PictureTest {
     private Generator<Picture> generator;
 
     @Autowired
-    private HibernateDAO<Picture> picturesDataUtil;
+    private AbstractCRUD<Picture> picturesUtils;
 
     private EntityBasicCRUDTestSuite<Picture> testUtil;
 
     @Before
     public void setUp() {
-        if (testUtil ==null) testUtil = new EntityBasicCRUDTestSuite<>(picturesDataUtil);
+        if (testUtil ==null) testUtil = new EntityBasicCRUDTestSuite<>(picturesUtils);
     }
 
     /* There test equals method of Picture */

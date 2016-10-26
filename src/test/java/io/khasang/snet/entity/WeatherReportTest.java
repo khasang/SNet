@@ -3,7 +3,7 @@ package io.khasang.snet.entity;
 import io.khasang.snet.config.AppConfig;
 import io.khasang.snet.config.HibernateConfig;
 import io.khasang.snet.config.application.WebConfig;
-import io.khasang.snet.dao.HibernateDAO;
+import io.khasang.snet.dao.AbstractCRUD;
 import io.khasang.snet.entity.common.EntityBasicCRUDTestSuite;
 import io.khasang.snet.util.Generator;
 import org.junit.Before;
@@ -25,7 +25,7 @@ import static org.junit.Assert.*;
 public class WeatherReportTest {
 
 @Autowired
-    private HibernateDAO<WeatherReport> weatherReportHibernateDAO;
+    private AbstractCRUD<WeatherReport> weatherReportAbstractCRUD;
 
     @Autowired
     private Generator<WeatherReport> generator;
@@ -38,12 +38,12 @@ public class WeatherReportTest {
     @Before
     public void setUp() {
         if (this.entitiesTestUtil==null)
-            this.entitiesTestUtil = new EntityBasicCRUDTestSuite<>(weatherReportHibernateDAO);
+            this.entitiesTestUtil = new EntityBasicCRUDTestSuite<>(weatherReportAbstractCRUD);
     }
 
     @Test
     public void DaoTest(){
-        assertNotNull(weatherReportHibernateDAO);
+        assertNotNull(weatherReportAbstractCRUD);
     }
 
     @Test

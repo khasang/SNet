@@ -1,6 +1,6 @@
 package io.khasang.snet.entity.common;
 
-import io.khasang.snet.dao.HibernateDAO;
+import io.khasang.snet.dao.AbstractCRUD;
 import io.khasang.snet.entity.AbstractEntity;
 
 import java.util.Collection;
@@ -10,14 +10,14 @@ import java.util.HashSet;
  * This test utility for entities
  * For using this you need:
  * 1) Implement in your entity AbstractEntity interface
- * 2) Implement in your DAO class HibernateDAO interface
+ * 2) Implement in your DAO class AbstractCRUD interface
  * Also you can create generator, for quick generating your entities
  */
 public class EntityBasicCRUDTestSuite<Entity extends AbstractEntity> {
 
-    private HibernateDAO<Entity> utils;
+    private AbstractCRUD<Entity> utils;
 
-    public EntityBasicCRUDTestSuite(HibernateDAO<Entity> utils) {
+    public EntityBasicCRUDTestSuite(AbstractCRUD<Entity> utils) {
         this.utils = utils;
     }
 

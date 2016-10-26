@@ -1,6 +1,6 @@
 package io.khasang.snet.dao.impl;
 
-import io.khasang.snet.dao.HibernateDAO;
+import io.khasang.snet.dao.AbstractCRUD;
 import io.khasang.snet.entity.WeatherReport;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -13,7 +13,7 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class WeatherReportUnils  implements HibernateDAO<WeatherReport> {
+public class WeatherReportUnils  implements AbstractCRUD<WeatherReport> {
 
     private SessionFactory sessionFactory;
 
