@@ -95,7 +95,7 @@ public class HibernateConfig {
     }
 
     @Bean
-    public AbstractCRUD<Message> dataUtilMesseges(){
+    public AbstractCRUD<Message> dataUtilMessages(){
         return new MessageUtils(sessionFactory().getObject());
     }
 
