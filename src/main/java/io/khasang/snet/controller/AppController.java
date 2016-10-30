@@ -42,10 +42,8 @@ public class AppController {
     UsersPasswordChanger usersPasswordChanger;
 
     @RequestMapping("/")
-    public String hello(Model model) {
-        model.addAttribute("hello", hello.getHelloMessage());
-        model.addAttribute("by", by.getByMessage());
-        return "hello";
+    public String index(Model model) {
+        return "index";
     }
 
     @RequestMapping("/create")
