@@ -1,8 +1,11 @@
 package io.khasang.snet.entity;
 
-import org.hibernate.annotations.Type;
+import org.hibernate.annotations.*;
+import org.hibernate.annotations.NamedQueries;
+import org.hibernate.annotations.NamedQuery;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
 import java.util.Calendar;
 
 /**
@@ -18,8 +21,9 @@ public class Message implements AbstractEntity<Long> {
     @Column(name = "sender_id")
     private long sender;
 
-    @Column(name = "receiver_id")
-    private long receiver;
+    @ManyToOne
+    @JoinColumn(name = "chat_id")
+    private Chat chat;
 
     @Column(name = "message_body")
     @Type(type = "org.hibernate.type.TextType")
@@ -32,9 +36,9 @@ public class Message implements AbstractEntity<Long> {
     public Message() {
     }
 
-    public Message(long sender, long receiver, String body, Calendar stamp) {
+    public Message(long sender, Chat chat, String body, Calendar stamp) {
         this.sender = sender;
-        this.receiver = receiver;
+        this.chat = chat;
         this.body = body;
         this.stamp = stamp;
     }
@@ -57,12 +61,12 @@ public class Message implements AbstractEntity<Long> {
         this.sender = sender;
     }
 
-    public long getReceiver() {
-        return receiver;
+    public Chat getChat() {
+        return chat;
     }
 
-    public void setReceiver(long receiver) {
-        this.receiver = receiver;
+    public void setChat(Chat chat) {
+        this.chat = chat;
     }
 
     public String getBody() {
@@ -90,7 +94,7 @@ public class Message implements AbstractEntity<Long> {
 
         if (id != message.id) return false;
         if (sender != message.sender) return false;
-        if (receiver != message.receiver) return false;
+        if (chat != null ? !chat.equals(message.chat) : message.chat != null) return false;
         if (body != null ? !body.equals(message.body) : message.body != null) return false;
         return stamp != null ? stamp.equals(message.stamp) : message.stamp == null;
 
@@ -100,7 +104,7 @@ public class Message implements AbstractEntity<Long> {
     public int hashCode() {
         int result = (int) (id ^ (id >>> 32));
         result = 31 * result + (int) (sender ^ (sender >>> 32));
-        result = 31 * result + (int) (receiver ^ (receiver >>> 32));
+        result = 31 * result + (chat != null ? chat.hashCode() : 0);
         result = 31 * result + (body != null ? body.hashCode() : 0);
         result = 31 * result + (stamp != null ? stamp.hashCode() : 0);
         return result;
@@ -109,7 +113,7 @@ public class Message implements AbstractEntity<Long> {
     @Override
     public String toString() {
         return String.format(
-                "Message: %1$d Sender: %2$d Receiver: %3$d Body length: %4$d Timestamp: %5$td.%5$tm.%5$ty %5$tH:%5$tM:%5$tS",
-                id, sender, receiver, body.length(),stamp.getTime());
+                "#%1$d Sender: %2$d Chat: %3$s Body length: %4$d Timestamp: %5$td.%5$tm.%5$ty %5$tH:%5$tM:%5$tS",
+                id, sender, chat, body.length(),stamp.getTime());
     }
 }

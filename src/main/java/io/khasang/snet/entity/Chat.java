@@ -8,6 +8,7 @@ import javax.persistence.*;
 public class Chat implements AbstractEntity<Long> {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "chat_id")
     private long id;
 
     @Column(name = "chat_desc")
@@ -55,5 +56,10 @@ public class Chat implements AbstractEntity<Long> {
         int result = (int) (id ^ (id >>> 32));
         result = 31 * result + (description != null ? description.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("#%d: Description: %s",id,description);
     }
 }
