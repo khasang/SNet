@@ -24,6 +24,7 @@ public class MessageUtils implements AbstractCRUD<Message> {
     public void add(Message message) {
         Session session = getCurrentSession();
         session.save(message);
+        session.flush();
     }
 
     @Override
@@ -34,7 +35,7 @@ public class MessageUtils implements AbstractCRUD<Message> {
 
     @Override
     public void edit(Message message) {
-
+        throw new UnsupportedOperationException("Can't edit messages");
     }
 
     @Override
@@ -46,9 +47,11 @@ public class MessageUtils implements AbstractCRUD<Message> {
     }
 
     @Override
-    public List<Message> getAll() {
+    @SuppressWarnings("unchecked")
+    public List<Message> getAll(Message message) {
         Session session = getCurrentSession();
-        Query query = session.createQuery("FROM io.khasang.snet.entity.Message");
+        Query query = session.createQuery("from io.khasang.snet.entity.Message m where m.chat = :chat");
+        query.setParameter("chat", message.getChat());
         return (List<Message>) query.list();
     }
 

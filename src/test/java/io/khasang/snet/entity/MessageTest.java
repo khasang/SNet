@@ -14,7 +14,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -28,60 +30,68 @@ import static org.junit.Assert.*;
 public class MessageTest {
 
     @Autowired
-    private AbstractCRUD<Message> dataUtilMesseges;// FIXME: 27.10.16 Имплементировать интерфейс
+    private AbstractCRUD<Message> dataUtilMessages;
 
     @Autowired
-    private Generator<Message> generator;// FIXME: 27.10.16 Опционально: создать генератор, в противном случае удалить
+    private AbstractCRUD<Chat> chatAbstractCRUD;
+
+    @Autowired
+    private Generator<Message> messageGenerator;
+
+    @Autowired
+    private Generator<Chat> chatGenerator;
 
     private EntityBasicCRUDTestSuite<Message> suite;
+    private Chat chat;
 
     @Before
     public void setUp() {
-        if (suite==null) suite = new EntityBasicCRUDTestSuite<>(dataUtilMesseges);
+        if (suite==null) suite = new EntityBasicCRUDTestSuite<>(dataUtilMessages);
+        if (chat==null) {
+            this.chat = chatGenerator.create();
+            chatAbstractCRUD.add(chat);
+        }
     }
 
     @Test
     public void equalsTest() {
-        Message first = generator.create();
+        Message first = messageGenerator.create();
         Message same = new Message(
                 first.getSender(),
-                first.getReceiver(),
+                first.getChat(),
                 first.getBody(),
                 first.getStamp()
         );
-        Message different = generator.create();
-
-        assertTrue("Failed equals test", suite.testEquals(first,same,different));
+        Message another = messageGenerator.create();
+       assertTrue(suite.testEquals(first,same,another));
     }
 
     @Test
-    public void saveLoadTest() {
-        Message one = generator.create();
-        Message another = suite.testSaveAndLoad(one);
-        assertEquals("Failed saving and load: object must equals", one, another);
+    public void savingTest() {
+        Message message = messageGenerator.create();
+        message.setChat(chat);
+        Message another = suite.testSaveAndLoad(message);
+        assertEquals(message, another);
     }
 
     @Test
-    public void udateTest() {                                  // Валится - не реализован метод edit в MessageUtils.java
-//        Message one = generator.create();
-//        Message edited = generator.create();
-//        edited = suite.testUpdate(one,edited);
-//        assertNotEquals("Failed updating: object must differs", one, edited);
+    public void deletingTest() {
+        Message message = messageGenerator.create();
+        message.setChat(chat);
+        assertNull(suite.testDelete(message));
     }
 
     @Test
-    public void deleteTest() {
-        Message one = generator.create();
-        assertNull("Failed delete test: returned Chat must be null", suite.testDelete(one));
-    }
-
-    @Test
-    public void listTest() {
-        HashSet<Message> chats = new HashSet<>();
+    public void gettingListTest() {
+        Collection<Message> messages = new HashSet<>();
         for (int i = 0; i < 10; i++) {
-            chats.add(generator.create());
+            Message message = messageGenerator.create();
+            message.setChat(chat);
+            messages.add(message);
         }
 
-        assertEquals("Failed packet test: returned quatity must be zero", 0,suite.testForLists(chats));
+        Message chimerical = messageGenerator.create();
+        chimerical.setChat(chat);
+        assertEquals(messages.size(),suite.testForLists(messages,chimerical));
     }
 }

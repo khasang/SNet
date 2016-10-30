@@ -26,16 +26,16 @@ import java.util.HashSet;
 public class ChatTest {
 
     @Autowired
-    private AbstractCRUD<Chat> dataUtilChats;// FIXME: 27.10.16 Имплементировать интерфейс
+    private AbstractCRUD<Chat> chatAbstractCRUD;
 
     @Autowired
-    private Generator<Chat> generator;// FIXME: 27.10.16 Опционально: создать генератор, в противном случае удалить
+    private Generator<Chat> generator;
 
     private EntityBasicCRUDTestSuite<Chat> suite;
 
     @Before
     public void setUp() {
-        if (suite==null) suite = new EntityBasicCRUDTestSuite<>(dataUtilChats);
+        if (suite==null) suite = new EntityBasicCRUDTestSuite<>(chatAbstractCRUD);
     }
 
     @Test
@@ -44,6 +44,9 @@ public class ChatTest {
         Chat same = first;                                 // Не хочет работать через new Chat(first.getDescription())
         Chat different = generator.create();
 
+        System.out.println(first);
+        System.out.println(same);
+        System.out.println(different);
         assertTrue("Failed equals test", suite.testEquals(first,same,different));
     }
 
@@ -52,14 +55,6 @@ public class ChatTest {
         Chat one = generator.create();
         Chat another = suite.testSaveAndLoad(one);
         assertEquals("Failed saving and load: object must equals", one, another);
-    }
-
-    @Test
-    public void updateTest() {                            // Валится - не реализован метод edit в ChatUtils.java
-//        Chat one = generator.create();
-//        Chat edited = generator.create();
-//        edited = suite.testUpdate(one,edited);
-//        assertNotEquals("Failed updating: object must differs", one, edited);
     }
 
     @Test
@@ -75,6 +70,6 @@ public class ChatTest {
             chats.add(generator.create());
         }
 
-        assertEquals("Failed packet test: returned quatity must be zero", 0,suite.testForLists(chats));
+        assertEquals("Failed packet test: returned quatity must be zero", 0,suite.testForLists(chats,null));
     }
 }
