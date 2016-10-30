@@ -165,4 +165,9 @@ public class AppController {
         modelAndView.addObject("response", response);
         return modelAndView;
     }
+
+    @RequestMapping("/users/register")
+    public String register(Model model) {
+       return "register";
+    }
 }
