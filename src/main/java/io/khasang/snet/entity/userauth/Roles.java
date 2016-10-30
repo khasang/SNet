@@ -1,13 +1,13 @@
 package io.khasang.snet.entity.userauth;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
+@Entity
 public class Roles {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    @Column(name = "role_name")
     private String role;
 
     public Roles() {
