@@ -58,6 +58,10 @@ public class AuthRulesDAOImpl implements AuthRulesDAO{
 
     @Override
     public List<AuthRules> getAllUserAuthRules(int user_id) {
-        return null;
+        Criteria criteria = sessionFactory.
+                getCurrentSession().
+                createCriteria(AuthRules.class);
+        criteria.add(Restrictions.eq("user_id", user_id));
+       return (List<AuthRules>) criteria.list();
     }
 }
