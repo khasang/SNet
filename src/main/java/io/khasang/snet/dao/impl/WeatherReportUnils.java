@@ -53,7 +53,7 @@ public class WeatherReportUnils  implements AbstractCRUD<WeatherReport> {
     }
 
     @Override
-    public List<WeatherReport> getAll() {
+    public List<WeatherReport> getAll(WeatherReport weatherReport) {
         Session session = getCurrentSession();
         Query query = session.createQuery("FROM io.khasang.snet.entity.WeatherReport");
         return (List<WeatherReport>) query.list();

@@ -27,5 +27,5 @@ public interface AbstractCRUD<Entity extends AbstractEntity> {
 
     /* Gets all objects in table
     * */
-    List<Entity> getAll();
+    List<Entity> getAll(Entity entity);
 }

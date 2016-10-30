@@ -109,6 +109,6 @@ public class PictureTest {
         }
 
         // if some picture retains in set test fails
-        assertEquals(0, testUtil.testForLists(pictureSet));
+        assertEquals(0, testUtil.testForLists(pictureSet,null));
     }
 }

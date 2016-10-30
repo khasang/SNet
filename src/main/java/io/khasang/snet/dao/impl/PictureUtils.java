@@ -53,7 +53,7 @@ public class PictureUtils implements AbstractCRUD<Picture> {
 
     @Override
     @SuppressWarnings("unchecked")
-    public List<Picture> getAll() {
+    public List<Picture> getAll(Picture picture) {
         Criteria criteria = this.getCurrentSession().createCriteria(Picture.class);
         return (List<Picture>) criteria.list();
     }

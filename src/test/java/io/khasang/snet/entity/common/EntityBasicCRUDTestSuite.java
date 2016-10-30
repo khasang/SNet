@@ -78,7 +78,7 @@ public class EntityBasicCRUDTestSuite<Entity extends AbstractEntity> {
     * all loaded from db Collection was removed
     * if not equals 0 you should fail test
     * */
-    public int testForLists(Collection<Entity> entities) {
+    public int testForLists(Collection<Entity> entities, Entity key) {
         Collection<Entity> afterSerialization = new HashSet<>();
         for (Entity entity : entities) {
             utils.add(entity);
@@ -87,9 +87,7 @@ public class EntityBasicCRUDTestSuite<Entity extends AbstractEntity> {
 
         /* getting all object from db, remove they from our
            row of objects */
-        Collection<Entity> deSerialized = utils.getAll();
-        afterSerialization.removeAll(deSerialized);
-
-        return afterSerialization.size();
+        Collection<Entity> deSerialized = utils.getAll(key);
+        return deSerialized.size();
     }
 }

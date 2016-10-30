@@ -24,7 +24,7 @@ import static org.junit.Assert.*;
 @ContextConfiguration(classes = {AppConfig.class, HibernateConfig.class, WebConfig.class})
 public class WeatherReportTest {
 
-@Autowired
+
     private AbstractCRUD<WeatherReport> weatherReportAbstractCRUD;
 
     @Autowired
@@ -90,6 +90,6 @@ public class WeatherReportTest {
         Collection<WeatherReport> collection = new HashSet<>();
         for (int i = 0; i < 10; i++) collection.add(generator.create());
         
-        assertEquals(0, entitiesTestUtil.testForLists(collection));
+        assertEquals(0, entitiesTestUtil.testForLists(collection, null));
     }
 }

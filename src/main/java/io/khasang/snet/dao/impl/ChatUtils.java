@@ -46,7 +46,7 @@ public class ChatUtils implements AbstractCRUD<Chat> {
     }
 
     @Override
-    public List<Chat> getAll() {
+    public List<Chat> getAll(Chat chat) {
         Session session = getCurrentSession();
         Query query = session.createQuery("FROM io.khasang.snet.entity.Chat");
         return (List<Chat>) query.list();

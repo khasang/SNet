@@ -51,7 +51,7 @@ public class CityLocationUtils implements AbstractCRUD<CityLocation> {
 
     @Override
     @SuppressWarnings("unchecked")
-    public List<CityLocation> getAll() {
+    public List<CityLocation> getAll(CityLocation cityLocation) {
         Session session = getCurrentSession();
         Query query = session.createQuery("FROM io.khasang.snet.entity.CityLocation");
         return (List<CityLocation>) query.list();
