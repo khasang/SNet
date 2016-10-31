@@ -1,14 +1,9 @@
 package io.khasang.snet.config;
 
 import io.khasang.snet.dao.AbstractCRUD;
-import io.khasang.snet.dao.impl.ChatUtils;
-import io.khasang.snet.dao.impl.MessageUtils;
-import io.khasang.snet.dao.impl.PictureUtils;
-import io.khasang.snet.dao.impl.WeatherReportUnils;
-import io.khasang.snet.entity.Chat;
-import io.khasang.snet.entity.Message;
-import io.khasang.snet.entity.Picture;
-import io.khasang.snet.entity.WeatherReport;
+import io.khasang.snet.dao.impl.*;
+import io.khasang.snet.entity.*;
+import io.khasang.snet.entity.userauth.User;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -99,6 +94,16 @@ public class HibernateConfig {
         return new MessageUtils(sessionFactory().getObject());
     }
 
+    @Bean
+    public AbstractCRUD<ChatRegistryUnit> registryUnitAbstractCRUD() {
+        return new RegistryUtils(sessionFactory().getObject());
+    }
+
+    // TODO: 31.10.16 Remove before merging
+    @Bean
+    public AbstractCRUD<User> userCRUD() {
+        return new UserCRUD(sessionFactory().getObject());
+    }
 
 }
 
