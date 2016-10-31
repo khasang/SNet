@@ -9,7 +9,8 @@ import javax.persistence.Entity;
 import java.util.Calendar;
 
 /**
- * Entity that represents message
+ * Entity that represents message, linked with @io.khasang.snet.entity.Chat
+ * by field chat
  */
 @Entity(name = "message")
 public class Message implements AbstractEntity<Long> {

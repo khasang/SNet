@@ -4,8 +4,12 @@ import io.khasang.snet.entity.userauth.User;
 
 import javax.persistence.*;
 
+/* Entity of registry chat and users
+* links each chat to each user, who
+* participates in these */
 @Entity(name = "chat_registry")
 public class ChatRegistryUnit implements AbstractEntity<Long> {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "registry_unit_id")

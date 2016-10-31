@@ -1,18 +1,14 @@
 package io.khasang.snet.entity.userauth;
 
-import io.khasang.snet.dao.AbstractCRUD;
 import io.khasang.snet.entity.AbstractEntity;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.List;
 
-// TODO: 31.10.16 Remove test class before merge
+/* For integrity with Messages sub-system
+* was implemented AbstractEntity */
 @Entity(name = "users")
 public class User implements AbstractEntity<Integer> {
     @Id

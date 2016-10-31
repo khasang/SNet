@@ -1,6 +1,5 @@
 package io.khasang.snet.dao.impl;
 
-import io.khasang.snet.dao.AbstractCRUD;
 import io.khasang.snet.dao.AbstractRegistrySearcher;
 import io.khasang.snet.entity.Chat;
 import io.khasang.snet.entity.userauth.User;
@@ -13,6 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Collection;
 import java.util.List;
 
+/* Data access object for working with Chat entities
+* allows queries by user for chat table and check registry
+* */
 @Repository
 @Transactional
 public class ChatUtils implements AbstractRegistrySearcher <Chat, User> {
@@ -51,11 +53,12 @@ public class ChatUtils implements AbstractRegistrySearcher <Chat, User> {
 
     @Override
     public List<Chat> getAll(Chat chat) {
-        Session session = getCurrentSession();
-        Query query = session.createQuery("select ch FROM io.khasang.snet.entity.Chat ch where ");
-        return (List<Chat>) query.list();
+        throw new UnsupportedOperationException("Quering all chats entities directly not allowed.");
     }
-
+    /* Taking @param user, gives opportunity for search
+    * in ChatRegistryUnit table unit with id of current user,
+    * summary given all chats which id equals of id chat in selected registry rows
+    * @return list of founded chats for given user */
     @Override
     @SuppressWarnings("unchecked")
     public Collection<Chat> getListSearched(User user) {

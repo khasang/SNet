@@ -46,6 +46,9 @@ public class MessageUtils implements AbstractCRUD<Message> {
         session.flush();
     }
 
+    /* Gives all messages, which have chat field equals
+    * given @param message's field
+    * @return list of available messages */
     @Override
     @SuppressWarnings("unchecked")
     public List<Message> getAll(Message message) {

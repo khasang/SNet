@@ -3,7 +3,7 @@ package io.khasang.snet.entity;
 
 import javax.persistence.*;
 
-/* Representation of chat */
+/* Entity of chat linked with @io.khasang.snet.entity.ChatRegistryUnit */
 @Entity(name = "chat")
 public class Chat implements AbstractEntity<Long> {
     @Id

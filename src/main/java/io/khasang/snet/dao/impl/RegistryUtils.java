@@ -11,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/* There standard dao class for @io.khasang.snet.entity.ChatRegistryUnit
+* operation edit not supported, getAll only for testing */
 @Repository
 @Transactional
 public class RegistryUtils implements AbstractCRUD<ChatRegistryUnit> {
@@ -21,6 +23,8 @@ public class RegistryUtils implements AbstractCRUD<ChatRegistryUnit> {
         this.sessionFactory = sessionFactory;
     }
 
+    /* This method provide insert in table
+    * objects and avoid they duplication */
     @Override
     public void add(ChatRegistryUnit entity) {
         Session session = getCurrentSession();
@@ -31,6 +35,10 @@ public class RegistryUtils implements AbstractCRUD<ChatRegistryUnit> {
         }
     }
 
+    /* Method for registry object getting from database
+    * there entity finding not by id, but it's finding by
+    * user id and chat id
+    * @param entity: ChatRegistryUnit */
     @Override
     public ChatRegistryUnit get(ChatRegistryUnit entity) {
         Session session = getCurrentSession();

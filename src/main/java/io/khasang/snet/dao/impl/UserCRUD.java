@@ -9,9 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-/**
- * TODO REMOVE before merging
- */
+/* This addition dao implemented for test
+* purposes can be replaced in main dao class
+* or implemented fully */
+// TODO: 31.10.16 Needs to implement fully or remove: if will removed, also be dependency for HibernateConfig
 @Repository
 @Transactional
 public class UserCRUD implements AbstractCRUD<User> {
