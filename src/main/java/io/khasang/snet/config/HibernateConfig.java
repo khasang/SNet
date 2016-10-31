@@ -1,6 +1,7 @@
 package io.khasang.snet.config;
 
 import io.khasang.snet.dao.AbstractCRUD;
+import io.khasang.snet.dao.AbstractRegistrySearcher;
 import io.khasang.snet.dao.impl.*;
 import io.khasang.snet.entity.*;
 import io.khasang.snet.entity.userauth.User;
@@ -85,7 +86,7 @@ public class HibernateConfig {
     }
 
     @Bean
-    public AbstractCRUD<Chat> chatAbstractCRUD(){
+    public AbstractRegistrySearcher<Chat, User> chatCRUD(){
         return new ChatUtils(sessionFactory().getObject());
     }
 
@@ -95,11 +96,10 @@ public class HibernateConfig {
     }
 
     @Bean
-    public AbstractCRUD<ChatRegistryUnit> registryUnitAbstractCRUD() {
+    public AbstractCRUD<ChatRegistryUnit> registryCRUD() {
         return new RegistryUtils(sessionFactory().getObject());
     }
 
-    // TODO: 31.10.16 Remove before merging
     @Bean
     public AbstractCRUD<User> userCRUD() {
         return new UserCRUD(sessionFactory().getObject());

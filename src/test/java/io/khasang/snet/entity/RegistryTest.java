@@ -26,10 +26,10 @@ import java.util.List;
 public class RegistryTest {
 
     @Autowired
-    private AbstractCRUD<ChatRegistryUnit> registryUnitAbstractCRUD;
+    private AbstractCRUD<ChatRegistryUnit> registryCRUD;
 
     @Autowired
-    private AbstractRegistrySearcher<Chat, User> chatAbstractCRUD;
+    private AbstractRegistrySearcher<Chat, User> chatCRUD;
 
     @Autowired
     private AbstractCRUD<User> userCRUD;
@@ -44,7 +44,7 @@ public class RegistryTest {
     public void addChat() {
         if (chat==null) {
             chat = chatGenerator.create();
-            chatAbstractCRUD.add(chat);
+            chatCRUD.add(chat);
         }
         if (user==null) {
             user = new User();
@@ -53,22 +53,20 @@ public class RegistryTest {
     }
 
 
-
     @Test
     public void saveTest() {
-        ChatRegistryUnit unit = new ChatRegistryUnit();
-        unit.setChat(chat);
-        unit.setUser(user);
-        registryUnitAbstractCRUD.add(unit);
+        ChatRegistryUnit original = new ChatRegistryUnit();
+        original.setChat(chat);
+        original.setUser(user);
+        registryCRUD.add(original);
 
-        ChatRegistryUnit founded = registryUnitAbstractCRUD.get(unit);
-        assertEquals(unit, founded);
+        ChatRegistryUnit founded = registryCRUD.get(original);
+        assertEquals(original, founded);
 
-        registryUnitAbstractCRUD.add(unit);
-        List<ChatRegistryUnit> registryUnits = registryUnitAbstractCRUD.getAll(null);
+        registryCRUD.add(original);
+        List<ChatRegistryUnit> registryUnits = registryCRUD.getAll(null);
         assertEquals(1,registryUnits.size());
     }
-
 
 
     @Test
@@ -80,18 +78,18 @@ public class RegistryTest {
         List<Chat> chats = new ArrayList<>(amountEntities);
         for (int i = 0; i < amountEntities; i++) {
             Chat c = chatGenerator.create();
-            chatAbstractCRUD.add(c);
+            chatCRUD.add(c);
             chats.add(c);
         }
 
         for (int i = 0; i < chats.size(); i++) {
-            registryUnitAbstractCRUD.add(new ChatRegistryUnit(chats.get(i), anotherUser));
+            registryCRUD.add(new ChatRegistryUnit(chats.get(i), anotherUser));
         }
 
-        Collection<Chat> firstUsersChat = chatAbstractCRUD.getListSearched(user);
+        Collection<Chat> firstUsersChat = chatCRUD.getListSearched(user);
         assertNotEquals(amountEntities,firstUsersChat.size());
 
-        Collection<Chat> anotherUserChat = chatAbstractCRUD.getListSearched(anotherUser);
+        Collection<Chat> anotherUserChat = chatCRUD.getListSearched(anotherUser);
         assertEquals(amountEntities,anotherUserChat.size());
 
         assertTrue(anotherUserChat.containsAll(chats));
