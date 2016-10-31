@@ -3,6 +3,7 @@ package io.khasang.snet.config.application;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -11,7 +12,8 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan({"io.khasang.snet.config", "io.khasang.snet.controller", "io.khasang.snet.*", "io.khasang.snet.dao", "io.khasang.snet.service"})
+@EnableJpaRepositories("io.khasang.snet.repository")
+@ComponentScan({"io.khasang.snet.config", "io.khasang.snet.controller", "io.khasang.snet.*", "io.khasang.snet.dao", "io.khasang.snet.service", "io.khasang.snet.repository"})
 public class WebConfig extends WebMvcConfigurerAdapter {
     @Bean
     public InternalResourceViewResolver viewResolver() {
