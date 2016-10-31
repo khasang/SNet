@@ -1,17 +1,31 @@
 package io.khasang.snet.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "employees")
 public class Employee {
 
     @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
+    @Column(name = "name")
     private String name;
+
+    @Column (name = "age")
     private int age;
+
+    @Column (name = "city")
     private String city;
+
+    @Column (name = "salary")
     private double salary;
+
+    public Employee(){
+
+    }
 
     public Employee(int id, String name, int age, String city, double salary) {
         this.id = id;

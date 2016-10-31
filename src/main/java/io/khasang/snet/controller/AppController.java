@@ -42,10 +42,8 @@ public class AppController {
     UsersPasswordChanger usersPasswordChanger;
 
     @RequestMapping("/")
-    public String hello(Model model) {
-        model.addAttribute("hello", hello.getHelloMessage());
-        model.addAttribute("by", by.getByMessage());
-        return "hello";
+    public String index(Model model) {
+        return "index";
     }
 
     @RequestMapping("/create")
@@ -116,6 +114,11 @@ public class AppController {
         return "posts";
     }
 
+    @RequestMapping("/employees")
+    public String employees() {
+        return "employees";
+    }
+
     @RequestMapping("/backup")
     public String makeBasebackUp(Model model){
         model.addAttribute("backUpMessage",backupBase.makeBackUp());
@@ -159,5 +162,10 @@ public class AppController {
         String response = usersPasswordChanger.change(login, new BCryptPasswordEncoder().encode(newPassword));
         modelAndView.addObject("response", response);
         return modelAndView;
+    }
+
+    @RequestMapping("/users/register")
+    public String register(Model model) {
+       return "register";
     }
 }
