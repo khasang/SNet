@@ -68,7 +68,6 @@ public class PostDAOImpl implements PostDAO {
                 getCurrentSession().
                 createCriteria(Post.class);
         return (List<Post>) criteria.list();
-
     }
 }
 

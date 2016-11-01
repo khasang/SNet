@@ -11,7 +11,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan({"io.khasang.snet.config", "io.khasang.snet.controller", "io.khasang.snet.*", "io.khasang.snet.dao", "io.khasang.snet.service"})
+@ComponentScan({"io.khasang.snet.config", "io.khasang.snet.controller.*", "io.khasang.snet.*", "io.khasang.snet.dao", "io.khasang.snet.service"})
 public class WebConfig extends WebMvcConfigurerAdapter {
     @Bean
     public InternalResourceViewResolver viewResolver() {
