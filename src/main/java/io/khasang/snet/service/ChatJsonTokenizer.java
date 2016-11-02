@@ -9,6 +9,7 @@ import io.khasang.snet.entity.userauth.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/* This is utils for working with dao and JSON translators */
 @Component
 public class ChatJsonTokenizer {
 
@@ -18,9 +19,12 @@ public class ChatJsonTokenizer {
     @Autowired
     private AbstractCRUD<ChatRegistryUnit> registryCRUD;
 
+    // JSON translator
     @Autowired
     private JsonSerializer<Chat> chatSerializer;
 
+    /*
+    * @param user: filter by chats by user */
     public String getList(User user) {
         try {
             return chatSerializer.parseToJson(chatCRUD.getListSearched(user));
@@ -29,6 +33,11 @@ public class ChatJsonTokenizer {
         }
     }
 
+    /* @param raw take JSON string
+    * @param user take user with id
+    * method save chat and write new
+    * registry unit
+    * @return saved chat with id */
     public String saveNew(String raw, User user) {
         try {
             Chat chat = chatSerializer.parseToEntity(raw, Chat.class);
@@ -41,6 +50,7 @@ public class ChatJsonTokenizer {
         }
     }
 
+    // Returns chat quered by id
     public String getOne(String raw) {
         try {
             Chat chat = chatSerializer.parseToEntity(raw, Chat.class);
@@ -51,6 +61,7 @@ public class ChatJsonTokenizer {
         }
     }
 
+    // deletes already existed entity
     public String deleteExists(String raw, User user) {
         try {
             Chat chat = chatSerializer.parseToEntity(raw, Chat.class);

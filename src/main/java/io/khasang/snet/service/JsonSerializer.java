@@ -8,6 +8,12 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 
+/* There tool for serialization into JSON and forth
+* it can parse one entity to JSON and parse a list,
+* moreover, you could parse JSON string of
+* single object as well as list of objects
+* for use just implement this class for your entity
+* and override constructor to public */
 public abstract class JsonSerializer<Entity> {
     private ObjectMapper mapper;
     private TypeReference<List<Entity>> typeReference;

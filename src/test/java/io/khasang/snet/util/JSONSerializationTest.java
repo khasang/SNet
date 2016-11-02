@@ -163,6 +163,5 @@ public class JSONSerializationTest {
         System.out.println(raw);
         System.out.println(chatSerializer.parseToEntity(raw,Chat.class));
     }
-
     
 }

@@ -103,12 +103,15 @@ public class RegistryTest {
         ChatRegistryUnit founded = registryCRUD.get(original);
         assertEquals(original, founded);
 
+        // passed just if registry table not exists any rows
         registryCRUD.add(original);
         List<ChatRegistryUnit> registryUnits = registryCRUD.getAll(null);
         assertEquals(1,registryUnits.size());
     }
 
 
+    /* This test require tables without
+    * any rows */
     @Test
     @Rollback
     @Transactional
@@ -116,6 +119,7 @@ public class RegistryTest {
         User anotherUser = new User();
         userCRUD.add(anotherUser);
 
+        // write few chats
         int amountEntities = 10;
         List<Chat> chats = new ArrayList<>(amountEntities);
         for (int i = 0; i < amountEntities; i++) {
@@ -124,16 +128,20 @@ public class RegistryTest {
             chats.add(c);
         }
 
+        // sign this chats with user in registry
         for (Chat chat1 : chats) {
             registryCRUD.add(new ChatRegistryUnit(chat1, anotherUser));
         }
 
+        // getting all chat for user, must be not equals of amount written chats
         Collection<Chat> firstUsersChat = chatCRUD.getListSearched(user);
         assertNotEquals(amountEntities,firstUsersChat.size());
 
+        // getting all chat for anotherUser, must be equals of amount written chats
         Collection<Chat> anotherUserChat = chatCRUD.getListSearched(anotherUser);
         assertEquals(amountEntities,anotherUserChat.size());
 
+        // comparing obtained list of chats, and original one
         assertTrue(anotherUserChat.containsAll(chats));
     }
 }

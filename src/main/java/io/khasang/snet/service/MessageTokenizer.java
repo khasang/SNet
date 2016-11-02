@@ -7,6 +7,8 @@ import io.khasang.snet.entity.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/* Function of this utility: parse object by JsonSerializer
+* and work with database */
 @Component
 public class MessageTokenizer {
 
