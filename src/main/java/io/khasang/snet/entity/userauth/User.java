@@ -1,5 +1,6 @@
 package io.khasang.snet.entity.userauth;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.khasang.snet.entity.AbstractEntity;
 
 import javax.persistence.Entity;
@@ -16,10 +17,14 @@ public class User implements AbstractEntity<Integer> {
     private int id;
 
     private String login;
+    @JsonIgnore
     private String password;
+    @JsonIgnore
     private String mail;
     // отправка на почту регистрационных данных и подтвеждение почты
+    @JsonIgnore
     private String telephone;
+
     private boolean activeUser;
 
     public User() {
