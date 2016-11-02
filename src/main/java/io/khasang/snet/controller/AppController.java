@@ -47,6 +47,11 @@ public class AppController {
         return "index";
     }
 
+    @RequestMapping("/hello")
+    public String hello(Model model) {
+        return "hello";
+    }
+
     @RequestMapping("/create")
     public String createTableCompany(Model model) {
         model.addAttribute("create", createTable.tableCreation());
@@ -174,5 +179,10 @@ public class AppController {
     @RequestMapping("/users/register")
     public String register(Model model) {
         return "register";
+    }
+
+    @RequestMapping("/profile")
+    public String profile(Model model) {
+        return "profile";
     }
 }
