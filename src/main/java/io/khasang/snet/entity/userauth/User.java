@@ -26,11 +26,13 @@ public class User implements AbstractEntity<Integer> {
         activeUser = true;
     }
 
-    public int getId() {
+    @Override
+    public Integer getID() {
         return id;
     }
 
-    public void setId(int id) {
+    @Override
+    public void setID(Integer id) {
         this.id = id;
     }
 
