@@ -1,6 +1,6 @@
 package io.khasang.snet.dao.impl;
 
-import io.khasang.snet.dao.HibernateDAO;
+import io.khasang.snet.dao.AbstractCRUD;
 import io.khasang.snet.entity.CityLocation;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -12,7 +12,7 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class CityLocationUtils implements HibernateDAO<CityLocation, Long> {
+public class CityLocationUtils implements AbstractCRUD<CityLocation> {
 
     private SessionFactory sessionFactory;
 
@@ -27,31 +27,31 @@ public class CityLocationUtils implements HibernateDAO<CityLocation, Long> {
     }
 
     @Override
-    public CityLocation get(Long key) {
+    public CityLocation get(CityLocation cityLocation) {
         Session session = getCurrentSession();
-        return session.get(CityLocation.class,key);
+        return session.get(CityLocation.class,cityLocation.getID());
     }
 
     @Override
     public void edit(CityLocation cityLocation) {
         Session session = getCurrentSession();
-        CityLocation oldLocation = session.get(CityLocation.class,cityLocation.getId());
+        CityLocation oldLocation = session.get(CityLocation.class,cityLocation.getID());
         oldLocation.setCityName(cityLocation.getCityName());
         oldLocation.setLocation(cityLocation.getLocation());
         session.save(oldLocation);
     }
 
     @Override
-    public void delete(Long key) {
+    public void delete(CityLocation cityLocation) {
         Session session = getCurrentSession();
-        CityLocation location = session.get(CityLocation.class, key);
+        CityLocation location = session.get(CityLocation.class, cityLocation.getID());
         session.delete(location);
         session.flush();
     }
 
     @Override
     @SuppressWarnings("unchecked")
-    public List<CityLocation> getAll() {
+    public List<CityLocation> getAll(CityLocation cityLocation) {
         Session session = getCurrentSession();
         Query query = session.createQuery("FROM io.khasang.snet.entity.CityLocation");
         return (List<CityLocation>) query.list();

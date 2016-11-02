@@ -1,32 +1,43 @@
 package io.khasang.snet.entity.userauth;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.khasang.snet.entity.AbstractEntity;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+/* For integrity with Messages sub-system
+* was implemented AbstractEntity */
 @Entity(name = "users")
-public class User {
+public class User implements AbstractEntity<Integer> {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     private String login;
+    @JsonIgnore
     private String password;
+    @JsonIgnore
     private String mail;
     // отправка на почту регистрационных данных и подтвеждение почты
+    @JsonIgnore
     private String telephone;
+
     private boolean activeUser;
 
     public User() {
         activeUser = true;
     }
 
-    public int getId() {
+    @Override
+    public Integer getID() {
         return id;
     }
 
-    public void setId(int id) {
+    @Override
+    public void setID(Integer id) {
         this.id = id;
     }
 
@@ -68,5 +79,32 @@ public class User {
 
     public void setActiveUser(boolean activeUser) {
         this.activeUser = activeUser;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        if (id != user.id) return false;
+        if (activeUser != user.activeUser) return false;
+        if (login != null ? !login.equals(user.login) : user.login != null) return false;
+        if (password != null ? !password.equals(user.password) : user.password != null) return false;
+        if (mail != null ? !mail.equals(user.mail) : user.mail != null) return false;
+        return telephone != null ? telephone.equals(user.telephone) : user.telephone == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (login != null ? login.hashCode() : 0);
+        result = 31 * result + (password != null ? password.hashCode() : 0);
+        result = 31 * result + (mail != null ? mail.hashCode() : 0);
+        result = 31 * result + (telephone != null ? telephone.hashCode() : 0);
+        result = 31 * result + (activeUser ? 1 : 0);
+        return result;
     }
 }

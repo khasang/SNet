@@ -1,11 +1,10 @@
 package io.khasang.snet.config;
 
 import io.khasang.snet.model.*;
-import io.khasang.snet.service.*;
-
-import io.khasang.snet.model.CreateTable;
-import io.khasang.snet.model.Hello;
-import io.khasang.snet.model.TruncateTable;
+import io.khasang.snet.service.PostService;
+import io.khasang.snet.service.QueryHandler;
+import io.khasang.snet.service.QuestionService;
+import io.khasang.snet.service.UsersPasswordChanger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +20,6 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 @PropertySource(value = {"classpath:util.properties"})
 @PropertySource(value = {"classpath:auth.properties"})
 @PropertySource(value = {"classpath:backup.properties"})
-@PropertySource(value = {"classpath:queries.properties"})
 public class AppConfig {
     @Autowired
     Environment environment;
@@ -77,14 +75,6 @@ public class AppConfig {
         JdbcTemplate jdbcTemplate = new JdbcTemplate();
         jdbcTemplate.setDataSource(dataSource());
         return jdbcTemplate;
-    }
-
-    @Bean
-    public TableCreator weatherTableCreator() {
-        TableCreator creator = new TableCreator(queryHandler());
-        creator.setDropSql(environment.getProperty("weather.drop"));
-        creator.setCreateSql(environment.getProperty("weather.create"));
-        return creator;
     }
 
     @Bean

@@ -1,36 +1,44 @@
-package io.khasang.snet.util;
+package io.khasang.snet.entity;
 
 import io.khasang.snet.config.AppConfig;
 import io.khasang.snet.config.HibernateConfig;
 import io.khasang.snet.config.application.WebConfig;
-import io.khasang.snet.dao.HibernateDAO;
-import io.khasang.snet.dao.impl.PicturesDataUtil;
-import io.khasang.snet.entity.Picture;
+import io.khasang.snet.dao.AbstractCRUD;
+
 import static org.junit.Assert.*;
 
-import io.khasang.snet.util.common.PicturesGenerator;
+import io.khasang.snet.entity.common.EntityBasicCRUDTestSuite;
+import io.khasang.snet.util.Generator;
+import io.khasang.snet.entity.common.PicturesGenerator;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration(classes = {AppConfig.class, WebConfig.class, HibernateConfig.class})
-public class PictureDataUtilTest {
+public class PictureTest {
 
     @Autowired
     private Generator<Picture> generator;
 
     @Autowired
-    private HibernateDAO<Picture, Long> picturesDataUtil;
+    private AbstractCRUD<Picture> picturesUtils;
+
+    private EntityBasicCRUDTestSuite<Picture> testUtil;
+
+    @Before
+    public void setUp() {
+        if (testUtil ==null) testUtil = new EntityBasicCRUDTestSuite<>(picturesUtils);
+    }
 
     /* There test equals method of Picture */
     @Test
@@ -38,8 +46,7 @@ public class PictureDataUtilTest {
         Picture first = generator.create();
         Picture same = first;
         Picture another = generator.create();
-        assertEquals(first,same);
-        assertNotEquals(first, another);
+        assertTrue(testUtil.testEquals(first,same,another));
     }
 
     /* Tested saving and loading of entities,
@@ -47,29 +54,26 @@ public class PictureDataUtilTest {
     @Test
     public void saveAndLoadTest() {
         Picture original = generator.create();
-        picturesDataUtil.add(original);
 
         /* If loaded picture will differs from
         * original test fails */
-        Picture deSerialized = picturesDataUtil.get(original.getId());
+        Picture deSerialized = testUtil.testSaveAndLoad(original);
         assertEquals(original,deSerialized);
+
     }
 
     /* Tested updating of exists entity instance */
     @Test
     public void updateTest() {
         Picture original = generator.create();
-        picturesDataUtil.add(original);
 
         /* Will create new different picture, but
         * fields id, description and ownerId sets from
         * original. Will differ just imageBody and
         * if it's field was same test fails */
         Picture differed = generator.create();
-        differed.setId(original.getId());
         differed.setDescription(original.getDescription());
         differed.setOwnerId(original.getOwnerId());
-        assertNotEquals("Failed: original and differed haven't difference", original, differed);
 
         /* Will edited picture in database, and after
         * it's loaded and deserialized if it will be
@@ -77,8 +81,7 @@ public class PictureDataUtilTest {
         * test will failed unlike first checking, in next if
         * deserialized objectwill be same as original
         * (not edited) test fails */
-        picturesDataUtil.edit(differed);
-        Picture deSerialized = picturesDataUtil.get(differed.getId());
+        Picture deSerialized = testUtil.testUpdate(original, differed);
         assertEquals("Failed: objects differs after serialization", differed, deSerialized);
         assertNotEquals("Failed original and edited object haven't defference", original, deSerialized);
     }
@@ -87,13 +90,10 @@ public class PictureDataUtilTest {
     @Test
     public void deleteTest() {
         Picture picture = generator.create();
-        picturesDataUtil.add(picture);
 
         /* if deleted picture not will be null test
         * will be failed*/
-        picturesDataUtil.delete(picture.getId());
-        Picture deleted = picturesDataUtil.get(picture.getId());
-        assertNull(deleted);
+        assertNull(testUtil.testDelete(picture));
     }
 
     /* Tested list returned by dao
@@ -105,13 +105,10 @@ public class PictureDataUtilTest {
     public void listReturnTest() {
         Set<Picture> pictureSet = new HashSet<>();
         for (Picture picture : new PicturesGenerator(10)) {
-            picturesDataUtil.add(picture);
             pictureSet.add(picture);
         }
 
         // if some picture retains in set test fails
-        List<Picture> pictures = picturesDataUtil.getAll();
-        pictureSet.removeAll(pictures);
-        assertEquals(0,pictureSet.size());
+        assertEquals(0, testUtil.testForLists(pictureSet,null));
     }
 }
