@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Arrays;
 
 @Entity(name = "location")
-public class CityLocation {
+public class CityLocation implements AbstractEntity<Long> {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -18,11 +18,13 @@ public class CityLocation {
     public CityLocation() {
     }
 
-    public long getId() {
+    @Override
+    public Long getID() {
         return id;
     }
 
-    public void setId(long id) {
+    @Override
+    public void setID(Long id) {
         this.id = id;
     }
 

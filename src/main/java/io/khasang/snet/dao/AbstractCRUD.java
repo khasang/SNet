@@ -1,29 +1,31 @@
 package io.khasang.snet.dao;
 
+import io.khasang.snet.entity.AbstractEntity;
+
 import java.util.List;
 
-public interface HibernateDAO<Element, Key> {
+public interface AbstractCRUD<Entity extends AbstractEntity> {
 
     /*
     * Adds new object into ORM
     * */
-    void add(Element element);
+    void add(Entity entity);
 
     /* Gets one of the existed objects
      * by key value
      */
-    Element get(Key key);
+    Entity get(Entity entity);
 
     /* Edit object that already exist
     * */
-    void edit(Element element);
+    void edit(Entity entity);
 
     /* Delete's one of the existed objects
      * by key value
      */
-    void delete(Key key);
+    void delete(Entity entity);
 
     /* Gets all objects in table
     * */
-    List<Element> getAll();
+    List<Entity> getAll(Entity entity);
 }

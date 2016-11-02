@@ -1,7 +1,6 @@
 package io.khasang.snet.controller;
 
 import io.khasang.snet.model.*;
-import io.khasang.snet.service.TableCreator;
 import io.khasang.snet.service.UsersPasswordChanger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
@@ -31,20 +30,19 @@ public class AppController {
     DeleteTable deleteTable;
     @Autowired
     TruncateTable truncateTable;
-    @Autowired
+ 	@Autowired
     BackupBase backupBase;
     @Autowired
     TableConfiguration tableConfiguration;
 
     @Autowired
-    TableCreator weatherTableCreator;
-
-    @Autowired
     UsersPasswordChanger usersPasswordChanger;
 
     @RequestMapping("/")
-    public String index(Model model) {
-        return "index";
+    public String hello(Model model) {
+        model.addAttribute("hello", hello.getHelloMessage());
+        model.addAttribute("by", by.getByMessage());
+        return "hello";
     }
 
     @RequestMapping("/create")
@@ -115,11 +113,6 @@ public class AppController {
         return "posts";
     }
 
-    @RequestMapping("/employees")
-    public String employees() {
-        return "employees";
-    }
-
     @RequestMapping("/backup")
     public String makeBasebackUp(Model model) {
         model.addAttribute("backUpMessage", backupBase.makeBackUp());
@@ -130,19 +123,6 @@ public class AppController {
     public String secureTable(Model model) {
         model.addAttribute("secure", "This is a very secure place");
         return "secure";
-    }
-
-    @RequestMapping("/confidential/user")
-    public String currUser(Model model) {
-        model.addAttribute("curuser", SecurityContextHolder.getContext().getAuthentication().getName());
-        return "curuser";
-    }
-
-    /* Weather table creation request */
-    @RequestMapping("/confidential/create/weather")
-    public String createTableWeather(Model model) {
-        model.addAttribute("create", weatherTableCreator.dropAndCreate());
-        return "create";
     }
 
     @RequestMapping(value = {"hello/{name}"}, method = RequestMethod.GET)
@@ -169,10 +149,5 @@ public class AppController {
         String response = usersPasswordChanger.change(login, new BCryptPasswordEncoder().encode(newPassword));
         modelAndView.addObject("response", response);
         return modelAndView;
-    }
-
-    @RequestMapping("/users/register")
-    public String register(Model model) {
-        return "register";
     }
 }

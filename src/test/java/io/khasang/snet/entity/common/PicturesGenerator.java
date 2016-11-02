@@ -1,4 +1,4 @@
-package io.khasang.snet.util.common;
+package io.khasang.snet.entity.common;
 
 import io.khasang.snet.entity.Picture;
 import io.khasang.snet.util.Generator;
