@@ -3,11 +3,15 @@ package io.khasang.snet.controller;
 import io.khasang.snet.entity.profile.Profile;
 import io.khasang.snet.service.profile.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
+
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.security.Principal;
 
 @RestController
@@ -53,4 +57,38 @@ public class ProfileController {
 
     }
 
+
+    @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
+    @ResponseBody
+    public String handleFileUpload(@RequestParam("file") MultipartFile file, Principal principal) {
+   final String name = principal.getName();
+        if (!file.isEmpty()) {
+            try {
+                byte[] fileBytes = file.getBytes();
+                String rootPath = System.getProperty("catalina.home");
+                System.out.println("Server rootPath: " + rootPath);
+                System.out.println("File original name: " + file.getOriginalFilename());
+                System.out.println("File content type: " + file.getContentType());
+
+                String filename = file.getOriginalFilename();
+                filename = filename.substring(filename.lastIndexOf("."), filename.length());
+
+                File newFile = new File(rootPath + File.separator +  name + filename);
+                BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(newFile));
+                stream.write(fileBytes);
+                stream.close();
+
+                System.out.println("File is saved under: " + rootPath + File.separator + file.getOriginalFilename());
+                return "File is saved under: " + rootPath + File.separator + name + filename;
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                return "File upload is failed: " + e.getMessage();
+            }
+        } else {
+            return "File upload is failed: File is empty";
+        }
+    }
 }
+
+
