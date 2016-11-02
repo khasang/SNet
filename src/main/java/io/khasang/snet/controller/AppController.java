@@ -45,6 +45,7 @@ public class AppController {
         return "hello";
     }
 
+
     @RequestMapping("/create")
     public String createTableCompany(Model model) {
         model.addAttribute("create", createTable.tableCreation());
@@ -149,5 +150,15 @@ public class AppController {
         String response = usersPasswordChanger.change(login, new BCryptPasswordEncoder().encode(newPassword));
         modelAndView.addObject("response", response);
         return modelAndView;
+    }
+
+    @RequestMapping("/users/register")
+    public String register(Model model) {
+        return "register";
+    }
+
+    @RequestMapping("/profile")
+    public String profile(Model model) {
+        return "profile";
     }
 }

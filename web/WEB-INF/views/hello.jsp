@@ -4,8 +4,6 @@
     <title>Hello Page</title>
 </head>
 <body>
-${hello}
-<br>
-${by}
+
 </body>
 </html>
