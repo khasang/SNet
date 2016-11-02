@@ -3,8 +3,9 @@ package io.khasang.snet.entity;
 import io.khasang.snet.config.AppConfig;
 import io.khasang.snet.config.HibernateConfig;
 import io.khasang.snet.config.application.WebConfig;
-import io.khasang.snet.dao.AbstractCRUD;
+import io.khasang.snet.dao.AbstractRegistrySearcher;
 import io.khasang.snet.entity.common.EntityBasicCRUDTestSuite;
+import io.khasang.snet.entity.userauth.User;
 import io.khasang.snet.util.Generator;
 import static org.junit.Assert.*;
 import org.junit.Before;
@@ -26,7 +27,7 @@ import java.util.HashSet;
 public class ChatTest {
 
     @Autowired
-    private AbstractCRUD<Chat> chatAbstractCRUD;
+    private AbstractRegistrySearcher<Chat,User> chatCRUD;
 
     @Autowired
     private Generator<Chat> generator;
@@ -35,7 +36,7 @@ public class ChatTest {
 
     @Before
     public void setUp() {
-        if (suite==null) suite = new EntityBasicCRUDTestSuite<>(chatAbstractCRUD);
+        if (suite==null) suite = new EntityBasicCRUDTestSuite<>(chatCRUD);
     }
 
     @Test
