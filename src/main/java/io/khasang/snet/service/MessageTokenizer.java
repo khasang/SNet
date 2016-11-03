@@ -33,10 +33,10 @@ public class MessageTokenizer {
         try {
             Message message = messageSerializer.parseToEntity(raw,Message.class);
             dataUtilMessages.add(message);
+            return messageSerializer.parseToJson(message);
         } catch (Exception exc) {
             return String.format("Error occur while saving message: %s", exc.getMessage());
         }
-        return "";
     }
 
     public String getOne(String raw) {
