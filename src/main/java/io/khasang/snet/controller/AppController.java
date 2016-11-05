@@ -107,6 +107,12 @@ public class AppController {
         return "rest";
     }
 
+    // add login page for Spring Security
+    @RequestMapping("/login")
+    public String login() {
+        return "login";
+    }
+
     @RequestMapping("/posts")
     public String posts() {
         return "posts";
@@ -150,7 +156,7 @@ public class AppController {
         return modelAndView;
     }
 
-    @RequestMapping("/users/register")
+    @RequestMapping("/register")
     public String register(Model model) {
         return "register";
     }
@@ -159,4 +165,15 @@ public class AppController {
     public String profile(Model model) {
         return "profile";
     }
+
+    // Bootstrap Examples
+    @RequestMapping("/buttons")
+    public String buttons(Model model){return "buttons";}
+
+    @RequestMapping("/forms")
+    public String forms(Model model){return "forms";}
+
+    @RequestMapping("/tables")
+    public String tables(Model model){return "tables";}
+
 }

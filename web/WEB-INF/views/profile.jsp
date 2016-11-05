@@ -7,144 +7,158 @@
 <%--<c:import var="profile" url="/use_profile/my" charEncoding="utf-8" />--%>
 
 <c:url value="/use_profile/uploadFile" var="fileUploadControllerURL" />
-<div class="panel panel-default">
-    <p><b>Мой профиль</b></p>
-    <div class="panel-body" id="response"/>
-    <div class="panel-body"></div>
-</div>
-<br>
-<table width="100%" style="border-collapse:collapse;">
-    <tr>
-        <td width="150px" valign="top"><!--/Левая старана начало-->
-            <table width="150px" style="border-collapse:collapse;">
+<div class="page-content">
+    <div class="row">
+        <!-- Include leff menu-->
+        <jsp:include page="inc/left_menu.jsp"/>
+        <!--Main Content of page -->
+        <div class="col-md-10">
+
+            <div class="panel panel-default">
+                <p><b>Мой профиль</b></p>
+                <div class="panel-body" id="response"/>
+                <div class="panel-body"></div>
+                <button type="button" onclick="RestGet('my')">Try</button>
+            </div>
+            <br>
+            <table width="100%" style="border-collapse:collapse;">
                 <tr>
-                    <td class="avatare"><img src="http://deejaay.ru/watermark/myMeg.png" width="150px"></td>
-                </tr>
-                <!--/Меню-->
-                <tr>
-                    <td class="avatare">
-                    <form class="mylivepage" action="${fileUploadControllerURL}" method="post"
-                          enctype="multipart/form-data">
-                        <input type="file" name="file">
-                        <input type="submit" value="обновить фото">
-                    </form>
+                    <td width="150px" valign="top"><!--/Левая старана начало-->
+                        <table width="150px" style="border-collapse:collapse;">
+                            <tr>
+                                <td class="avatare"><img src="http://deejaay.ru/watermark/myMeg.png" width="150px"></td>
+                            </tr>
+                            <!--/Меню-->
+                            <tr>
+                                <td class="avatare">
+                                    <form class="mylivepage" action="${fileUploadControllerURL}" method="post"
+                                          enctype="multipart/form-data">
+                                        <input type="file" name="file">
+                                        <input type="submit" value="обновить фото">
+                                    </form>
+                                </td>
+                            </tr>
+                            <!--/Меню конец-->
+                        </table>
+                    </td><!--/Левая старана конец-->
+                    <td valign="top"><!--/Правая старана начало-->
+                        <table style="border-collapse:collapse;margin-top:3px;">
+                            <tr>
+                                <td class="leftiks">Логин:</td>
+                                <td class="rightiks"></td>
+                            </tr>
+                            <tr>
+                                <td class="leftiks">Имя:</td>
+                                <td class="rightiks"></td>
+                            </tr>
+                            <tr>
+                                <td class="leftiks">Фамилия:</td>
+                                <td class="rightiks"></td>
+                            </tr>
+                            <tr>
+                                <td class="leftiks">Возраст:</td>
+                                <td class="rightiks"></td>
+                            </tr>
+                            <tr>
+                                <td class="leftiks">Пол:</td>
+                                <td class="rightiks"></td>
+                            </tr>
+                            <tr>
+                                <td class="leftiks">Место проживания:</td>
+                                <td class="rightiks"></td>
+                            </tr>
+
+                            <tr>
+                                <td class="leftiks">Дата Рождения:</td>
+                                <td class="rightiks"></td>
+                            </tr>
+                            <tr>
+                                <td class="leftiks">Зарегистрирован:</td>
+                                <td class="rightiks"></td>
+                            </tr>
+                            <tr>
+                                <td class="leftiks">Последний визит:</td>
+                                <td class="rightiks"></td>
+                            </tr>
+                            <tr>
+                                <td class="promij" colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td class="leftiks">Интересы:</td>
+                                <td class="rightiks"></td>
+                            </tr>
+                            <tr>
+                                <td class="leftiks">О себе:</td>
+                                <td class="rightiks"></td>
+                            </tr>
+                            <tr>
+                                <td class="promij" colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td class="leftiks">Сайт:</td>
+                                <td class="rightiks"></td>
+                            </tr>
+                            <tr>
+                                <td class="leftiks">E-mail:</td>
+                                <td class="rightiks"></td>
+                            </tr>
+
+
+                        </table>
                     </td>
                 </tr>
-                <!--/Меню конец-->
             </table>
-        </td><!--/Левая старана конец-->
-        <td valign="top"><!--/Правая старана начало-->
-            <table style="border-collapse:collapse;margin-top:3px;">
-                <tr>
-                    <td class="leftiks">Логин:</td>
-                    <td class="rightiks"></td>
-                </tr>
-                <tr>
-                    <td class="leftiks">Имя:</td>
-                    <td class="rightiks"></td>
-                </tr>
-                <tr>
-                    <td class="leftiks">Фамилия:</td>
-                    <td class="rightiks"></td>
-                </tr>
-                <tr>
-                    <td class="leftiks">Возраст:</td>
-                    <td class="rightiks"></td>
-                </tr>
-                <tr>
-                    <td class="leftiks">Пол:</td>
-                    <td class="rightiks"></td>
-                </tr>
-                <tr>
-                    <td class="leftiks">Место проживания:</td>
-                    <td class="rightiks"></td>
-                </tr>
 
-                <tr>
-                    <td class="leftiks">Дата Рождения:</td>
-                    <td class="rightiks"></td>
-                </tr>
-                <tr>
-                    <td class="leftiks">Зарегистрирован:</td>
-                    <td class="rightiks"></td>
-                </tr>
-                <tr>
-                    <td class="leftiks">Последний визит:</td>
-                    <td class="rightiks"></td>
-                </tr>
-                <tr>
-                    <td class="promij" colspan="2"></td>
-                </tr>
-                <tr>
-                    <td class="leftiks">Интересы:</td>
-                    <td class="rightiks"></td>
-                </tr>
-                <tr>
-                    <td class="leftiks">О себе:</td>
-                    <td class="rightiks"></td>
-                </tr>
-                <tr>
-                    <td class="promij" colspan="2"></td>
-                </tr>
-                <tr>
-                    <td class="leftiks">Сайт:</td>
-                    <td class="rightiks"></td>
-                </tr>
-                <tr>
-                    <td class="leftiks">E-mail:</td>
-                    <td class="rightiks"></td>
-                </tr>
+            <br>
+            <div class="panel panel-default">
+                <p><b>Это для редактирования</b></p>
+            </div>
 
+            <form style="border-collapse:collapse;margin-top:3px;">
+                <table style="border-collapse:collapse;margin-top:3px;">
+                    <tr>
+                        <td class="leftiks">id:</td>
+                        <td class="rightiks2"><input type="text" id="putID" value=""></td>
+                    </tr>
 
-            </table>
-        </td>
-    </tr>
-</table>
+                    <tr>
+                        <td class="leftiks">login:</td>
+                        <td class="rightiks2"><input type="text" id="putLogin" value=""></td>
+                    </tr>
+                    <tr>
+                        <td class="leftiks">Имя:</td>
+                        <td class="rightiks2"><input type="text" id="putName" value=""></td>
+                    </tr>
+                    <tr>
+                        <td class="leftiks">Фамилия:</td>
+                        <td class="rightiks2"><input type="text" id="putSurname" value=""></td>
+                    </tr>
 
-<br>
-<div class="panel panel-default">
-    <p><b>Это для редактирования</b></p>
+                    <tr>
+                        <td class="leftiks">Город:</td>
+                        <td class="rightiks2"><input type="text" id="putCity" value=""></td>
+                    </tr>
+
+                    <tr>
+                        <td class="leftiks">Интересы:</td>
+                        <td class="rightiks2"><textarea rows="10" cols="40" id="putInterests"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td class="leftiks">О себе:</td>
+                        <td class="rightiks2"><textarea rows="10" cols="40" id="putAboutMe"></textarea></td>
+                    </tr>
+                </table>
+                <button type="button" onclick="RestPut()">Обновить</button>
+                <span id="responsePut"/>
+            </form>
+            <br>
+            <br>
+
+        </div>
+    </div>
 </div>
 
-<form style="border-collapse:collapse;margin-top:3px;">
-    <table style="border-collapse:collapse;margin-top:3px;">
-        <tr>
-            <td class="leftiks">id:</td>
-            <td class="rightiks2"><input type="text" id="putID" value=""></td>
-        </tr>
 
-        <tr>
-            <td class="leftiks">login:</td>
-            <td class="rightiks2"><input type="text" id="putLogin" value=""></td>
-        </tr>
-        <tr>
-            <td class="leftiks">Имя:</td>
-            <td class="rightiks2"><input type="text" id="putName" value=""></td>
-        </tr>
-        <tr>
-            <td class="leftiks">Фамилия:</td>
-            <td class="rightiks2"><input type="text" id="putSurname" value=""></td>
-        </tr>
-
-        <tr>
-            <td class="leftiks">Город:</td>
-            <td class="rightiks2"><input type="text" id="putCity" value=""></td>
-        </tr>
-
-        <tr>
-            <td class="leftiks">Интересы:</td>
-            <td class="rightiks2"><textarea rows="10" cols="40" id="putInterests"></textarea></td>
-        </tr>
-        <tr>
-            <td class="leftiks">О себе:</td>
-            <td class="rightiks2"><textarea rows="10" cols="40" id="putAboutMe"></textarea></td>
-        </tr>
-    </table>
-    <button type="button" onclick="RestPut()">Обновить</button>
-    <span id="responsePut"/>
-</form>
-<br>
-<br>
 
 
 <style type="text/css">
