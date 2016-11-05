@@ -1,5 +1,10 @@
 package io.khasang.snet.config;
 
+import io.khasang.snet.dao.AbstractCRUD;
+import io.khasang.snet.dao.AbstractRegistrySearcher;
+import io.khasang.snet.dao.impl.*;
+import io.khasang.snet.entity.*;
+import io.khasang.snet.entity.userauth.User;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -68,6 +73,36 @@ public class HibernateConfig {
     @Bean
     public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
         return new PersistenceExceptionTranslationPostProcessor();
+    }
+
+    @Bean
+    public AbstractCRUD<WeatherReport> weatherReportCRUD() {
+        return new WeatherReportUnils(sessionFactory().getObject());
+    }
+
+    @Bean(name = "picturesUtils")
+    public AbstractCRUD<Picture> pictureAbstractCRUD() {
+        return new PictureUtils(sessionFactory().getObject());
+    }
+
+    @Bean
+    public AbstractRegistrySearcher<Chat, User> chatCRUD(){
+        return new ChatUtils(sessionFactory().getObject());
+    }
+
+    @Bean
+    public AbstractCRUD<Message> dataUtilMessages(){
+        return new MessageUtils(sessionFactory().getObject());
+    }
+
+    @Bean
+    public AbstractCRUD<ChatRegistryUnit> registryCRUD() {
+        return new RegistryUtils(sessionFactory().getObject());
+    }
+
+    @Bean
+    public AbstractCRUD<User> userCRUD() {
+        return new UserCRUD(sessionFactory().getObject());
     }
 
 }

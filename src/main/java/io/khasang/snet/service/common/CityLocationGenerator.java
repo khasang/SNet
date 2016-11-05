@@ -33,7 +33,7 @@ public class CityLocationGenerator implements Generator<CityLocation>, Iterable<
     public CityLocation create() {
         CityLocation location = new CityLocation();
         Cities randomCity = getRandomCity();
-        location.setId(id);
+        location.setID(id);
         location.setCityName(randomCity.city);
         location.setLocation(randomCity.location);
         return location;

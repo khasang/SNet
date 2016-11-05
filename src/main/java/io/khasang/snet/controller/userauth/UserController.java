@@ -27,7 +27,7 @@ public class UserController {
             User us = userService.getUserByLogin(user.getLogin());
             Roles role = userService.getRolesByName(RolesList.ROLE_USER.toString());
             AuthRules authRules = new AuthRules();
-            authRules.setUser_id(us.getId());
+            authRules.setUser_id(us.getID());
             authRules.setRole_id(role.getId());
             userService.addAuthRules(authRules);
             return "Succesfully register user " + user.getLogin();

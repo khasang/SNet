@@ -1,10 +1,10 @@
 package io.khasang.snet.controller;
 
 import io.khasang.snet.model.*;
-import io.khasang.snet.service.TableCreator;
 import io.khasang.snet.service.UsersPasswordChanger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,21 +36,19 @@ public class AppController {
     TableConfiguration tableConfiguration;
 
     @Autowired
-    TableCreator weatherTableCreator;
-
-    @Autowired
     UsersPasswordChanger usersPasswordChanger;
-
+    
     @RequestMapping("/")
     public String index(Model model) {
         return "index";
     }
 
+
     @RequestMapping("/create")
     public String createTableCompany(Model model) {
         model.addAttribute("create", createTable.tableCreation());
         return "create";
-	}
+    }
 
     @RequestMapping("/insert")
     public String insertInTableCompany(Model model) {
@@ -59,7 +57,7 @@ public class AppController {
     }
 
     @RequestMapping("/delete")
-    public String deleteTableCompany(Model model){
+    public String deleteTableCompany(Model model) {
         model.addAttribute("create", deleteTable.delete());
         return "create";
     }
@@ -78,21 +76,21 @@ public class AppController {
     }
 
     @RequestMapping("/createEmployees")
-    public String createTableEmployeesAndCities(Model model){
+    public String createTableEmployeesAndCities(Model model) {
         model.addAttribute("createEmployees", tableConfiguration.employeesTableCreation());
-        model.addAttribute("createCities",tableConfiguration.citiesTableCreation());
+        model.addAttribute("createCities", tableConfiguration.citiesTableCreation());
         return "createEmployees";
     }
 
     @RequestMapping("/insertEmployees")
-    public String insertInTableEmployeesAndCities(Model model){
+    public String insertInTableEmployeesAndCities(Model model) {
         model.addAttribute("insertEmployees", tableConfiguration.insertEmployees());
-        model.addAttribute("insertCities",tableConfiguration.insertCities());
+        model.addAttribute("insertCities", tableConfiguration.insertCities());
         return "insertEmployees";
     }
 
     @RequestMapping("/selectEmployees")
-    public String selectEmployeesByCountry(Model model){
+    public String selectEmployeesByCountry(Model model) {
         model.addAttribute("selectEmployees", tableConfiguration.selectEmployeesByCountry("Англия"));
         return "selectEmployees";
     }
@@ -120,28 +118,16 @@ public class AppController {
         return "posts";
     }
 
-    @RequestMapping("/employees")
-    public String employees() {
-        return "employees";
-    }
-
     @RequestMapping("/backup")
-    public String makeBasebackUp(Model model){
-        model.addAttribute("backUpMessage",backupBase.makeBackUp());
+    public String makeBasebackUp(Model model) {
+        model.addAttribute("backUpMessage", backupBase.makeBackUp());
         return "backUp";
     }
 
     @RequestMapping("/confidential/page")
-    public String secureTable(Model model){
+    public String secureTable(Model model) {
         model.addAttribute("secure", "This is a very secure place");
         return "secure";
-    }
-
-    /* Weather table creation request */
-    @RequestMapping("/confidential/create/weather")
-    public String createTableWeather(Model model) {
-        model.addAttribute("create", weatherTableCreator.dropAndCreate());
-        return "create";
     }
 
     @RequestMapping(value = {"hello/{name}"}, method = RequestMethod.GET)
@@ -172,7 +158,12 @@ public class AppController {
 
     @RequestMapping("/register")
     public String register(Model model) {
-       return "register";
+        return "register";
+    }
+
+    @RequestMapping("/profile")
+    public String profile(Model model) {
+        return "profile";
     }
 
     @RequestMapping("/buttons")

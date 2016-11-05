@@ -1,11 +1,10 @@
 package io.khasang.snet.config;
 
 import io.khasang.snet.model.*;
-import io.khasang.snet.service.*;
-
-import io.khasang.snet.model.CreateTable;
-import io.khasang.snet.model.Hello;
-import io.khasang.snet.model.TruncateTable;
+import io.khasang.snet.service.PostService;
+import io.khasang.snet.service.QueryHandler;
+import io.khasang.snet.service.QuestionService;
+import io.khasang.snet.service.UsersPasswordChanger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,12 +14,12 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 @Configuration
 @PropertySource(value = {"classpath:util.properties"})
 @PropertySource(value = {"classpath:auth.properties"})
 @PropertySource(value = {"classpath:backup.properties"})
-@PropertySource(value = {"classpath:queries.properties"})
 public class AppConfig {
     @Autowired
     Environment environment;
@@ -32,6 +31,13 @@ public class AppConfig {
         jdbcImpl.setUsersByUsernameQuery(environment.getRequiredProperty("usersByQuery"));
         jdbcImpl.setAuthoritiesByUsernameQuery(environment.getRequiredProperty("rolesByQuery"));
         return jdbcImpl;
+    }
+
+    @Bean
+    CommonsMultipartResolver multipartResolver(){
+        CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver();
+        commonsMultipartResolver.setMaxUploadSize(1000000);
+        return commonsMultipartResolver;
     }
 
     @Bean
@@ -69,14 +75,6 @@ public class AppConfig {
         JdbcTemplate jdbcTemplate = new JdbcTemplate();
         jdbcTemplate.setDataSource(dataSource());
         return jdbcTemplate;
-    }
-
-    @Bean
-    public TableCreator weatherTableCreator() {
-        TableCreator creator = new TableCreator(queryHandler());
-        creator.setDropSql(environment.getProperty("weather.drop"));
-        creator.setCreateSql(environment.getProperty("weather.create"));
-        return creator;
     }
 
     @Bean

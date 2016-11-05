@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 /* This is the entity of picture */
 @Entity(name = "pictures")
-public class Picture {
+public class Picture implements AbstractEntity<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -32,11 +32,13 @@ public class Picture {
         this.ownerId = ownerId;
     }
 
-    public long getId() {
+    @Override
+    public Long getID() {
         return id;
     }
 
-    public void setId(long id) {
+    @Override
+    public void setID(Long id) {
         this.id = id;
     }
 
