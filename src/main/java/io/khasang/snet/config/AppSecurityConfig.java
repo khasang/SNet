@@ -32,7 +32,14 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/confidential/**").access("hasRole('ADMIN')")
+                .and()
+                .formLogin().loginPage("/login").permitAll().usernameParameter("j_username")
+                .passwordParameter("j_password").loginProcessingUrl("/j_spring_security_check").failureUrl("/login?error=true")
+                .and()
+                .httpBasic()
+                .and()
+                .authorizeRequests().antMatchers("/confidential/**").access("hasRole('ADMIN')")
+                .antMatchers("/index.html").access("hasRole('USER')")
                 .antMatchers("/delete/**").access("hasRole('MASTER')")
                 .antMatchers("/truncate").access("hasRole('DIRECTOR')")
                 .antMatchers("/backup/**").access("hasRole('BACKUP')")
