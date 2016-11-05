@@ -4,8 +4,10 @@ import io.khasang.snet.model.*;
 import io.khasang.snet.service.UsersPasswordChanger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 
@@ -107,6 +111,12 @@ public class AppController {
         return "rest";
     }
 
+    // add login page for Spring Security
+    @RequestMapping("/login")
+    public String login() {
+        return "login";
+    }
+
     @RequestMapping("/posts")
     public String posts() {
         return "posts";
@@ -150,9 +160,14 @@ public class AppController {
         return modelAndView;
     }
 
-    @RequestMapping("/users/register")
+    @RequestMapping("/register")
     public String register(Model model) {
         return "register";
+    }
+
+    @RequestMapping("/endRegistration")
+    public String ednRegistration(Model model) {
+        return "endRegistration";
     }
 
     @RequestMapping("/profile")
@@ -172,5 +187,24 @@ public class AppController {
 
         modelAndView.addObject("chat_id", Integer.parseInt(chat_id));
         return modelAndView;
+    }
+
+    // Bootstrap Examples
+    @RequestMapping("/buttons")
+    public String buttons(Model model){return "buttons";}
+
+    @RequestMapping("/forms")
+    public String forms(Model model){return "forms";}
+
+    @RequestMapping("/tables")
+    public String tables(Model model){return "tables";}
+
+    @RequestMapping(value="/logout", method = RequestMethod.GET)
+    public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null){
+            new SecurityContextLogoutHandler().logout(request, response, auth);
+        }
+        return "redirect:/login?logout";//You can redirect wherever you want, but generally it's a good practice to show login screen again.
     }
 }
