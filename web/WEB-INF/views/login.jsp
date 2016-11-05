@@ -5,27 +5,29 @@
 <!--PAGE CONTENT -->
 <div class="page-content container">
     <div class="row">
+
         <div class="col-md-4 col-md-offset-4">
-            <div class="login-wrapper">
-                <div class="box">
                     <div class="content-wrap">
-                        <h6>Sign In</h6>
+                        <h2>Login</h2>
                         <form action="/j_spring_security_check" method="post">
-                            <input id="j_username" name="j_username" class="form-control" type="text" placeholder="Login">
-                            <input id="j_password" name="j_password" class="form-control" type="password" placeholder="Password">
+                            <div class="form-group">
+                                <input id="j_username" name="j_username" class="form-control" required="required" type="text" placeholder="Username">
+                            </div>
+                            <div class="form-group">
+                                <input id="j_password" name="j_password" class="form-control" required="required" type="password" placeholder="Password">
+                            </div>
+
                             <div class="action">
                                 <button class="btn btn-primary signup" type="submit">Login</button>
                             </div>
                         </form>
                     </div>
-                </div>
-
                 <div class="already">
-                    <p>Don't have an account yet?</p>
-                    <a href="/register">Sign Up</a>
+                    <p>Don't have an account yet?  <a href="/register"><button class="btn btn-info btn-xs">Register</button></p>
+                    </a>
                 </div>
-            </div>
         </div>
+
     </div>
 </div>
 

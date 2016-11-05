@@ -161,6 +161,11 @@ public class AppController {
         return "register";
     }
 
+    @RequestMapping("/endRegistration")
+    public String ednRegistration(Model model) {
+        return "endRegistration";
+    }
+
     @RequestMapping("/profile")
     public String profile(Model model) {
         return "profile";
