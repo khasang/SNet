@@ -166,6 +166,14 @@ public class AppController {
         return "profile";
     }
 
+    // Bootstrap Examples
     @RequestMapping("/buttons")
     public String buttons(Model model){return "buttons";}
+
+    @RequestMapping("/forms")
+    public String forms(Model model){return "forms";}
+
+    @RequestMapping("/tables")
+    public String tables(Model model){return "tables";}
+
 }

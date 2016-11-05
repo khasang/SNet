@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -20,8 +21,6 @@ public class ProfileController {
 
     @Autowired
     ProfileService profileService;
-
-
 
     @RequestMapping(value = "/my",method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
@@ -60,12 +59,14 @@ public class ProfileController {
 
     @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
     @ResponseBody
-    public String handleFileUpload(@RequestParam("file") MultipartFile file, Principal principal) {
+    public String handleFileUpload(@RequestParam("file") MultipartFile file, HttpServletRequest request, Principal principal) {
    final String name = principal.getName();
         if (!file.isEmpty()) {
             try {
                 byte[] fileBytes = file.getBytes();
-                String rootPath = System.getProperty("catalina.home");
+
+                String rootPath = request.getSession().
+                        getServletContext().getRealPath("/WEB-INF/views/images/avatars");
                 System.out.println("Server rootPath: " + rootPath);
                 System.out.println("File original name: " + file.getOriginalFilename());
                 System.out.println("File content type: " + file.getContentType());
