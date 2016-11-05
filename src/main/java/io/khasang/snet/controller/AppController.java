@@ -159,4 +159,18 @@ public class AppController {
     public String profile(Model model) {
         return "profile";
     }
+
+    @RequestMapping("/chats")
+    public String chats(Model model) {
+        return "allChats";
+    }
+
+    @RequestMapping("/messages")
+    public ModelAndView current(@RequestParam(value = "id") String chat_id) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("messages");
+
+        modelAndView.addObject("chat_id", Integer.parseInt(chat_id));
+        return modelAndView;
+    }
 }
