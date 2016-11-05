@@ -16,7 +16,7 @@
                 <c:if test="${not empty message}">
                                 <p><c:out value="${message}"/></p>
                 </c:if>
-                <p>Now you have an account! You can : <a href="/login"><button class="btn btn-success btn-xs" >Login</button></a></p>
+                <p>Now you have an account! You can : <a href="/login"><button class="btn btn-success btn-sm" >Log In</button></a></p>
                 <br /><br />
             </div>
         </div>

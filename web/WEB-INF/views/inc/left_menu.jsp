@@ -25,7 +25,7 @@
                 </a>
                 <!-- Sub menu -->
                 <ul>
-                    <li><a href="/login">Login</a></li>
+                    <li><a href="/login">Log In</a></li>
                     <li><a href="/register">Register</a></li>
                 </ul>
             </li>

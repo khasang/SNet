@@ -9,10 +9,10 @@
 
         <div class="col-md-4 col-md-offset-4">
                     <div class="content-wrap">
-                        <h2>Login</h2>
+                        <h2>Log in</h2>
                         <c:if test="${param.logout != null}">
                             <div class="alert alert-success">
-                                <p>You have been logged out successfully.</p>
+                                <p><span class="glyphicon glyphicon-chevron-down"></span> You have been logged out successfully.</p>
                             </div>
                         </c:if>
                         <form action="/j_spring_security_check" method="post">
@@ -24,11 +24,11 @@
                             </div>
                             <c:if test="${param.error != null}">
                                 <div class="alert alert-danger">
-                                    <p>Uncorrect username or password.</p>
+                                    <p><span class="glyphicon glyphicon-remove"></span> Uncorrect username or password.</p>
                                 </div>
                             </c:if>
                             <div class="action">
-                                <button class="btn btn-primary signup" type="submit">Login</button>
+                                <button class="btn btn-primary signup" type="submit">Log In</button>
                             </div>
                         </form>
                     </div>

@@ -40,7 +40,7 @@
                                     </div>
                             </form:form>
                 <div class="already">
-                    <p>Have an account already? <a href="/login"><button class="btn btn-success btn-xs" >Login</button></a></p>
+                    <p>Have an account already? <a href="/login"><button class="btn btn-success btn-xs" >Log In</button></a></p>
                 </div>
             </div>
         </div>
