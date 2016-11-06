@@ -2,9 +2,13 @@ package io.khasang.snet.controller;
 
 import io.khasang.snet.entity.profile.Profile;
 import io.khasang.snet.service.profile.ProfileService;
+import io.khasang.snet.service.userauth.UserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -15,17 +19,18 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.security.Principal;
 
-@RestController
-@RequestMapping("/use_profile")
+@Controller
 public class ProfileController {
 
     @Autowired
     ProfileService profileService;
 
-    @RequestMapping(value = "/my",method = RequestMethod.GET, produces = "application/json")
-    @ResponseBody
+    @Autowired
+    UserService userService;
+
+    @RequestMapping( value = "/profile", method = RequestMethod.GET)
     @Transactional
-    public Object getProfile(Principal principal){
+    public String getProfile(Principal principal, Model model){
         try {
             final String name = principal.getName();
             Profile profile = profileService.getProfileByUserLogin(name);
@@ -34,7 +39,9 @@ public class ProfileController {
                 profile.setLogin(name);
                 profileService.addProfile(profile);
             }
-            return profile;
+            model.addAttribute("profile",profile);
+            model.addAttribute("user", userService.getUserByLogin(name));
+            return "profile";
         }
         catch (Exception e){
             return "Error get Profile: " + e.getMessage();
@@ -42,23 +49,27 @@ public class ProfileController {
 
     }
 
-    @RequestMapping(method = RequestMethod.PUT, produces = "application/json")
-    @ResponseBody
-    public Object updateProfile(@RequestBody Profile profile, HttpServletResponse response){
+    @RequestMapping(value = "/upload", method = RequestMethod.GET)
+    public String updateProfile(Principal principal, Model model){
         try {
-            profileService.updateProfile(profile);
-            return profile;
+            final String name = principal.getName();
+            Profile profile = profileService.getProfileByUserLogin(name);
+            if ( profile == null){
+                profile = new Profile();
+                profile.setLogin(name);
+                profileService.addProfile(profile);
+            }
+            model.addAttribute("profile",profile);
+
+            return "editProfile";
         }
         catch (Exception e){
-            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             return "Error updating Profile: " + e.getMessage();
         }
 
     }
 
-
     @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
-    @ResponseBody
     public String handleFileUpload(@RequestParam("file") MultipartFile file, HttpServletRequest request, Principal principal) {
    final String name = principal.getName();
         if (!file.isEmpty()) {

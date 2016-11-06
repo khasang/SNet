@@ -170,11 +170,6 @@ public class AppController {
         return "endRegistration";
     }
 
-    @RequestMapping("/profile")
-    public String profile(Model model) {
-        return "profile";
-    }
-
     // Bootstrap Examples
     @RequestMapping("/buttons")
     public String buttons(Model model){return "buttons";}
