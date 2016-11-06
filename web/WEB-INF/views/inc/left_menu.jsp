@@ -29,6 +29,7 @@
                     <li><a href="/register">Register</a></li>
                 </ul>
             </li>
+            <li><a href="/about"><i class="glyphicon glyphicon-question-sign"></i> About</a></li>
         </ul>
     </div>
 </div>
