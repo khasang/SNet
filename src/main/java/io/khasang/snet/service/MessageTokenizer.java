@@ -16,13 +16,16 @@ public class MessageTokenizer {
     private JsonSerializer<Message> messageSerializer;
 
     @Autowired
+    private JsonSerializer<Chat> chatJsonSerializer;
+
+    @Autowired
     private AbstractCRUD<Message> dataUtilMessages;
 
-    public String getList(Chat chat) {
+    public String getList(String request) {
         Message message = new Message();
-        message.setChat(chat);
-
         try {
+            Chat chat = chatJsonSerializer.parseToEntity(request,Chat.class);
+            message.setChat(chat);
             return messageSerializer.parseToJson(dataUtilMessages.getAll(message));
         } catch (Exception exc) {
             return String.format("Error occur while quering list of messages. %s",exc.getMessage());
@@ -33,10 +36,10 @@ public class MessageTokenizer {
         try {
             Message message = messageSerializer.parseToEntity(raw,Message.class);
             dataUtilMessages.add(message);
+            return messageSerializer.parseToJson(message);
         } catch (Exception exc) {
             return String.format("Error occur while saving message: %s", exc.getMessage());
         }
-        return "";
     }
 
     public String getOne(String raw) {

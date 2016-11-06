@@ -10,10 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -170,6 +167,26 @@ public class AppController {
         return "endRegistration";
     }
 
+
+    @RequestMapping("/profile")
+    public String profile(Model model) {
+        return "profile";
+    }
+
+    @RequestMapping("/chat")
+    public String chats(Model model) {
+        return "allChats";
+    }
+
+    @RequestMapping("/messages")
+    public ModelAndView current(@RequestParam(value = "id") String chat_id) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("messages");
+
+        modelAndView.addObject("chat_id", Integer.parseInt(chat_id));
+        return modelAndView;
+    }
+
     // Bootstrap Examples
     @RequestMapping("/buttons")
     public String buttons(Model model){return "buttons";}
@@ -180,6 +197,9 @@ public class AppController {
     @RequestMapping("/tables")
     public String tables(Model model){return "tables";}
 
+    @RequestMapping("/about")
+    public String about(Model model){return "about";}
+
     @RequestMapping(value="/logout", method = RequestMethod.GET)
     public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -188,5 +208,4 @@ public class AppController {
         }
         return "redirect:/login?logout";//You can redirect wherever you want, but generally it's a good practice to show login screen again.
     }
-
 }
