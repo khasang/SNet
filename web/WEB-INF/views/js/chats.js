@@ -5,7 +5,7 @@ function callChats() {
             printAllChats(this.responseText);
         }
     };
-    xhttp.open("GET", "/chats/all", true);
+    xhttp.open("GET", "/chat/all", true);
     xhttp.send();
 }
 
@@ -14,8 +14,10 @@ function printAllChats(jsonResponse) {
     var out = "";
     var i;
     for (i = 0; i < chats.length; i++) {
-        out += '<div>Chat description: "' + chats[i].description + '"<a href="./messages?id='
-            + chats[i].id + '"> Go</a></div>';
+        out += '<div class="content-box">Chat: ' + chats[i].description +
+            '<br><a href="/messages?id='
+            + chats[i].id +
+            '"><button class="btn btn-default btn-xs">Read messages</button></a></div>';
     }
     document.getElementById("listChats").innerHTML = out;
 }
