@@ -31,14 +31,14 @@ public class ChatController {
     @Autowired
     private MessageTokenizer messageTokenizer;
 
-    @RequestMapping(value = "/chats/all", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/chat/all", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
     public Object getChats() {
         User user = userDAO.getUserByName(SecurityContextHolder.getContext().getAuthentication().getName());
         return chatJsonTokenizer.getList(user);
     }
 
-    @RequestMapping(value = "/chats/current", method = RequestMethod.POST, produces = "application/json")
+    @RequestMapping(value = "/chat/current", method = RequestMethod.POST, produces = "application/json")
     @ResponseBody
     public Object getOneChat(@RequestBody String json) {
         return chatJsonTokenizer.getOne(json);

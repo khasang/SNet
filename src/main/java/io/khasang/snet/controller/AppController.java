@@ -175,7 +175,7 @@ public class AppController {
         return "profile";
     }
 
-    @RequestMapping("/chats")
+    @RequestMapping("/chat")
     public String chats(Model model) {
         return "allChats";
     }
