@@ -24,7 +24,7 @@ public class UserController {
         String message="Something going wrong";
         try {
             if (userService.getUserByLogin(user.getLogin()) != null){
-                message = "You can't register with login: "+ user.getLogin() +" ! Please choose another!";
+                message = user.getLogin();
                 return new ModelAndView("/register", "message", message );
             }
             user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
