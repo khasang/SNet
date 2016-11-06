@@ -175,6 +175,20 @@ public class AppController {
         return "profile";
     }
 
+    @RequestMapping("/chat")
+    public String chats(Model model) {
+        return "allChats";
+    }
+
+    @RequestMapping("/messages")
+    public ModelAndView current(@RequestParam(value = "id") String chat_id) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("messages");
+
+        modelAndView.addObject("chat_id", Integer.parseInt(chat_id));
+        return modelAndView;
+    }
+
     // Bootstrap Examples
     @RequestMapping("/buttons")
     public String buttons(Model model){return "buttons";}
@@ -193,5 +207,4 @@ public class AppController {
         }
         return "redirect:/login?logout";//You can redirect wherever you want, but generally it's a good practice to show login screen again.
     }
-
 }
