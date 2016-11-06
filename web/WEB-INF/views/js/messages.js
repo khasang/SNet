@@ -21,7 +21,8 @@ function printMessages(json) {
     var out = "";
     var i;
     for (i = 0; i < messages.length; i++) {
-        out += '<div><strong>' + messages[i].sender.login + ':</strong> ' + messages[i].body + '</div>';
+        out += '<div class="content-box"><strong>' + messages[i].sender.login + ':</strong> '
+            + messages[i].body + '</div>';
     }
     document.getElementById("listMessages").innerHTML = out;
 }
