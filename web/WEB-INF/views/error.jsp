@@ -1,14 +1,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<!--Header-->
-<jsp:include page="inc/header.jsp"/>
 <html>
 <head>
-    <title>Your chats</title>
-    <script src="./js/chats.js"></script>
+    <title>Error</title>
 </head>
-<body onload="callChats()">
+<body>
+    <!--Header-->
+    <jsp:include page="inc/header.jsp"/>
     <div class="page-content container">
         <div class="row">
             <!--Left menu-->
@@ -17,11 +15,8 @@
             <div class="row">
                 <div class="col-md-8">
                     <div class="content-box-large">
-                        <div class="panel-heading">
-                            <div class="panel-title">There all your chats</div>
-                        </div>
-                        <div id="listChats" class="panel-body">
-                            <!-- Chats loads there-->
+                        <div class="alert-danger">
+                            <h4><strong>Error: </strong>${errorMsg}</h4>
                         </div>
                     </div>
                 </div>
