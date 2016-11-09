@@ -27,7 +27,6 @@
                     <h1><a href="/"><i class="glyphicon glyphicon-globe"></i> SNet</a></h1>
                 </div>
             </div>
-
             <div class="col-md-2 pull-right">
                 <div class="navbar navbar-inverse" role="banner">
                     <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
