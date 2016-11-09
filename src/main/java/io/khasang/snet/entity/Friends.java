@@ -13,7 +13,13 @@ public class Friends {
 
     private long idInUsers;
 
-    private long idInCategory;
+    private long idInFriends;
+
+    private boolean approved;
+
+    public Friends() {
+        approved=false;
+    }
 
     public long getId() {
         return id;
@@ -31,11 +37,19 @@ public class Friends {
         this.idInUsers = idInUsers;
     }
 
-    public long getIdInCategory() {
-        return idInCategory;
+    public long getIdInFriends() {
+        return idInFriends;
     }
 
-    public void setIdInCategory(long idInCategory) {
-        this.idInCategory = idInCategory;
+    public void setIdInFriends(long idInFriends) {
+        this.idInFriends = idInFriends;
+    }
+
+    public boolean isApproved() {
+        return approved;
+    }
+
+    public void setApproved(boolean approved) {
+        this.approved = approved;
     }
 }
