@@ -2,8 +2,11 @@ package io.khasang.snet.service;
 
 
 import io.khasang.snet.dao.AbstractCRUD;
+import io.khasang.snet.dao.AbstractRegistrySearcher;
+import io.khasang.snet.dao.userauth.UserDAO;
 import io.khasang.snet.entity.Chat;
 import io.khasang.snet.entity.Message;
+import io.khasang.snet.entity.userauth.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -21,6 +24,10 @@ public class MessageTokenizer {
     @Autowired
     private AbstractCRUD<Message> dataUtilMessages;
 
+    @Autowired
+    private UserDAO userDAO;
+
+
     public String getList(String request) {
         Message message = new Message();
         try {
@@ -32,9 +39,11 @@ public class MessageTokenizer {
         }
     }
 
-    public String addNew(String raw) {
+    public String addNew(String raw, User sender) {
         try {
-            Message message = messageSerializer.parseToEntity(raw,Message.class);
+            Message message = messageSerializer.parseToEntity(raw, Message.class);
+            sender = userDAO.getUserByName(sender.getLogin());
+            message.setSender(sender);
             dataUtilMessages.add(message);
             return messageSerializer.parseToJson(message);
         } catch (Exception exc) {
