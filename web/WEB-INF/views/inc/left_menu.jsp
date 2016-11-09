@@ -25,10 +25,11 @@
                 </a>
                 <!-- Sub menu -->
                 <ul>
-                    <li><a href="/login">Login</a></li>
-                    <li><a href="/register">Signup</a></li>
+                    <li><a href="/login">Log In</a></li>
+                    <li><a href="/register">Register</a></li>
                 </ul>
             </li>
+            <li><a href="/about"><i class="glyphicon glyphicon-question-sign"></i> About</a></li>
         </ul>
     </div>
 </div>

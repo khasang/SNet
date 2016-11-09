@@ -4,16 +4,17 @@ import io.khasang.snet.model.*;
 import io.khasang.snet.service.UsersPasswordChanger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 
@@ -161,9 +162,34 @@ public class AppController {
         return "register";
     }
 
+    @RequestMapping("/endRegistration")
+    public String ednRegistration(Model model) {
+        return "endRegistration";
+    }
+
     @RequestMapping("/profile")
     public String profile(Model model) {
         return "profile";
+    }
+
+    @RequestMapping("/chat")
+    public String chats(Model model) {
+        return "allChats";
+    }
+
+    @RequestMapping("/messages")
+    public ModelAndView current(@RequestParam(value = "id") String chat_id) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("messages");
+        try {
+            modelAndView.addObject("chat_id", Integer.parseInt(chat_id));
+            return modelAndView;
+        } catch (NumberFormatException exc) {
+            String errorMsg = String.format("Parameter 'id' must be number, '%s' - not number", chat_id);
+            modelAndView.setViewName("error");
+            modelAndView.addObject("errorMsg",errorMsg);
+            return modelAndView;
+        }
     }
 
     // Bootstrap Examples
@@ -176,4 +202,15 @@ public class AppController {
     @RequestMapping("/tables")
     public String tables(Model model){return "tables";}
 
+    @RequestMapping("/about")
+    public String about(Model model){return "about";}
+
+    @RequestMapping(value="/logout", method = RequestMethod.GET)
+    public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null){
+            new SecurityContextLogoutHandler().logout(request, response, auth);
+        }
+        return "redirect:/login?logout";//You can redirect wherever you want, but generally it's a good practice to show login screen again.
+    }
 }

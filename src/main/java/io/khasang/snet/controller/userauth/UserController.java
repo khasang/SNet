@@ -8,6 +8,7 @@ import io.khasang.snet.service.userauth.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 
 import javax.servlet.http.HttpServletResponse;
@@ -18,10 +19,14 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @RequestMapping(value = "/register",method = RequestMethod.POST, produces = "application/json")
-    @ResponseBody
-    public Object addUser(@RequestBody User user, HttpServletResponse response) {
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public ModelAndView addNewUser(@ModelAttribute ("user") User user){
+        String message="Something going wrong";
         try {
+            if (userService.getUserByLogin(user.getLogin()) != null){
+                message = user.getLogin();
+                return new ModelAndView("/register", "message", message );
+            }
             user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
             userService.addUser(user);
             User us = userService.getUserByLogin(user.getLogin());
@@ -30,11 +35,11 @@ public class UserController {
             authRules.setUser_id(us.getID());
             authRules.setRole_id(role.getId());
             userService.addAuthRules(authRules);
-            return "Succesfully register user " + user.getLogin();
+            message = "You successfully register!";
+            return new ModelAndView("endRegistration","message",message);
         } catch (Exception e) {
-            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-            return "Error adding user: " + e.getMessage();
+            e.printStackTrace();
+            return new ModelAndView("endRegistration","message",message);
         }
     }
-
 }

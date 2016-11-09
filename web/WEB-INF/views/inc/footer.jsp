@@ -1,11 +1,9 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <footer>
     <div class="container">
-
         <div class="copy text-center">
-            Copyright 2016 <a href='#'>SNet</a>
+            Copyright 2016 <a href='/about'>SNet</a>
         </div>
-
     </div>
 </footer>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -18,6 +16,5 @@
 <script src="vendors/datatables/js/jquery.dataTables.min.js"></script>
 <script src="vendors/datatables/dataTables.bootstrap.js"></script>
 <script src="js/tables.js"></script>
-
 </body>
 </html>
