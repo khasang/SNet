@@ -37,6 +37,15 @@ public class UserDAOImpl implements UserDAO{
     }
 
     @Override
+    public User getUserById(int id) {
+        Criteria criteria = sessionFactory.
+                getCurrentSession().
+                createCriteria(User.class);
+        criteria.add(Restrictions.eq("id", id));
+        return (User) criteria.uniqueResult();
+    }
+
+    @Override
     public void updateUser(User user) {
         sessionFactory.getCurrentSession().update(user);
     }
