@@ -41,6 +41,8 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests().antMatchers("/confidential/**").access("hasRole('ADMIN')")
                 .antMatchers("/index.html").access("hasRole('USER')")
                 .antMatchers("/delete/**").access("hasRole('MASTER')")
+                .antMatchers("/friends/**").access("hasRole('USER')")
+                .antMatchers("/invites/**").access("hasRole('USER')")
                 .antMatchers("/truncate").access("hasRole('DIRECTOR')")
                 .antMatchers("/backup/**").access("hasRole('BACKUP')")
                 .antMatchers("/profile/**").access("hasRole('USER')")

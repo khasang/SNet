@@ -2,8 +2,10 @@
     <div class="sidebar content-box" style="display: block;">
         <ul class="nav">
             <!-- Main menu -->
-            <li class="current"><a href="/profile"><i class="glyphicon glyphicon-user"></i> Profile</a></li>
+            <li class="current"><a href="/profile"><i class="glyphicon glyphicon-eye-open"></i> Profile</a></li>
             <li><a href="/chat"><i class="glyphicon glyphicon-envelope"></i> Chat</a></li>
+            <li><a href="/friends"><i class="glyphicon glyphicon-user"></i> Friends</a></li>
+            <li><a href="/invites"><i class="glyphicon glyphicon-plus-sign"></i> Invites</a></li>
 
             <li class="submenu">
                 <a href="#">
