@@ -1,5 +1,6 @@
 package io.khasang.snet.entity.profile;
 
+
 import javax.persistence.*;
 
 @Entity
@@ -21,6 +22,8 @@ public class Profile {
     private String interests;
 
     private String avatar;
+
+    private String created;
 
     @Column (name = "about_me")
     private String aboutMe;
@@ -92,4 +95,11 @@ public class Profile {
         this.aboutMe = aboutMe;
     }
 
+    public String getCreated() {
+        return created;
+    }
+
+    public void setCreated(String created) {
+        this.created = created;
+    }
 }

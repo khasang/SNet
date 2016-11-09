@@ -4,6 +4,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <jsp:include page="inc/header.jsp"/>
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="./js/profile.js"></script>
 <!--PAGE CONTENT -->
 <div class="page-content">
     <div class="row">
@@ -11,17 +13,26 @@
         <jsp:include page="inc/left_menu.jsp"/>
         <!--Main Content of page -->
         <div class="col-md-10">
-            <div class="col-md-8">
+            <div class="col-md-8 panel-warning" >
                 <div class="content-box-header panel-heading">
-                    <div class="content-box-large box-with-header">
-                        <div >
-                            <form:form method="post" modelAttribute="profile">
+                    <div class="panel-title"><b>Редактировать профиль</b></div>
+                    </div>
+                <div class="content-box-header ">
+
+                        <div style="margin:20px; width: 40% " >
+                            <form:form method="post"  modelAttribute="profile">
                                 <fieldset>
                                     <spring:bind path="login">
                                         <form:hidden path="login"></form:hidden>
                                     </spring:bind>
                                     <spring:bind path="id">
                                         <form:hidden path="id"></form:hidden>
+                                    </spring:bind>
+                                    <spring:bind path="avatar">
+                                        <form:hidden path="avatar"></form:hidden>
+                                    </spring:bind>
+                                    <spring:bind path="created">
+                                        <form:hidden path="created"></form:hidden>
                                     </spring:bind>
                                     <spring:bind path="login">
                                         <div class="form-group">
@@ -67,28 +78,22 @@
                                                            rows="3"></form:textarea>
                                         </div>
                                     </spring:bind>
-                                    <br>
                                     <button type="submit" class="btn btn-primary">Сохранить обновления</button>
                                 </fieldset>
                             </form:form>
                         </div>
                             <div >
-                                <form action="uploadFile" method="post"
-                                      enctype="multipart/form-data">
-
-                                    <input class="btn btn-default" id="postFile" type="file" name="file" value="Выбрать">
-                                    <button type="submit" style="margin-top: 20px" class="btn btn-info">
-                                        <i class="glyphicon glyphicon-refresh"></i>
-                                        Обновить фото
-                                    </button>
-                                </form>
+                                <hr>
+                                  <form id="upload-file-form">
+                                      <label for="upload-file-input">Обновить аватар:</label>
+                                      <input id="upload-file-input" type="file" name="uploadfile" accept="*" />
+                                      <br />
+                                      <span id="upload-file-message"></span>
+                                  </form>
                             </div>
                     </div>
-                </div>
             </div>
         </div>
     </div>
 </div>
-
-
 <jsp:include page="inc/footer.jsp"/>
