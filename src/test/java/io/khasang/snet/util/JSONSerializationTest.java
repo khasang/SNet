@@ -121,7 +121,6 @@ public class JSONSerializationTest {
         message.setSender(user);
 
         String raw = messageSerializer.parseToJson(message);
-        System.out.println(messageTokenizer.addNew(raw));
     }
 
 
@@ -137,7 +136,7 @@ public class JSONSerializationTest {
         message.setID(33L);
 
         String raw = messageSerializer.parseToJson(message);
-        messageTokenizer.getOne(raw);
+        //messageTokenizer.getOne(raw);
         System.out.println(raw);
         System.out.println(messageSerializer.parseToEntity(raw,Message.class));
     }
