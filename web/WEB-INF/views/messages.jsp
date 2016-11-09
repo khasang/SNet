@@ -32,7 +32,7 @@
                                     <div class="form-group">
                                         <label for="inputedText">Type text of new message below:</label>
                                         <textarea class="form-control" rows="5" id="inputedText"></textarea>
-                                        <button onclick="alert($('#inputedText').val())" type="button" class="btn btn-primary">
+                                        <button onclick="sendMessage()" type="button" class="btn btn-primary">
                                             Send
                                         </button>
                                     </div>
