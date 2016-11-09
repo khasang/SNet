@@ -49,4 +49,12 @@ public class ChatController {
     public Object getMessagesList(@RequestBody String json) {
         return messageTokenizer.getList(json);
     }
+
+    @RequestMapping(value = "/messages/new", method = RequestMethod.POST, produces = "application/json")
+    @ResponseBody
+    public Object addNewMessage(@RequestBody String json) {
+        User sender = new User();
+        sender.setLogin(SecurityContextHolder.getContext().getAuthentication().getName());
+        return messageTokenizer.addNew(json, sender);
+    }
 }

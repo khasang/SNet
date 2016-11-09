@@ -26,3 +26,35 @@ function printMessages(json) {
     }
     document.getElementById("listMessages").innerHTML = out;
 }
+
+function sendMessage() {
+    var msgBody = document.getElementById("inputedText").value;
+
+    if (msgBody != "" && msgBody != " ") {
+        var Message = {
+           'id':0,
+            'sender': {
+                'id':0,
+                'login':null,
+                'activeUser':true
+            },
+            'chat':{
+                'id': currentChat,
+                "description":null
+            },
+            'body': msgBody,
+            'stamp' : null
+        };
+
+        var json = JSON.stringify(Message);
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState==4 && this.status==200) {
+                callMessages();
+            }
+        };
+
+        xhttp.open("POST","/messages/new",true);
+        xhttp.send(json);
+    }
+}
