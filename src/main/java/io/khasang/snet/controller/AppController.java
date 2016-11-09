@@ -182,9 +182,15 @@ public class AppController {
     public ModelAndView current(@RequestParam(value = "id") String chat_id) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("messages");
-
-        modelAndView.addObject("chat_id", Integer.parseInt(chat_id));
-        return modelAndView;
+        try {
+            modelAndView.addObject("chat_id", Integer.parseInt(chat_id));
+            return modelAndView;
+        } catch (NumberFormatException exc) {
+            String errorMsg = String.format("Parameter 'id' must be number, '%s' - not number", chat_id);
+            modelAndView.setViewName("error");
+            modelAndView.addObject("errorMsg",errorMsg);
+            return modelAndView;
+        }
     }
 
     // Bootstrap Examples
