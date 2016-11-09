@@ -22,7 +22,7 @@ public class Profile {
 
     private String avatar;
 
-    @Column (name = "about_me", unique = true)
+    @Column (name = "about_me")
     private String aboutMe;
 
     public Profile() {
@@ -91,4 +91,5 @@ public class Profile {
     public void setAboutMe(String aboutMe) {
         this.aboutMe = aboutMe;
     }
+
 }

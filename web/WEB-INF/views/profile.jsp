@@ -20,7 +20,7 @@
                 </div>
                 <div style = "background-color: #0fa6bc">
                     <div class="col-md-4 panel-warning">
-                    <div><img src="<c:url value="images/avatars/anonimus.png" />"/></div>
+                    <div><img width="150px" src="/ava/${profile.avatar}"/></div>
                     <div style="margin:10px;"><a href="upload">
                         <button class="btn btn-primary btn-sm">
                             <i class="glyphicon glyphicon-pencil"></i>
@@ -28,6 +28,7 @@
                         </button>
                     </a>
                     </div>
+                        <%--<c:url value="images/avatars/anonimus.png" />"/>--%>
 
                     <div style="margin:10px;"><a href="">
                         <button class="btn btn-success btn-sm">

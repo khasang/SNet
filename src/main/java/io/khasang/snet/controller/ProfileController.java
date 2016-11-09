@@ -34,9 +34,11 @@ public class ProfileController {
         try {
             final String name = principal.getName();
             Profile profile = profileService.getProfileByUserLogin(name);
+            String avatar = "anonim.png";
             if ( profile == null){
                 profile = new Profile();
                 profile.setLogin(name);
+                profile.setAvatar(avatar);
                 profileService.addProfile(profile);
             }
             model.addAttribute("profile",profile);
@@ -53,9 +55,11 @@ public class ProfileController {
     public String updateProfile(Principal principal, Model model){
         try {
             final String name = principal.getName();
+            String avatar = "anonim.png";
             Profile profile = profileService.getProfileByUserLogin(name);
             if ( profile == null){
                 profile = new Profile();
+                profile.setAvatar(avatar);
                 profile.setLogin(name);
                 profileService.addProfile(profile);
             }
@@ -69,6 +73,13 @@ public class ProfileController {
 
     }
 
+    @RequestMapping(value = "/upload", method = RequestMethod.POST)
+    public String updateProfile(@ModelAttribute("profile") Profile profile, Model model){
+        profileService.updateProfile(profile);
+        return "editProfile";
+    }
+
+
     @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
     public String handleFileUpload(@RequestParam("file") MultipartFile file, HttpServletRequest request, Principal principal) {
    final String name = principal.getName();
@@ -76,29 +87,29 @@ public class ProfileController {
             try {
                 byte[] fileBytes = file.getBytes();
 
-                String rootPath = request.getSession().
-                        getServletContext().getRealPath("/WEB-INF/views/images/avatars");
+                String rootPath = "C:\\proj\\java\\images\\avatars";
                 System.out.println("Server rootPath: " + rootPath);
                 System.out.println("File original name: " + file.getOriginalFilename());
                 System.out.println("File content type: " + file.getContentType());
-
                 String filename = file.getOriginalFilename();
                 filename = filename.substring(filename.lastIndexOf("."), filename.length());
-
+                Profile myPr = profileService.getProfileByUserLogin(name);
+                myPr.setAvatar(name+filename);
+                profileService.updateProfile(myPr);
                 File newFile = new File(rootPath + File.separator +  name + filename);
                 BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(newFile));
                 stream.write(fileBytes);
                 stream.close();
 
                 System.out.println("File is saved under: " + rootPath + File.separator + file.getOriginalFilename());
-                return "File is saved under: " + rootPath + File.separator + name + filename;
+                return "redirect:/profile";
 
             } catch (Exception e) {
                 e.printStackTrace();
-                return "File upload is failed: " + e.getMessage();
+                return "redirect:/profile";
             }
         } else {
-            return "File upload is failed: File is empty";
+            return "redirect:/profile";
         }
     }
 }
