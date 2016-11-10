@@ -110,10 +110,7 @@ public class ProfileController {
                     System.out.println(name);
                     String filename = file.getOriginalFilename();
                     filename = filename.substring(filename.lastIndexOf("."), filename.length());
-
-                    Profile myPr = profileService.getProfileByUserLogin(name);
-                    myPr.setAvatar(name + filename);
-                    profileService.updateProfile(myPr);
+                    profileService.updateAvatar(name + filename, name);
                     File newFile = new File(rootPath + File.separator + name + filename);
                     BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(newFile));
                     stream.write(fileBytes);

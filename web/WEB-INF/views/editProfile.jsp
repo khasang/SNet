@@ -25,15 +25,6 @@
                                     <spring:bind path="login">
                                         <form:hidden path="login"></form:hidden>
                                     </spring:bind>
-                                    <spring:bind path="id">
-                                        <form:hidden path="id"></form:hidden>
-                                    </spring:bind>
-                                    <spring:bind path="avatar">
-                                        <form:hidden path="avatar"></form:hidden>
-                                    </spring:bind>
-                                    <spring:bind path="created">
-                                        <form:hidden path="created"></form:hidden>
-                                    </spring:bind>
                                     <spring:bind path="login">
                                         <div class="form-group">
                                             <label>Логин:</label>
@@ -82,7 +73,7 @@
                                 </fieldset>
                             </form:form>
                         </div>
-                            <div >
+                            <div style="margin-bottom: 30px" >
                                 <hr>
                                   <form id="upload-file-form">
                                       <label for="upload-file-input">Обновить аватар:</label>

@@ -25,6 +25,10 @@ public class ProfileService {
         profileDAO.updateProfile(profile);
     }
 
+    public void updateAvatar(String avatarName, String userLogin ){
+        profileDAO.updateAvatar(avatarName, userLogin);
+    }
+
     public Profile getProfileByUserLogin(String userLogin){
        return profileDAO.getProfileByUserLogin(userLogin);
     }
