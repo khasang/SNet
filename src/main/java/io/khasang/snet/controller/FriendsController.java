@@ -50,31 +50,46 @@ public class FriendsController {
         return new ModelAndView("invites","friends",friendsService.getInviteList(currentLogin));
     }
 
+    @RequestMapping(value = "/addFriend")
+    public String addFriend(@RequestParam(value = "friend")String friend){
+        String currentLogin = SecurityContextHolder.getContext().getAuthentication().getName();
+        friendsService.addInvite(currentLogin,friend);
+        return "redirect:/searchFriends";
+    }
+
     @RequestMapping(value = "/searchFriends",method = RequestMethod.GET)
     public ModelAndView searchFriends(){
         String currentLogin = SecurityContextHolder.getContext().getAuthentication().getName();
         // Map for jsp Key - Profile : Value - eNum of FriendStatus
         List<User> allUsers=userService.getAllUsers(currentLogin);
-        Map<Profile,FriendStatus> friends = new HashMap<>();
+        Map<Profile,String> friends = new HashMap<>();
         List<Profile> friendsList = friendsService.getFriendsList(currentLogin);
         List<Profile> inviteList = friendsService.getInviteList(currentLogin);
         List<Profile> sendedInvites = friendsService.getSendedInvites(currentLogin);
 
         for (User currUser: allUsers) {
             Profile userProfile = profileService.getProfileByUserLogin(currUser.getLogin());
-            if (friendsList.contains(userProfile)){
-                friends.put(userProfile,FriendStatus.IN_FRIENDS);
-            }
-            else if (inviteList.contains(userProfile)){
-                friends.put(userProfile,FriendStatus.INVITE_RECEIVED);
-            }
-            else if (sendedInvites.contains(userProfile)){
-                friends.put(userProfile,FriendStatus.INVITE_SENDED);
-            }
-            else {
-                friends.put(userProfile,FriendStatus.NOT_A_FRIEND);
+            if (userProfile !=null) {
+                if (searchInList(userProfile,friendsList)) {
+                    friends.put(userProfile, FriendStatus.IN_FRIENDS.toString());
+                } else if (searchInList(userProfile,inviteList)) {
+                    friends.put(userProfile, FriendStatus.INVITE_RECEIVED.toString());
+                } else if (searchInList(userProfile,sendedInvites)) {
+                    friends.put(userProfile, FriendStatus.INVITE_SENDED.toString());
+                } else {
+                    friends.put(userProfile, FriendStatus.NOT_A_FRIEND.toString());
+                }
             }
         }
         return new ModelAndView("searchFriends","friends",friends);
+    }
+
+    private boolean searchInList(Profile toSearch,List<Profile> listToSearch){
+        for (Profile profile: listToSearch) {
+            if (profile.getLogin().equals(toSearch.getLogin())){
+                return true;
+            }
+        }
+        return false;
     }
 }
