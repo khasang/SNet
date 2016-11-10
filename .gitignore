@@ -5,3 +5,5 @@
 /classes/
 *.iml
 *.log
+*.log.*
+/images/

@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.session.SessionRegistry;
@@ -41,6 +42,9 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests().antMatchers("/confidential/**").access("hasRole('ADMIN')")
                 .antMatchers("/index.html").access("hasRole('USER')")
                 .antMatchers("/delete/**").access("hasRole('MASTER')")
+                .antMatchers("/friends/**").access("hasRole('USER')")
+                .antMatchers("/invites/**").access("hasRole('USER')")
+                .antMatchers("/searchFriends/**").access("hasRole('USER')")
                 .antMatchers("/truncate").access("hasRole('DIRECTOR')")
                 .antMatchers("/backup/**").access("hasRole('BACKUP')")
                 .antMatchers("/profile/**").access("hasRole('USER')")

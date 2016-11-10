@@ -88,4 +88,5 @@
     <div class="panel-body" id="response">
     </div>
 </div>
+
 <jsp:include page="inc/footer.jsp"/>

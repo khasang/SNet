@@ -1,11 +1,16 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<footer>
-    <div class="container">
-        <div class="copy text-center">
-            Copyright 2016 <a href='/about'>SNet</a>
+
+<div class="navbar-fixed-bottom row-fluid">
+    <footer>
+        <div class="container">
+            <div class="copy text-center">
+                <i class="glyphicon glyphicon-registration-mark"></i> Copyright 2016 <a href='/about'>SNet</a>
+            </div>
         </div>
-    </div>
-</footer>
+    </footer>
+</div>
+
+
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://code.jquery.com/jquery.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
