@@ -4,7 +4,7 @@
     <footer>
         <div class="container">
             <div class="copy text-center">
-                Copyright 2016 <a href='/about'>SNet</a>
+                <i class="glyphicon glyphicon-registration-mark"></i> Copyright 2016 <a href='/about'>SNet</a>
             </div>
         </div>
     </footer>
