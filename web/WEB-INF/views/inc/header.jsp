@@ -45,7 +45,6 @@
                         <li> <a style="color: whitesmoke;" href="<c:url value="/logout"/>">Logout</a> </li>
                     </c:if>
                 </ul>
-
             </div>
         </div>
     </div>

@@ -17,6 +17,7 @@
                 <c:if test="${empty friends}">
                    <p>You have no Friends! :(</p>
                 </c:if>
+                        <a href="searchFriends"><button class="btn btn-warning btn-xs">Search Friends</button></a>
                 <c:forEach items="${friends}" var="friend">
                     <div class="col-md-12" style="margin-top: 15px;margin-bottom: 15px;background-color: #ffffff;">
 
@@ -24,8 +25,6 @@
                             <div><img style="padding: 15px;" width="150px" src="/ava/${friend.avatar}"/></div>
                         </div>
                         <div class="col-md-9 panel-info">
-
-
                         <div >
                             <div class="panel-title" style="margin-bottom:10px;margin-top:20px;
                             font-style: italic;font-weight:bold; color: #777777;">
@@ -47,9 +46,9 @@
                         </div>
                     </div>
                 </c:forEach>
+                </div>
             </div>
         </div>
-            </div>
     </div>
 </div>
 <!-- Include FOOTER-->

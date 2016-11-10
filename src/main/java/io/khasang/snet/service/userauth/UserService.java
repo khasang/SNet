@@ -36,6 +36,10 @@ public class UserService {
         userDAO.addUser(user);
     }
 
+    public List<User> getAllUsers(String login){
+        return userDAO.getAllUsers(login);
+    }
+
     //Auth rules
     public void addAuthRules(AuthRules authRules){
         authRulesDAO.addAuthRules(authRules);
