@@ -53,6 +53,16 @@ public class FriendsDAOImpl implements FriendsDAO{
     }
 
     @Override
+    public List<Friends> getSendedInviteList(long userId) {
+        Criteria criteria = sessionFactory.
+                getCurrentSession().
+                createCriteria(Friends.class);
+        criteria.add(Restrictions.eq("idInUsers", userId));
+        criteria.add(Restrictions.eq("approved",false));
+        return (List<Friends>) criteria.list();
+    }
+
+    @Override
     public Friends getFriendLine(long id) {
         Criteria criteria = sessionFactory.
                 getCurrentSession().

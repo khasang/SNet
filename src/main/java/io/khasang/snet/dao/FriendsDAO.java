@@ -13,6 +13,8 @@ public interface FriendsDAO {
     List<Friends> getFriendsList(long id);
     // get all friends from list where approve - false
     List<Friends> getInviteList(long id);
+    // get all my invites to friend
+    List<Friends> getSendedInviteList(long id);
     // get line from database
     Friends getFriendLine(long id);
     Friends getInviteLine(long user,long friend);

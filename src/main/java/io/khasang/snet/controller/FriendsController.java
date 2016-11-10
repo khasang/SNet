@@ -1,6 +1,11 @@
 package io.khasang.snet.controller;
 
+import io.khasang.snet.entity.profile.Profile;
+import io.khasang.snet.entity.userauth.User;
 import io.khasang.snet.service.FriendsService;
+import io.khasang.snet.service.profile.ProfileService;
+import io.khasang.snet.service.userauth.UserService;
+import io.khasang.snet.util.FriendStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -10,11 +15,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 @Controller
 public class FriendsController {
 
     @Autowired
     FriendsService friendsService;
+
+    @Autowired
+    UserService userService;
+
+    @Autowired
+    ProfileService profileService;
 
     @RequestMapping(value = "/friends", method = RequestMethod.GET)
     public ModelAndView friends() {
@@ -33,5 +48,33 @@ public class FriendsController {
         String currentLogin = SecurityContextHolder.getContext().getAuthentication().getName();
         friendsService.approveInvite(currentLogin,friend);
         return new ModelAndView("invites","friends",friendsService.getInviteList(currentLogin));
+    }
+
+    @RequestMapping(value = "/searchFriends",method = RequestMethod.GET)
+    public ModelAndView searchFriends(){
+        String currentLogin = SecurityContextHolder.getContext().getAuthentication().getName();
+        // Map for jsp Key - Profile : Value - eNum of FriendStatus
+        List<User> allUsers=userService.getAllUsers(currentLogin);
+        Map<Profile,FriendStatus> friends = new HashMap<>();
+        List<Profile> friendsList = friendsService.getFriendsList(currentLogin);
+        List<Profile> inviteList = friendsService.getInviteList(currentLogin);
+        List<Profile> sendedInvites = friendsService.getSendedInvites(currentLogin);
+
+        for (User currUser: allUsers) {
+            Profile userProfile = profileService.getProfileByUserLogin(currUser.getLogin());
+            if (friendsList.contains(userProfile)){
+                friends.put(userProfile,FriendStatus.IN_FRIENDS);
+            }
+            else if (inviteList.contains(userProfile)){
+                friends.put(userProfile,FriendStatus.INVITE_RECEIVED);
+            }
+            else if (sendedInvites.contains(userProfile)){
+                friends.put(userProfile,FriendStatus.INVITE_SENDED);
+            }
+            else {
+                friends.put(userProfile,FriendStatus.NOT_A_FRIEND);
+            }
+        }
+        return new ModelAndView("searchFriends","friends",friends);
     }
 }

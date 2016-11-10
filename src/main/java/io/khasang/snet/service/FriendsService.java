@@ -50,23 +50,22 @@ public class FriendsService {
     public List<Profile> getFriendsList(String login){
         User currentUser=userDAO.getUserByName(login);
         List<Friends> friendsList = friendsDAO.getFriendsList(currentUser.getID());
-        List<User> userFriendsList= new ArrayList<>();
-
-        for (Friends fr: friendsList) {
-            userFriendsList.add(userDAO.getUserById((int) fr.getIdInFriends()));
-        }
-
-        List<Profile> profileFriendsList = new ArrayList<>();
-
-        for (User us: userFriendsList) {
-            profileFriendsList.add(profileDAO.getProfileByUserLogin(us.getLogin()));
-        }
-        return profileFriendsList;
+        return makeProfileList(friendsList);
     }
 
     public List<Profile> getInviteList(String login){
         User currentUser=userDAO.getUserByName(login);
         List<Friends> friendsList = friendsDAO.getInviteList(currentUser.getID());
+        return makeProfileList(friendsList);
+    }
+
+    public List<Profile> getSendedInvites(String login){
+        User currentUser=userDAO.getUserByName(login);
+        List<Friends> inviteList = friendsDAO.getSendedInviteList(currentUser.getID());
+        return makeProfileList(inviteList);
+    }
+
+    private List<Profile> makeProfileList(List<Friends> friendsList ){
         List<User> userFriendsList= new ArrayList<>();
 
         for (Friends fr: friendsList) {
