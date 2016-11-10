@@ -27,23 +27,25 @@
                     <h1><a href="/"><i class="glyphicon glyphicon-globe"></i> SNet</a></h1>
                 </div>
             </div>
+            <div class="col-md-6 pull-right">
+                <sec:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" var="isUSer"/>
+                <ul class="nav navbar-nav navbar-right">
+                    <c:if test="${not isUSer}">
+                        <li style="padding-top: 15px; padding-bottom: 15px; color: red">
+                            <c:if test="${empty param.error}">
+                                You are not Loged In
+                            </c:if>
+                        </li>
+                        <li> <a style="color: white;" href="<c:url value="/login"/>"> Log In</a> </li>
+                    </c:if>
+                    <c:if test="${isUSer}">
+                        <li style="padding-top: 15px; padding-bottom: 15px; color: lightskyblue">
+                            You logged as: <b><sec:authentication property="principal.username"/></b>
+                        </li>
+                        <li> <a style="color: whitesmoke;" href="<c:url value="/logout"/>">Logout</a> </li>
+                    </c:if>
+                </ul>
 
-            <div class="col-md-2 pull-right">
-                <div class="navbar navbar-inverse" role="banner">
-                    <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
-                        <ul class="nav navbar-nav">
-                            <li class="dropdown">
-                                <a href="" class="dropdown-toggle" data-toggle="dropdown">My Account <b class="caret"></b></a>
-                                <ul class="dropdown-menu animated fadeInUp">
-                                    <li><a href="/profile">Profile</a></li>
-                                    <li><sec:authorize access="isAuthenticated()">
-                                        <a href="<c:url value="/logout" />">Logout</a>
-                                    </sec:authorize></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
             </div>
         </div>
     </div>
