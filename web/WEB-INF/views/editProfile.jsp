@@ -78,7 +78,6 @@
                                   <form id="upload-file-form">
                                       <label for="upload-file-input">Обновить аватар:</label>
                                       <input id="upload-file-input" type="file" name="uploadfile" accept="*" />
-                                      <br />
                                       <span id="upload-file-message"></span>
                                   </form>
                             </div>
