@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Repository
 @Transactional
 public class UserDAOImpl implements UserDAO{
@@ -48,5 +50,14 @@ public class UserDAOImpl implements UserDAO{
     @Override
     public void updateUser(User user) {
         sessionFactory.getCurrentSession().update(user);
+    }
+
+    @Override
+    public List<User> getAllUsers(String login) {
+        Criteria criteria = sessionFactory.
+                getCurrentSession().
+                createCriteria(User.class);
+        criteria.add(Restrictions.ne("login", login));
+        return (List<User>) criteria.list();
     }
 }
