@@ -44,6 +44,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/delete/**").access("hasRole('MASTER')")
                 .antMatchers("/friends/**").access("hasRole('USER')")
                 .antMatchers("/invites/**").access("hasRole('USER')")
+                .antMatchers("/searchFriends/**").access("hasRole('USER')")
                 .antMatchers("/truncate").access("hasRole('DIRECTOR')")
                 .antMatchers("/backup/**").access("hasRole('BACKUP')")
                 .antMatchers("/profile/**").access("hasRole('USER')")
