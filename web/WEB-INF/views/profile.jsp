@@ -2,11 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <jsp:include page="inc/header.jsp"/>
 <%--<c:import var="profile" url="/use_profile/my" charEncoding="utf-8" />--%>
-
-
 <div class="page-content">
     <div class="row">
         <!-- Include leff menu-->
@@ -18,25 +17,30 @@
                     <div class="panel-title" style="padding-bottom: 0;"><b>Профиль - ${profile.login}</b></div>
                 </div>
                 <div>
-                    <div class="col-md-12 panel-warning" style="border:1px solid; border-color:#eee;background-color: #f5f5f5">
+                    <div class="col-md-12 panel-warning"
+                         style="border:1px solid; border-color:#eee;background-color: #f5f5f5">
                         <div class="col-md-4 panel-warning">
-                            <div><img style="padding: 15px;" width="200px" src="/ava/${profile.avatar}"/></div>
-                            <div style="margin:10px;"><a href="upload">
-                                <button class="btn btn-primary btn-sm">
-                                    <i class="glyphicon glyphicon-pencil"></i>
-                                    Редактировать
-                                </button>
-                            </a>
-                            </div>
+                            <div><img style="padding: 8px;" width="200px" src="/ava/${profile.avatar}"/></div>
+                            <sec:authentication property="principal.username" var="userN"/>
+                                 <c:if test="${userN.equals(profile.login)}">
+                                       <div style="margin:10px;"><a href="upload">
+                                           <button class="btn btn-primary btn-sm">
+                                               <i class="glyphicon glyphicon-pencil"></i>
+                                               Редактировать
+                                           </button>
+                                       </a>
+                                       </div>
+                                   </c:if>
+                            <c:if test="${!userN.equals(profile.login)}">
+                                       <div style="margin:5px;"><a href="">
+                                           <button class="btn btn-success btn-sm">
+                                               <i class="glyphicon glyphicon-pencil"></i>
+                                               Написать сообщение
+                                           </button>
+                                       </a>
+                                       </div>
+                                  </c:if>
                             <%--<c:url value="images/avatars/anonimus.png" />"/>--%>
-
-                            <div style="margin:10px;"><a href="">
-                                <button class="btn btn-success btn-sm">
-                                    <i class="glyphicon glyphicon-pencil"></i>
-                                    Написать сообщение
-                                </button>
-                            </a>
-                            </div>
                             <c:if test="${not empty profile.created}">
                                 <div style="margin:10px;"><strong>На сайте с: </strong>
                                     <c:out value="${profile.created}"/></div>
@@ -81,16 +85,4 @@
         </div>
     </div>
 </div>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
 <jsp:include page="inc/footer.jsp"/>

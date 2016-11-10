@@ -18,7 +18,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Controller
-
 public class ProfileController {
 
     @Autowired
@@ -44,6 +43,20 @@ public class ProfileController {
             }
             model.addAttribute("profile",profile);
             model.addAttribute("user", userService.getUserByLogin(name));
+            return "profile";
+        }
+        catch (Exception e){
+            return "Error get Profile: " + e.getMessage();
+        }
+
+    }
+
+    @RequestMapping( value = "/user")
+    public String getUserProfile(@RequestParam(value = "userLogin") String userLogin, Model model){
+        try {
+            Profile profile = profileService.getProfileByUserLogin(userLogin);
+            model.addAttribute("profile",profile);
+            model.addAttribute("user", userService.getUserByLogin(userLogin));
             return "profile";
         }
         catch (Exception e){
@@ -79,7 +92,7 @@ public class ProfileController {
         @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
         @ResponseBody
         public String handleFileUpload(@RequestParam("uploadfile") MultipartFile file) {
-            final String name =  SecurityContextHolder.getContext().getAuthentication().getName();;
+            final String name =  SecurityContextHolder.getContext().getAuthentication().getName();
             if (!file.isEmpty()) {
                 try {
                     byte[] fileBytes = file.getBytes();
