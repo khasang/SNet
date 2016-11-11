@@ -2,6 +2,7 @@ package io.khasang.snet.dao.impl;
 
 import io.khasang.snet.dao.AbstractRegistrySearcher;
 import io.khasang.snet.entity.Chat;
+import io.khasang.snet.entity.ChatRegistryUnit;
 import io.khasang.snet.entity.userauth.User;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -9,8 +10,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 /* Data access object for working with Chat entities
 * allows queries by user for chat table and check registry
@@ -67,6 +67,48 @@ public class ChatUtils implements AbstractRegistrySearcher <Chat, User> {
                 "io.khasang.snet.entity.ChatRegistryUnit r where ch.id = r.chat.id and r.user.id =:id_user");
         query.setParameter("id_user",user.getID());
         return (List<Chat>) query.list();
+    }
+
+    @Override
+    public Chat getExistedDialog(User first, User second) {
+        List<ChatRegistryUnit> firstUserChats = getUsersRegistryUnits(first);
+        List<ChatRegistryUnit> secondUserChats = getUsersRegistryUnits(second);
+
+        firstUserChats.addAll(secondUserChats);
+
+        Chat result = dialogSearcher(firstUserChats);
+        if (result != null) result = this.get(result);
+        return result;
+    }
+
+    @SuppressWarnings("unchecked")
+    private List<ChatRegistryUnit> getUsersRegistryUnits(User user) {
+        Session session = getCurrentSession();
+        Query query = session.createQuery(
+                "select r from io.khasang.snet.entity.ChatRegistryUnit r where r.user.id =:user_id");
+        query.setParameter("user_id",user.getID());
+        return (List<ChatRegistryUnit>) query.list();
+    }
+
+    private Chat dialogSearcher(List<ChatRegistryUnit> original) {
+        Map<Chat, List<User>> discusses = new HashMap<>();
+
+        for (ChatRegistryUnit registryUnit : original) {
+            if (discusses.containsKey(registryUnit.getChat())) {
+                discusses.get(registryUnit.getChat()).add(registryUnit.getUser());
+            } else {
+                discusses.put(registryUnit.getChat(), new ArrayList<>());
+                discusses.get(registryUnit.getChat()).add(registryUnit.getUser());
+            }
+
+        }
+
+        for (Map.Entry<Chat, List<User>> chatListEntry : discusses.entrySet()) {
+            if (chatListEntry.getValue().size()==2) {
+                return chatListEntry.getKey();
+            }
+        }
+        return null;
     }
 
     private Session getCurrentSession() {
