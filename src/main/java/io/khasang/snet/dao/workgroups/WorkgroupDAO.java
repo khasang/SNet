@@ -18,4 +18,7 @@ public interface WorkgroupDAO {
 
     List<Workgroup> getWorkgroupList (Long[] workgroupIdList);
 
+    List<Workgroup> getAllDepartments ();
+    List<Workgroup> getDependentUnits(long workgroupId);
+    List<Workgroup> getDependentGroups (long workgroupId);
 }

@@ -1,6 +1,7 @@
 package io.khasang.snet.dao.workgroups;
 
 import io.khasang.snet.entity.workgroups.Workgroup;
+import io.khasang.snet.entity.workgroups.WorkgroupType;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -64,6 +65,39 @@ public class WorkgroupDAOImpl implements WorkgroupDAO {
         Criteria criteria = sessionFactory.
                 getCurrentSession().
                 createCriteria(Workgroup.class);
+        return (List<Workgroup>) criteria.list();
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<Workgroup> getAllDepartments() {
+        Criteria criteria = sessionFactory.
+                getCurrentSession().
+                createCriteria(Workgroup.class);
+        criteria.add(Restrictions.eq("workgroupType", WorkgroupType.DEPARTMENT));
+        return (List<Workgroup>) criteria.list();
+
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<Workgroup> getDependentUnits(long workgroupId) {
+        Criteria criteria = sessionFactory.
+                getCurrentSession().
+                createCriteria(Workgroup.class);
+        criteria.add(Restrictions.eq("workgroupType", WorkgroupType.UNIT));
+        criteria.add(Restrictions.eq("headWorkgroupId", workgroupId));
+        return (List<Workgroup>) criteria.list();
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<Workgroup> getDependentGroups(long workgroupId) {
+        Criteria criteria = sessionFactory.
+                getCurrentSession().
+                createCriteria(Workgroup.class);
+        criteria.add(Restrictions.eq("workgroupType", WorkgroupType.GROUP));
+        criteria.add(Restrictions.eq("headWorkgroupId", workgroupId));
         return (List<Workgroup>) criteria.list();
     }
 }

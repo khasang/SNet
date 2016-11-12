@@ -48,4 +48,15 @@ public class WorkGroupDAOTest {
         List<Workgroup> expectedList= workgroupDAO.getWorkgroupList(wgIdList);
         Assert.assertEquals("Not equals",workgroupList,expectedList);
     }
+
+    @Test
+    @Transactional
+    @Rollback(true)
+    public void testJustSout(){
+        //System.out.println(workgroupDAO.getAllDepartments().toString());
+
+        for (Workgroup wg: workgroupDAO.getDependentGroups(2)) {
+            System.out.println(wg.getTitle() + " ,desc: " + wg.getDescription());
+        }
+    }
 }
