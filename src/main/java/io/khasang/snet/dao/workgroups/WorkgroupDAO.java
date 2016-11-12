@@ -8,7 +8,7 @@ public interface WorkgroupDAO {
 
     void addWorkgroup(Workgroup workgroup);
 
-    void updateWorgroup(Workgroup workgroup);
+    void updateWorkgroup(Workgroup workgroup);
 
     void deleteWorkgroup(Workgroup workgroup);
 

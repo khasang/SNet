@@ -31,7 +31,7 @@ public class WorkgroupDAOImpl implements WorkgroupDAO {
     }
 
     @Override
-    public void updateWorgroup(Workgroup workgroup) {
+    public void updateWorkgroup(Workgroup workgroup) {
         sessionFactory.getCurrentSession().update(workgroup);
     }
 
@@ -55,7 +55,7 @@ public class WorkgroupDAOImpl implements WorkgroupDAO {
     public List<Workgroup> getWorkgroupList(Long[] workgroupIdList) {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from io.khasang.snet.entity.workgroups.Workgroup w where w.id in :workgroups");
-        query.setParameterList("workgroups",(Object[]) workgroupIdList);
+        query.setParameterList("workgroups",workgroupIdList);
         return (List<Workgroup>) query.list();
     }
 
