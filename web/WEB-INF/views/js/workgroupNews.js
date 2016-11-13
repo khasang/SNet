@@ -27,7 +27,7 @@ function printAllNews(jsonResponse) {
         //     '<hr> </div>';
         // Не трогать , работает почемуто. но не знаю почему!
         out += '<div class="content-box-large">'  + '<h4><b><a href="">' + news[i].title + '</a></b></h4>'
-            + '<p><i class="glyphicon glyphicon-dashboard"></i>' + news[i].newsDate + '</p>' +
+            + '<p><i class="glyphicon glyphicon-dashboard"></i>' + ' ' + news[i].newsDate + '</p>' +
             '<hr>'+
             '<a href="">'+
                 '<img class="img-responsive img-hover" src="http://placehold.it/900x300" alt="">'+

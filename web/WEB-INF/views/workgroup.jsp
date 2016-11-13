@@ -18,7 +18,7 @@
 
                         <div class="content-box-header">
 
-                            <div class="panel-title">
+                            <div class="panel-title" style="color: #8a6d3b;">
                                 <h3>
                                     <button class="btn btn-info btn-xs"><c:out value="${workgroup.workgroupType}"/></button>
                                 <c:out value="${workgroup.title}"/>
@@ -28,17 +28,20 @@
 
 
                         <div class="content-box-large box-with-header">
-                            <b><c:out value="${workgroup.description}"/></b>
-                            <br /><br />
+                                <div class="panel-body" style="padding: 5px;"><b>Описание: </b><c:out value="${workgroup.description}"/></div>
+
                         </div>
 
                         <body onload="callNews('${workgroup.id}')">
-                        <div class="panel-heading"> News</div>
+                        <div class="content-box-header panel-heading">
+                            <div class="panel-title"><b>Новости группы:</b></div>
+
                         <div id="listNews" class="panel-body"></div>
                         <br>
                         <br>
-                        </body>
+                        </div>
 
+                        </body>
                     </div>
                 </div>
             </div>
