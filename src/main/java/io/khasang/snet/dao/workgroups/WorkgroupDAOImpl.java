@@ -52,10 +52,10 @@ public class WorkgroupDAOImpl implements WorkgroupDAO {
 
     @Override
     @SuppressWarnings("unchecked")
-    public List<Workgroup> getWorkgroupListByIdArray(Long[] workgroupIdArray) {
+    public List<Workgroup> getWorkgroupListByIdList(List<Long> workgroupIdList) {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from io.khasang.snet.entity.workgroups.Workgroup w where w.id in :workgroups");
-        query.setParameterList("workgroups",workgroupIdArray);
+        query.setParameterList("workgroups",workgroupIdList);
         return (List<Workgroup>) query.list();
     }
 
