@@ -15,7 +15,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -45,7 +44,7 @@ public class WorkGroupDAOTest {
            wgIdList[j] =wg.getId();
             j++;
         }
-        List<Workgroup> expectedList= workgroupDAO.getWorkgroupList(wgIdList);
+        List<Workgroup> expectedList= workgroupDAO.getWorkgroupListByIdArray(wgIdList);
         Assert.assertEquals("Not equals",workgroupList,expectedList);
     }
 
