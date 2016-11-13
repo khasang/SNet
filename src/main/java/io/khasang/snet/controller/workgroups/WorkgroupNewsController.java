@@ -10,10 +10,10 @@ public class WorkgroupNewsController {
 
     @Autowired
     WorkgroupNewsService workgroupNewsService;
-    
-    @RequestMapping(value = "/workgroupNewsAll", method = RequestMethod.POST, produces = "application/json")
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     @ResponseBody
-    public Object getMessagesList(@RequestBody Long workGroupId) {
+    public Object getMessagesList(@PathVariable(value = "id") Long workGroupId) {
         return workgroupNewsService.getAllWorkgroupNewsList(workGroupId);
     }
 

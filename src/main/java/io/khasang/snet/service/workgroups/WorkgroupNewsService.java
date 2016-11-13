@@ -2,8 +2,8 @@ package io.khasang.snet.service.workgroups;
 
 import io.khasang.snet.dao.workgroups.UserWorkgroupDAO;
 import io.khasang.snet.dao.workgroups.WorkgroupNewsDAO;
-import io.khasang.snet.entity.workgroups.Workgroup;
 import io.khasang.snet.entity.workgroups.WorkgroupNews;
+import io.khasang.snet.service.JsonSerializer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +18,9 @@ public class WorkgroupNewsService {
     private UserWorkgroupDAO userWorkgroupDAO;
 
     @Autowired
+    private JsonSerializer<WorkgroupNews> workgroupNewsJsonSerializer;
+
+    @Autowired
     public WorkgroupNewsService(WorkgroupNewsDAO workgroupNewsDAO, UserWorkgroupDAO userWorkgroupDAO) {
         this.workgroupNewsDAO = workgroupNewsDAO;
         this.userWorkgroupDAO = userWorkgroupDAO;
@@ -29,9 +32,9 @@ public class WorkgroupNewsService {
 
     }
 
-    public List<WorkgroupNews> getAllWorkgroupNewsList(Long workgroupId) {
+    public String getAllWorkgroupNewsList(Long workgroupId) {
 
-        return workgroupNewsDAO.getAllWorkgroupNewsList(workgroupId);
+        return workgroupNewsJsonSerializer.parseToJson(workgroupNewsDAO.getAllWorkgroupNewsList(workgroupId));
     }
 
     public List<WorkgroupNews> getAllUserWorkgroupNewsList(long userId) {

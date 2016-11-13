@@ -9,16 +9,6 @@ import java.util.Date;
 @Entity
 public class WorkgroupNews {
 
-
-    // ТЗ
-// UserNews - все новости пользователя всех групп в которых он состоит
-// Workgroups - список групп в которых состоиит пользователь
-// Cтраница Группы - отображение всех новостей этой группы
-// "Админка" Manage groups - создание групп и новостей , добавление пользователей в группы
-//
-// Тесты на роли, ( 2 новые роли) добавление этих для Neo и Morpheus
-// Создание Department - 2ух Units, по 1 группе
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -29,7 +19,7 @@ public class WorkgroupNews {
 
     private String description;
 
-    private Date newsDate;
+    private String newsDate;
 
     public long getId() {
         return id;
@@ -63,12 +53,22 @@ public class WorkgroupNews {
         this.description = description;
     }
 
-    public Date getNewsDate() {
+    public String getNewsDate() {
         return newsDate;
     }
 
-    public void setNewsDate(Date newsDate) {
+    public void setNewsDate(String newsDate) {
         this.newsDate = newsDate;
     }
+
+
+    // ТЗ
+// UserNews - все новости пользователя всех групп в которых он состоит
+// Workgroups - список групп в которых состоиит пользователь
+// Cтраница Группы - отображение всех новостей этой группы
+// "Админка" Manage groups - создание групп и новостей , добавление пользователей в группы
+//
+// Тесты на роли, ( 2 новые роли) добавление этих для Neo и Morpheus
+// Создание Department - 2ух Units, по 1 группе
 }
 

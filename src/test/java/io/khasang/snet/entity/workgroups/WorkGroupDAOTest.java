@@ -5,6 +5,7 @@ import io.khasang.snet.config.AppConfig;
 import io.khasang.snet.config.HibernateConfig;
 import io.khasang.snet.config.application.WebConfig;
 import io.khasang.snet.dao.workgroups.WorkgroupDAO;
+import io.khasang.snet.dao.workgroups.WorkgroupNewsDAO;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,7 +16,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /*
@@ -29,6 +32,20 @@ public class WorkGroupDAOTest {
 
     @Autowired
     WorkgroupDAO workgroupDAO;
+
+    @Autowired
+    WorkgroupNewsDAO workgroupNewsDAO;
+
+    @Test
+    public void addWorkgroupNews(){
+        SimpleDateFormat date = new SimpleDateFormat("dd.MM.yyyy");
+        WorkgroupNews workgroupNews = new WorkgroupNews();
+        workgroupNews.setWorkgroupId(1);
+        workgroupNews.setDescription("ляля");
+        workgroupNews.setTitle("заголовок");
+        workgroupNews.setNewsDate(date.format(new Date()));
+        workgroupNewsDAO.addWorkgroupNews(workgroupNews);
+    }
 
     @Test
     @Transactional
