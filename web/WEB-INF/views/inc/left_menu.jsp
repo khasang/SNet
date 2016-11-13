@@ -9,6 +9,17 @@
             <li><a href="/searchFriends"><i class="glyphicon glyphicon-search"></i> Search Friends</a></li>
             <li class="submenu">
                 <a href="#">
+                    <i class="glyphicon glyphicon-briefcase"></i> Workgroups
+                    <span class="caret pull-right"></span>
+                </a>
+                <!-- Sub menu -->
+                <ul>
+                    <li><a href="/allWorkgroups"><i class="glyphicon glyphicon-th-list"></i> All workgroups</a></li>
+                </ul>
+            </li>
+
+            <li class="submenu">
+                <a href="#">
                     <i class="glyphicon glyphicon-folder-close"></i> Bootstrap Pages
                     <span class="caret pull-right"></span>
                 </a>
