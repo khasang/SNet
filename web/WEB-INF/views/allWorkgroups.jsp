@@ -40,7 +40,7 @@
                             <th>Type</th>
                             <th>Title</th>
                             <th>Head workgroup</th>
-                            <th>Description</th>
+
                             <th>Actions</th>
                         </tr>
                         </thead>
@@ -51,7 +51,7 @@
                                 <td><c:out value="${workgroups.workgroupType}"/></td>
                                 <td><c:out value="${workgroups.title}"/></td>
                                 <td class="center"> <c:out value="${workgroups.headWorkgroupId}"/></td>
-                                <td class="center"><c:out value="${workgroups.description}"/></td>
+
                                 <td class="table-striped">
                                     <a href="/workgroup?id=${workgroups.id}"><button class="btn btn-default"><i class="glyphicon glyphicon-eye-open"></i> View</button></a>
                                     <a href="/workgroupEdit?id=${workgroups.id}"><button class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i> Edit</button></a>

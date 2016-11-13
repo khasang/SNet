@@ -1,9 +1,6 @@
 package io.khasang.snet.entity.workgroups;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -17,6 +14,7 @@ public class WorkgroupNews {
 
     private String title;
 
+    @Column(length = 5000)
     private String description;
 
     private String newsDate;

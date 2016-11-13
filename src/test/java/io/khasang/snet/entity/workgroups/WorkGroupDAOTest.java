@@ -47,6 +47,8 @@ public class WorkGroupDAOTest {
         workgroupNewsDAO.addWorkgroupNews(workgroupNews);
     }
 
+
+
     @Test
     @Transactional
     @Rollback(true)
