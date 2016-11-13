@@ -8,9 +8,24 @@ import java.io.Serializable;
 public class UserWorkgroupsId implements Serializable {
 
     @Column(name="workgroupId")
-    private String workgroupId;
+    private long  workgroupId;
 
     @Column(name="userId")
-    private String userId;
+    private long userId;
 
+    public long getWorkgroupId() {
+        return workgroupId;
+    }
+
+    public void setWorkgroupId(long workgroupId) {
+        this.workgroupId = workgroupId;
+    }
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
 }
