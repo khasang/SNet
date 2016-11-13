@@ -15,9 +15,7 @@
             <div class="col-md-9">
                 <div class="row">
                     <div class="col-md-12">
-
                         <div class="content-box-header">
-
                             <div class="panel-title" style="color: #8a6d3b;">
                                 <h3>
                                     <button class="btn btn-info btn-xs"><c:out value="${workgroup.workgroupType}"/></button>
@@ -25,13 +23,9 @@
                                 </h3>
                             </div>
                         </div>
-
-
                         <div class="content-box-large box-with-header">
                                 <div class="panel-body" style="padding: 5px;"><b>Описание: </b><c:out value="${workgroup.description}"/></div>
-
                         </div>
-
                         <body onload="callNews('${workgroup.id}')">
                         <div class="content-box-header panel-heading">
                             <div class="panel-title"><b>Новости группы:</b></div>
@@ -40,7 +34,6 @@
                         <br>
                         <br>
                         </div>
-
                         </body>
                     </div>
                 </div>
@@ -66,24 +59,40 @@
                     <h4>Workgroup Members</h4>
                     <div class="row">
                         <div class="col-lg-12">
-
                             <div class="content-box">
-                            Member 1
+                                <div class="panel-body">
+                                    <table class="table">
+                                        <tr>
+                                            <td>Mark</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Jacob</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Larry</td>
+                                        </tr>
+                                    </table>
+                                </div>
                             </div>
-
-                            <div class="content-box">
-                                Member 2
-                            </div>
+                            <!--- FORM add member in group ---->
+                            <form>
+                                <div class="form-group">
+                                    <label>Select User</label>
+                                    <select class="form-control" name="workgroupType" id="workgroupType">
+                                        <option>User 1</option>
+                                        <option>User 2</option>
+                                        <option>User 3</option>
+                                    </select>
+                                </div>
+                                <div class="pull-right">
+                                    <button class="btn btn-primary" type="submit">Add</button>
+                                </div>
+                            </form>
                         </div>
-
                     </div>
                     <!-- /.row -->
                 </div>
-
-
-
             </div>
-
         </div>
         <!-- /.row -->
     </div>
