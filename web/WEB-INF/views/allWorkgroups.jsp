@@ -12,10 +12,10 @@
         <div class="col-md-9">
             <div class="content-box-large">
                 <div class="panel-heading">
-                    <b><div class="panel-title">Departmets,Units and Groups</div></b>
+                    <div class="panel-title">Departmets,Units and Groups</div>
                 </div>
                 <div class="panel-body">
-                    <p>
+                <p>
                        <button class="btn btn-success"><i class="glyphicon glyphicon-plus-sign"></i> Add</button>
                     </p>
                     <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="example">

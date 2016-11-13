@@ -14,24 +14,35 @@
             <div class="col-md-9">
                 <div class="row">
                     <div class="col-md-12">
+
                         <div class="content-box-header">
-                            <div class="panel-title"><button class="btn btn-info btn-xs"><c:out value="${workgroup.workgroupType}"/></button>
-                                 <c:out value="${workgroup.title}"/></div>
+
+                            <div class="panel-title">
+                                <h3>
+                                    <button class="btn btn-info btn-xs"><c:out value="${workgroup.workgroupType}"/></button>
+                                <c:out value="${workgroup.title}"/>
+                                </h3>
+                            </div>
                         </div>
 
+
                         <div class="content-box-large box-with-header">
-                            <c:out value="${workgroup.description}"/>
+                            <b><c:out value="${workgroup.description}"/></b>
                             <br /><br />
                         </div>
+
+
+
 
                         <!---HERE NEWS  --->
                         <!---1 news   --->
                         <div class="content-box-large">
-                            <h2>
-                                <a href="#">News № 1 Title</a>
-                            </h2>
 
-                            <p><i class="fa fa-clock-o"></i> Posted on August 28, 2013 at 10:00 PM</p>
+                            <h4>
+                               <b> <a href="#">News № 1 Title</a><b>
+                            </h4>
+
+                            <p><i class="glyphicon glyphicon-dashboard"></i> Posted on August 28, 2013 at 10:00 PM</p>
                             <hr>
                             <a href="blog-post.html">
                                 <img class="img-responsive img-hover" src="http://placehold.it/900x300" alt="">
@@ -42,15 +53,13 @@
                             <a class="btn btn-primary" href="#">Read More <i class="fa fa-angle-right"></i></a>
 
                             <hr>
-
-
                         </div>
 
                         <!---2 news   --->
                         <div class="content-box-large">
-                            <h2>
+                            <h4>
                                 <a href="#">News № 2 Title</a>
-                            </h2>
+                            </h4>
 
                             <p><i class="fa fa-clock-o"></i> Posted on August 28, 2013 at 10:00 PM</p>
                             <hr>
@@ -67,9 +76,9 @@
 
                         <!---3 news   --->
                         <div class="content-box-large">
-                            <h2>
+                            <h4>
                                 <a href="#">News № 3 Title</a>
-                            </h2>
+                            </h4>
 
                             <p><i class="fa fa-clock-o"></i> Posted on August 28, 2013 at 10:00 PM</p>
                             <hr>
