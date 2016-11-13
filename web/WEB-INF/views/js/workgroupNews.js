@@ -32,7 +32,7 @@ function printAllNews(jsonResponse) {
             '<a href="">'+
                 '<img class="img-responsive img-hover" src="http://placehold.it/900x300" alt="">'+
                 '</a><hr>'+
-            '<p><b>'+news[i].description + '</b></p>'+
+            '<p>'+news[i].description + '</p>'+
            '<hr> </div>';
     }
     document.getElementById("listNews").innerHTML = out;
