@@ -1,3 +1,5 @@
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="col-md-2">
     <div class="sidebar content-box" style="display: block;">
         <ul class="nav">
@@ -17,7 +19,7 @@
                     <li><a href="/searchFriends"><i class="glyphicon glyphicon-search"></i> Search Friends</a></li>
                 </ul>
             </li>
-
+            <sec:authorize access="hasAnyRole('ROLE_ADMIN')" var="isUSer"/>
             <li class="submenu">
                 <a href="#">
                     <i class="glyphicon glyphicon-briefcase"></i> Workgroups
@@ -27,7 +29,9 @@
                 <ul>
                     <li><a href="/allWorkgroups"><i class="glyphicon glyphicon-inbox"></i>  My workgroups</a></li>
                     <li><a href="/allWorkgroups"><i class="glyphicon glyphicon-send"></i>  My News</a></li>
+                    <c:if test="${isUSer}">
                     <li><a href="/allWorkgroups"><i class="glyphicon glyphicon-th-list"></i>  Manage workgroups</a></li>
+                    </c:if>
                 </ul>
             </li>
 

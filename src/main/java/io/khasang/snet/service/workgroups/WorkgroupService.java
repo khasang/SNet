@@ -48,6 +48,6 @@ public class WorkgroupService {
     }
 
     public List<Workgroup> getDependentGroups(long workgroupId) {
-        return workgroupDAO.getDependentUnits(workgroupId);
+        return workgroupDAO.getDependentGroups(workgroupId);
     }
 }
