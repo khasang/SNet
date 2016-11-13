@@ -4,9 +4,20 @@
             <!-- Main menu -->
             <li class="current"><a href="/profile"><i class="glyphicon glyphicon-eye-open"></i> Profile</a></li>
             <li><a href="/chat"><i class="glyphicon glyphicon-envelope"></i> Chat</a></li>
-            <li><a href="/friends"><i class="glyphicon glyphicon-user"></i> Friends</a></li>
-            <li><a href="/invites"><i class="glyphicon glyphicon-plus-sign"></i> Invites</a></li>
-            <li><a href="/searchFriends"><i class="glyphicon glyphicon-search"></i> Search Friends</a></li>
+
+            <li class="submenu">
+                <a href="#">
+                    <i class="glyphicon glyphicon-user"></i> Friends
+                    <span class="caret pull-right"></span>
+                </a>
+                <!-- Sub menu -->
+                <ul>
+                    <li><a href="/friends"><i class="glyphicon glyphicon-user"></i> My Friends</a></li>
+                    <li><a href="/invites"><i class="glyphicon glyphicon-plus-sign"></i> Invites</a></li>
+                    <li><a href="/searchFriends"><i class="glyphicon glyphicon-search"></i> Search Friends</a></li>
+                </ul>
+            </li>
+
             <li class="submenu">
                 <a href="#">
                     <i class="glyphicon glyphicon-briefcase"></i> Workgroups
@@ -14,7 +25,21 @@
                 </a>
                 <!-- Sub menu -->
                 <ul>
-                    <li><a href="/allWorkgroups"><i class="glyphicon glyphicon-th-list"></i> All workgroups</a></li>
+                    <li><a href="/allWorkgroups"><i class="glyphicon glyphicon-inbox"></i>  My workgroups</a></li>
+                    <li><a href="/allWorkgroups"><i class="glyphicon glyphicon-send"></i>  My News</a></li>
+                    <li><a href="/allWorkgroups"><i class="glyphicon glyphicon-th-list"></i>  Manage workgroups</a></li>
+                </ul>
+            </li>
+
+            <li class="submenu">
+                <a href="#">
+                    <i class="glyphicon glyphicon-list"></i> Other Pages
+                    <span class="caret pull-right"></span>
+                </a>
+                <!-- Sub menu -->
+                <ul>
+                    <li><a href="/login">Log In</a></li>
+                    <li><a href="/register">Register</a></li>
                 </ul>
             </li>
 
@@ -31,17 +56,6 @@
                 </ul>
             </li>
 
-            <li class="submenu">
-                <a href="#">
-                    <i class="glyphicon glyphicon-list"></i> Other Pages
-                    <span class="caret pull-right"></span>
-                </a>
-                <!-- Sub menu -->
-                <ul>
-                    <li><a href="/login">Log In</a></li>
-                    <li><a href="/register">Register</a></li>
-                </ul>
-            </li>
             <li><a href="/about"><i class="glyphicon glyphicon-info-sign"></i> About</a></li>
         </ul>
     </div>
