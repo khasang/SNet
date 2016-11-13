@@ -39,13 +39,13 @@ public class WorkGroupDAOTest {
         }
         List<Workgroup> workgroupList =workgroupDAO.getAllWorkgroupList();
         Assert.assertNotEquals("",0,workgroupList.size());
-        Long[] wgIdList = new Long[workgroupList.size()];
-        int j =0;
+        List<Long> wgIdList = new ArrayList<>();
+
         for (Workgroup wg: workgroupList) {
-           wgIdList[j] =wg.getId();
-            j++;
+           wgIdList.add(wg.getId());
+
         }
-        List<Workgroup> expectedList= workgroupDAO.getWorkgroupList(wgIdList);
+        List<Workgroup> expectedList= workgroupDAO.getWorkgroupListByIdList(wgIdList);
         Assert.assertEquals("Not equals",workgroupList,expectedList);
     }
 
