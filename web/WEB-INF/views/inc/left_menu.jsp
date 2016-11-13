@@ -27,8 +27,8 @@
                 </a>
                 <!-- Sub menu -->
                 <ul>
-                    <li><a href="/allWorkgroups"><i class="glyphicon glyphicon-inbox"></i>  My workgroups</a></li>
-                    <li><a href="/allWorkgroups"><i class="glyphicon glyphicon-send"></i>  My News</a></li>
+                    <li><a href=""><i class="glyphicon glyphicon-inbox"></i>  My workgroups</a></li>
+                    <li><a href=""><i class="glyphicon glyphicon-send"></i>  My News</a></li>
                     <c:if test="${isUSer}">
                     <li><a href="/allWorkgroups"><i class="glyphicon glyphicon-th-list"></i>  Manage workgroups</a></li>
                     </c:if>
