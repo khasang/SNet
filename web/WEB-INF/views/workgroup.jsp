@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!-- Include HEADER-->
 <jsp:include page="inc/header.jsp"/>
-<script src="./js/workgroupNews.js"></script>
+<script src="./js/workgroupNews.js" type="text/javascript"></script>
 <link href="vendors/datatables/dataTables.bootstrap.css" rel="stylesheet" media="screen">
 <!--PAGE CONTENT -->
 <div class="page-content">
@@ -31,68 +31,13 @@
                             <b><c:out value="${workgroup.description}"/></b>
                             <br /><br />
                         </div>
-                        <button type="button" onclick="callNews('${workgroup.id}')">Показать новости</button>
+
+                        <body onload="callNews('${workgroup.id}')">
+                        <div class="panel-heading"> News</div>
                         <div id="listNews" class="panel-body"></div>
-                        <!---HERE NEWS  --->
-                        <!---1 news   --->
-                     <%--   <div class="content-box-large">
-
-                            <h4>
-                               <b> <a href="#">News № 1 Title</a></b>
-                            </h4>
-
-                            <p><i class="glyphicon glyphicon-dashboard"></i> Posted on August 28, 2013 at 10:00 PM</p>
-                            <hr>
-                            <a href="blog-post.html">
-                                <img class="img-responsive img-hover" src="http://placehold.it/900x300" alt="">
-                            </a>
-                            <hr>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, veritatis, tempora, necessitatibus inventore nisi quam quia repellat ut tempore laborum possimus eum dicta id animi corrupti debitis ipsum officiis rerum.</p>
-
-                            <a class="btn btn-primary" href="#">Read More <i class="fa fa-angle-right"></i></a>
-
-                            <hr>
-                        </div>
-
-                        <!---2 news   --->
-                        <div class="content-box-large">
-                            <h4>
-                                <a href="#">News № 2 Title</a>
-                            </h4>
-
-                            <p><i class="fa fa-clock-o"></i> Posted on August 28, 2013 at 10:00 PM</p>
-                            <hr>
-                            <a href="blog-post.html">
-                                <img class="img-responsive img-hover" src="http://placehold.it/900x300" alt="">
-                            </a>
-                            <hr>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, veritatis, tempora, necessitatibus inventore nisi quam quia repellat ut tempore laborum possimus eum dicta id animi corrupti debitis ipsum officiis rerum.</p>
-
-                            <a class="btn btn-primary" href="#">Read More <i class="fa fa-angle-right"></i></a>
-
-                            <hr>
-                        </div>
-
-                        <!---3 news   --->
-                        <div class="content-box-large">
-                            <h4>
-                                <a href="#">News № 3 Title</a>
-                            </h4>
-
-                            <p><i class="fa fa-clock-o"></i> Posted on August 28, 2013 at 10:00 PM</p>
-                            <hr>
-                            <a href="blog-post.html">
-                                <img class="img-responsive img-hover" src="http://placehold.it/900x300" alt="">
-                            </a>
-                            <hr>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, veritatis, tempora, necessitatibus inventore nisi quam quia repellat ut tempore laborum possimus eum dicta id animi corrupti debitis ipsum officiis rerum.</p>
-                            <a class="btn btn-primary" href="#">Read More <i class="fa fa-angle-right"></i></a>
-
-                            <hr>
-                        </div>--%>
-
                         <br>
                         <br>
+                        </body>
 
                     </div>
                 </div>

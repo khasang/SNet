@@ -40,9 +40,9 @@ public class WorkGroupDAOTest {
     public void addWorkgroupNews(){
         SimpleDateFormat date = new SimpleDateFormat("dd.MM.yyyy");
         WorkgroupNews workgroupNews = new WorkgroupNews();
-        workgroupNews.setWorkgroupId(1);
-        workgroupNews.setDescription("ляля");
-        workgroupNews.setTitle("заголовок");
+        workgroupNews.setWorkgroupId(165);
+        workgroupNews.setDescription("ляля 222");
+        workgroupNews.setTitle("заголовок 2222");
         workgroupNews.setNewsDate(date.format(new Date()));
         workgroupNewsDAO.addWorkgroupNews(workgroupNews);
     }
