@@ -52,10 +52,10 @@ public class WorkgroupNewsDAOImpl implements WorkgroupNewsDAO {
     }
 
     @Override
-    public List<WorkgroupNews> getAllWorkgroupNewsList(Workgroup workgroup) {
+    public List<WorkgroupNews> getAllWorkgroupNewsList(Long workgroupId) {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from io.khasang.snet.entity.workgroups.WorkgroupNews ww where ww.workgroupId = :workgroup");
-        query.setParameter("workgroup",workgroup.getHeadWorkgroupId());
+        query.setParameter("workgroup",workgroupId);
         return (List<WorkgroupNews>) query.list();
     }
 
@@ -67,7 +67,6 @@ public class WorkgroupNewsDAOImpl implements WorkgroupNewsDAO {
         query.setParameterList("workgroups",workgroupIdList);
         return (List<WorkgroupNews>) query.list();
     }
-
 
 
 }

@@ -1,6 +1,5 @@
 package io.khasang.snet.dao.workgroups;
 
-import io.khasang.snet.entity.workgroups.Workgroup;
 import io.khasang.snet.entity.workgroups.WorkgroupNews;
 
 import java.util.List;
@@ -15,7 +14,7 @@ public interface WorkgroupNewsDAO  {
 
     void deleteWorkgroup(WorkgroupNews workgroup);
 
-    List<WorkgroupNews> getAllWorkgroupNewsList(Workgroup workgroup);
+    List<WorkgroupNews> getAllWorkgroupNewsList(Long workgroupId);
 
     List<WorkgroupNews> getAllUserWorkgroupNewsList(List<Long> workgroupIdList);
 

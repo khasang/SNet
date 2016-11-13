@@ -79,4 +79,5 @@ public class RestPostsController {
             return "Bad Post id format: " + inputId;
         }
     }
+
 }
