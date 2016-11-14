@@ -11,7 +11,7 @@
     </script>
 </head>
 <body onload="callMessages()">
-    <div class="page-content container">
+    <div class="page-content">
         <div class="row">
             <!--Left menu-->
             <jsp:include page="inc/left_menu.jsp"/>
@@ -44,5 +44,8 @@
             </div>
         </div>
     </div>
+    <footer>
+        <jsp:include page="inc/footer.jsp"/>
+    </footer>
 </body>
 </html>
