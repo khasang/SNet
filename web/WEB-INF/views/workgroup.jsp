@@ -74,10 +74,10 @@
 
                                     </select>
                                 </div>
-                                <div class="pull-right">
-                                    <button class="btn btn-primary" type="submit">Add</button>
-                                </div>
                             </form>
+                            <div class="pull-right">
+                                <button class="btn btn-primary" onclick="addUserToWorkgroup('${workgroup.id}')">Add</button>
+                            </div>
                         </div>
                     </div>
                     <!-- /.row -->

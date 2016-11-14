@@ -24,6 +24,10 @@ public class UserWorkgroupService {
     public List<Long> getWorkgroupMembersList(long workgroupId){
         return userWorkgroupDAO.getUsersByWorkgroup(workgroupId);
     }
+
+    public  void addUserToWorkgroup(UserWorkgroups userWorkgroups){
+        userWorkgroupDAO.addUserWorkgroups(userWorkgroups);
+    }
 }
 
 

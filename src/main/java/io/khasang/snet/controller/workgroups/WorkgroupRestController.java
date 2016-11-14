@@ -1,6 +1,7 @@
 package io.khasang.snet.controller.workgroups;
 
 import io.khasang.snet.entity.userauth.User;
+import io.khasang.snet.entity.workgroups.UserWorkgroups;
 import io.khasang.snet.service.JsonSerializer;
 import io.khasang.snet.service.userauth.UserService;
 import io.khasang.snet.service.workgroups.UserWorkgroupService;
@@ -20,6 +21,9 @@ public class WorkgroupRestController {
     private JsonSerializer<User> userListJsonSerializer;
 
     @Autowired
+    private JsonSerializer<UserWorkgroups>  userWorkgroupsJsonSerializer;
+
+    @Autowired
     UserService userService;
 
     @RequestMapping(value = "members/{id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
@@ -36,4 +40,11 @@ public class WorkgroupRestController {
         return userListJsonSerializer.parseToJson(userService.getUsersNotInIdList(membersIdList));
     }
 
+    @RequestMapping(value = "members/new", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public Object addNewMessage(@RequestBody String json) {
+        UserWorkgroups userWorkgroups = userWorkgroupsJsonSerializer.parseToEntity(json,UserWorkgroups.class);
+        userWorkgroupService.addUserToWorkgroup(userWorkgroups);
+        return null;
+    }
 }

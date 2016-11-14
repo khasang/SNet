@@ -105,3 +105,31 @@ function printNotMembers(jsonResponse) {
 
     document.getElementById("listNotMembers").innerHTML = out;
 }
+
+
+function addUserToWorkgroup(workgroupId) {
+    var userId = document.getElementById("listNotMembers").value;
+
+    if (userId != "" && userId != " ") {
+        var userWorkgroups = {
+            'id':0,
+            'prKey': {
+                'workgroupId':workgroupId,
+                'userId':userId
+            },
+            'admin' : false
+        };
+
+        var json = JSON.stringify(userWorkgroups);
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState==4 && this.status==200) {
+                callNotMembers(workgroupId);
+                callMembers(workgroupId);
+            }
+        };
+
+        xhttp.open("POST","/members/new",true);
+        xhttp.send(json);
+    }
+}
