@@ -40,6 +40,14 @@ public class UserService {
         return userDAO.getAllUsers(login);
     }
 
+    public List<User> getUsersByIdList(List<Long> idList){
+        return  userDAO.getUsersByIdList(idList);
+    }
+
+    public List<User> getUsersNotInIdList(List<Long> idList){
+        return userDAO.getUsersNotInIdList(idList);
+    }
+
     //Auth rules
     public void addAuthRules(AuthRules authRules){
         authRulesDAO.addAuthRules(authRules);

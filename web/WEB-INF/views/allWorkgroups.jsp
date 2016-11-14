@@ -38,10 +38,8 @@
                         <tr>
                             <th>id</th>
                             <th>Type</th>
-                            <th>Title</th>
                             <th>Head workgroup</th>
-
-                            <th>Actions</th>
+                            <th>Title</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -49,13 +47,13 @@
                             <tr class="odd gradeX">
                                 <td><c:out value="${workgroups.id}"/></td>
                                 <td><c:out value="${workgroups.workgroupType}"/></td>
-                                <td><c:out value="${workgroups.title}"/></td>
                                 <td class="center"> <c:out value="${workgroups.headWorkgroupId}"/></td>
-
-                                <td class="table-striped">
-                                    <a href="/workgroup?id=${workgroups.id}"><button class="btn btn-default"><i class="glyphicon glyphicon-eye-open"></i> View</button></a>
-                                    <a href="/workgroupEdit?id=${workgroups.id}"><button class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i> Edit</button></a>
-                                    <a href="/workgroupDelete?id=${workgroups.id}"><button class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> Delete</button></a>
+                                <td><c:out value="${workgroups.title}"/>
+                                    <div class="pull-right">
+                                        <a href="/workgroup?id=${workgroups.id}"><button class="btn btn-default"><i class="glyphicon glyphicon-eye-open"></i> View</button></a>
+                                        <a href="/workgroupEdit?id=${workgroups.id}"><button class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i> Edit</button></a>
+                                        <a href="/workgroupDelete?id=${workgroups.id}"><button class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> Delete</button></a>
+                                    </div>
                                 </td>
                             </tr>
                         </c:forEach>
