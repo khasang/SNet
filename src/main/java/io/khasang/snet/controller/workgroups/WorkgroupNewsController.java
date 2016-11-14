@@ -4,6 +4,8 @@ import io.khasang.snet.service.workgroups.WorkgroupNewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/news")
 public class WorkgroupNewsController {
@@ -16,5 +18,4 @@ public class WorkgroupNewsController {
     public Object getMessagesList(@PathVariable(value = "id") Long workGroupId) {
         return workgroupNewsService.getAllWorkgroupNewsList(workGroupId);
     }
-
 }

@@ -16,4 +16,6 @@ public interface UserDAO {
     void updateUser(User user);
 
     List<User> getAllUsers(String login);
+
+    List<User> getUsersByIdList(List<Long> idList);
 }

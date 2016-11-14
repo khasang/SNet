@@ -4,12 +4,15 @@ import io.khasang.snet.dao.userauth.UserDAO;
 import io.khasang.snet.entity.Post;
 import io.khasang.snet.entity.userauth.User;
 import org.hibernate.Criteria;
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -59,5 +62,25 @@ public class UserDAOImpl implements UserDAO{
                 createCriteria(User.class);
         criteria.add(Restrictions.ne("login", login));
         return (List<User>) criteria.list();
+    }
+
+    @Override
+    public List<User> getUsersByIdList(List<Long> idList) {
+
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from io.khasang.snet.entity.userauth.User u where u.id in :idlist");
+        List<Integer> intList = new ArrayList<>();
+
+        for (Long lon:idList) {
+            intList.add(Math.toIntExact(lon));
+        }
+
+        if (idList.size()==0){
+            query.setParameter("idlist",0);
+        }
+        else {
+            query.setParameterList("idlist", intList);
+        }
+        return (List<User>) query.list();
     }
 }

@@ -1,3 +1,8 @@
+function LoadNewsAndMembers(id) {
+    callMembers(id);
+    callNews(id)
+}
+
 function callNews(id) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
@@ -38,3 +43,35 @@ function printAllNews(jsonResponse) {
     document.getElementById("listNews").innerHTML = out;
 }
 
+function callMembers(id) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState==4 && this.status==200) {
+            printAllMembers(this.responseText);
+        }
+    };
+    xhttp.open("GET", "/members/"+ id, true);
+    xhttp.send();
+}
+
+
+function printAllMembers(jsonResponse) {
+
+    var members = JSON.parse(jsonResponse);
+    var out = '<table class="table">';
+    var i;
+
+    for (i = 0; i < members.length; i++) {
+
+
+        out +='<tr>'+
+            '<td>'+ members[i].login + '</td>'+
+            '</tr>';
+
+    }
+    out+='</table>';
+    if (members.length ==0){
+        out= '<p>'+"Workgroup doesn't have members"+'</p>'
+    }
+    document.getElementById("listMembers").innerHTML = out;
+}

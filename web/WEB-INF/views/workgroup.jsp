@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!-- Include HEADER-->
 <jsp:include page="inc/header.jsp"/>
-<script src="./js/workgroupNews.js" type="text/javascript"></script>
+<script src="js/workgroupUtils.js" type="text/javascript"></script>
 <link href="vendors/datatables/dataTables.bootstrap.css" rel="stylesheet" media="screen">
 <!--PAGE CONTENT -->
 <div class="page-content">
@@ -26,7 +26,7 @@
                         <div class="content-box-large box-with-header">
                                 <div class="panel-body" style="padding: 5px;"><b>Описание: </b><c:out value="${workgroup.description}"/></div>
                         </div>
-                        <body onload="callNews('${workgroup.id}')">
+                        <body onload="LoadNewsAndMembers('${workgroup.id}')">
                         <div class="content-box-header panel-heading">
                             <div class="panel-title"><b>Новости группы:</b></div>
 
@@ -61,17 +61,9 @@
                         <div class="col-lg-12">
                             <div class="content-box">
                                 <div class="panel-body">
-                                    <table class="table">
-                                        <tr>
-                                            <td>Mark</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Jacob</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Larry</td>
-                                        </tr>
-                                    </table>
+
+                                    <div id="listMembers" class="panel-body"></div>
+
                                 </div>
                             </div>
                             <!--- FORM add member in group ---->
