@@ -35,26 +35,26 @@ public class ChatController {
     @Autowired
     private MessageTokenizer messageTokenizer;
 
-    @RequestMapping(value = "/chat/all", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/chat/all", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public Object getChats() {
         User user = userDAO.getUserByName(SecurityContextHolder.getContext().getAuthentication().getName());
         return chatJsonTokenizer.getList(user);
     }
 
-    @RequestMapping(value = "/chat/current", method = RequestMethod.POST, produces = "application/json")
+    @RequestMapping(value = "/chat/current", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public Object getOneChat(@RequestBody String json) {
         return chatJsonTokenizer.getOne(json);
     }
 
-    @RequestMapping(value = "/messages/list", method = RequestMethod.POST, produces = "application/json")
+    @RequestMapping(value = "/messages/list", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public Object getMessagesList(@RequestBody String json) {
         return messageTokenizer.getList(json);
     }
 
-    @RequestMapping(value = "/messages/new", method = RequestMethod.POST, produces = "application/json")
+    @RequestMapping(value = "/messages/new", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public Object addNewMessage(@RequestBody String json) {
         User sender = new User();
