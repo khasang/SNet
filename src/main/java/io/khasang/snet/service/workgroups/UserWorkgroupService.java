@@ -15,7 +15,6 @@ public class UserWorkgroupService {
 
     private UserWorkgroupDAO userWorkgroupDAO;
 
-
     @Autowired
     public UserWorkgroupService(UserWorkgroupDAO userWorkgroupDAO) {
         this.userWorkgroupDAO = userWorkgroupDAO;
