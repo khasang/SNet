@@ -14,11 +14,11 @@ function printAllChats(jsonResponse) {
     var out = "";
     var i;
     for (i = 0; i < chats.length; i++) {
-        out += 'Chat: ' + chats[i].description +
-            '<div class="col-sm-2 pull-right"><div class="btn-group">' +
-                '<button onclick="removeOne(' + chats[i].id +')" class="btn btn-danger btn-xs">Remove chat</button>' +
+        out += '<div>Chat: ' + chats[i].description + '<div class="col-sm-4 pull-right">' +
             '<a href="/messages?id=' + chats[i].id +
-            '"><button class="btn btn-default btn-xs">Read messages</button></a></div></div><hr>';
+            '"><button class="btn btn-primary btn-xs">Read messages</button></a>' +
+            '<button onclick="removeOne(' + chats[i].id + ')" class="btn btn-danger btn-xs">Remove chat</button>' +
+            '</div></div><hr>';
     }
     document.getElementById("listChats").innerHTML = out;
 }
