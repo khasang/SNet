@@ -29,8 +29,7 @@
                         <body onload="LoadNewsAndMembers('${workgroup.id}')">
                         <div class="content-box-header panel-heading">
                             <div class="panel-title"><b>Новости группы:</b></div>
-
-                        <div id="listNews" class="panel-body"></div>
+                            <div id="listNews" class="panel-body"></div>
                         <br>
                         <br>
                         </div>
@@ -38,10 +37,8 @@
                     </div>
                 </div>
             </div>
-
             <!-- Workgroup Sidebar Widgets Column -->
             <div class="col-md-3">
-
                 <!-- Blog Search Well -->
                 <div class="well">
                     <h4>News Search</h4>
@@ -53,7 +50,6 @@
                     </div>
                     <!-- /.input-group -->
                 </div>
-
                 <!-- Members -->
                 <div class="well">
                     <h4>Workgroup Members</h4>
@@ -61,17 +57,14 @@
                         <div class="col-lg-12">
                             <div class="content-box">
                                 <div class="panel-body">
-
                                     <div id="listMembers" class="panel-body"></div>
-
                                 </div>
                             </div>
                             <!--- FORM add member in group ---->
                             <form>
                                 <div class="form-group">
-                                    <label>Select User</label>
+                                    <label>Add users to workgroup</label>
                                     <select class="form-control" name="workgroupType" id="listNotMembers">
-
                                     </select>
                                 </div>
                             </form>

@@ -66,7 +66,7 @@ function printAllMembers(jsonResponse) {
 
 
         out +='<tr>'+
-            '<td>'+ members[i].login + '</td>'+
+            '<td><a href="user?userLogin='+ members[i].login +'" >'+members[i].login +'</a></td>'+
             '</tr>';
 
     }
