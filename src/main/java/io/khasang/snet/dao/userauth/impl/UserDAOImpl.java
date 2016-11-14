@@ -83,4 +83,23 @@ public class UserDAOImpl implements UserDAO{
         }
         return (List<User>) query.list();
     }
+
+    @Override
+    public List<User> getUsersNotInIdList(List<Long> idList) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from io.khasang.snet.entity.userauth.User u where u.id not in :idlist");
+        List<Integer> intList = new ArrayList<>();
+
+        for (Long lon:idList) {
+            intList.add(Math.toIntExact(lon));
+        }
+
+        if (idList.size()==0){
+            query.setParameter("idlist",0);
+        }
+        else {
+            query.setParameterList("idlist", intList);
+        }
+        return (List<User>) query.list();
+    }
 }

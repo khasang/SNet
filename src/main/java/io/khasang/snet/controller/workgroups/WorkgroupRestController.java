@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/members")
 public class WorkgroupRestController {
 
     @Autowired
@@ -23,11 +22,18 @@ public class WorkgroupRestController {
     @Autowired
     UserService userService;
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "members/{id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public Object getMembersList(@PathVariable(value = "id") Long workGroupId) {
         List<Long> membersIdList=userWorkgroupService.getWorkgroupMembersList(workGroupId);
         return userListJsonSerializer.parseToJson(userService.getUsersByIdList(membersIdList));
+    }
+
+    @RequestMapping(value = "notMembers/{id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public Object getNotMembersList(@PathVariable(value = "id") Long workGroupId) {
+        List<Long> membersIdList=userWorkgroupService.getWorkgroupMembersList(workGroupId);
+        return userListJsonSerializer.parseToJson(userService.getUsersNotInIdList(membersIdList));
     }
 
 }

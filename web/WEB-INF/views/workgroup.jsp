@@ -70,10 +70,8 @@
                             <form>
                                 <div class="form-group">
                                     <label>Select User</label>
-                                    <select class="form-control" name="workgroupType" id="workgroupType">
-                                        <option>User 1</option>
-                                        <option>User 2</option>
-                                        <option>User 3</option>
+                                    <select class="form-control" name="workgroupType" id="listNotMembers">
+
                                     </select>
                                 </div>
                                 <div class="pull-right">
