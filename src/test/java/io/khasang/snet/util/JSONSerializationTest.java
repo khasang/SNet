@@ -52,9 +52,6 @@ public class JSONSerializationTest {
     private ChatJsonTokenizer chatJsonTokenizer;
 
     @Autowired
-    private MessageTokenizer messageTokenizer;
-
-    @Autowired
     private MessageSerializer messageSerializer;
 
     @Autowired

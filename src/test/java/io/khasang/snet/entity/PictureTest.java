@@ -95,20 +95,4 @@ public class PictureTest {
         * will be failed*/
         assertNull(testUtil.testDelete(picture));
     }
-
-    /* Tested list returned by dao
-    * saved set of pictures, and pictures
-    * also saved into data base, after loading list
-    * all same instances was deleted
-    * */
-    @Test
-    public void listReturnTest() {
-        Set<Picture> pictureSet = new HashSet<>();
-        for (Picture picture : new PicturesGenerator(10)) {
-            pictureSet.add(picture);
-        }
-
-        // if some picture retains in set test fails
-        assertEquals(0, testUtil.testForLists(pictureSet,null));
-    }
 }

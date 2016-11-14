@@ -39,17 +39,6 @@ public class ChatTest {
         if (suite==null) suite = new EntityBasicCRUDTestSuite<>(chatCRUD);
     }
 
-    @Test
-    public void equalsTest() {
-        Chat first = generator.create();
-        Chat same = first;                                 // Не хочет работать через new Chat(first.getDescription())
-        Chat different = generator.create();
-
-        System.out.println(first);
-        System.out.println(same);
-        System.out.println(different);
-        assertTrue("Failed equals test", suite.testEquals(first,same,different));
-    }
 
     @Test
     public void saveLoadTest() {
@@ -62,15 +51,5 @@ public class ChatTest {
     public void deleteTest() {
         Chat one = generator.create();
         assertNull("Failed delete test: returned Chat must be null", suite.testDelete(one));
-    }
-
-    @Test
-    public void listTest() {
-        HashSet<Chat> chats = new HashSet<>();
-        for (int i = 0; i < 10; i++) {
-            chats.add(generator.create());
-        }
-
-        assertEquals("Failed packet test: returned quatity must be zero", 0,suite.testForLists(chats,null));
     }
 }

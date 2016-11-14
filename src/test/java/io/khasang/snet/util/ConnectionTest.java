@@ -25,7 +25,7 @@ public class ConnectionTest {
         // port
         url.append("5432/");
         // database name
-        url.append("test_database?");
+        url.append("snet?");
         // username
         url.append("user=root&");
         // password

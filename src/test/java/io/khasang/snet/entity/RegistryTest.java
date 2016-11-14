@@ -7,6 +7,7 @@ import io.khasang.snet.dao.AbstractCRUD;
 import io.khasang.snet.dao.AbstractRegistrySearcher;
 import io.khasang.snet.dao.userauth.AuthRulesDAO;
 import io.khasang.snet.dao.userauth.RolesDAO;
+import io.khasang.snet.dao.userauth.UserDAO;
 import io.khasang.snet.entity.userauth.AuthRules;
 import io.khasang.snet.entity.userauth.Roles;
 import io.khasang.snet.entity.userauth.User;
@@ -39,62 +40,24 @@ public class RegistryTest {
     private AbstractRegistrySearcher<Chat, User> chatCRUD;
 
     @Autowired
-    private AbstractCRUD<User> userCRUD;
+    private UserDAO userDAO;
 
     @Autowired
     private Generator<Chat> chatGenerator;
 
-    @Autowired
-    private AuthRulesDAO authRulesDAO;
-
-    @Autowired
-    private RolesDAO rolesDAO;
-
     private Chat chat;
     private User user;
-
-    @Before
-    public void addChat() {
-        if (chat==null) {
-            chat = chatGenerator.create();
-            chatCRUD.add(chat);
-        }
-        if (user==null) {
-            user = new User();
-            userCRUD.add(user);
-        }
-    }
-    /* Creation ADMIN user account */
-    @Test
-    public void createPrimeEntry() {
-        String login = "admin";
-        String passwd = "admin";
-        String primeRole = "ROLE_ADMIN";
-
-        /* Creation admin account */
-        User admin = new User();
-        admin.setLogin(login);
-        admin.setPassword(new BCryptPasswordEncoder().encode(passwd));
-        userCRUD.add(admin);
-
-        /* Creation admin role */
-        Roles prime = new Roles();
-        prime.setRole(primeRole);
-        rolesDAO.addRoles(prime);
-
-        /* Creation of admin authorisation rule */
-        AuthRules rule = new AuthRules();
-        rule.setUser_id(admin.getID());
-        rule.setRole_id(prime.getId());
-        authRulesDAO.addAuthRules(rule);
-
-    }
-
 
     @Test
     @Rollback
     @Transactional
     public void saveTest() {
+        chat = chatGenerator.create();
+        chatCRUD.add(chat);
+
+        user = new User();
+        userDAO.addUser(user);
+
         ChatRegistryUnit original = new ChatRegistryUnit();
         original.setChat(chat);
         original.setUser(user);
@@ -103,10 +66,6 @@ public class RegistryTest {
         ChatRegistryUnit founded = registryCRUD.get(original);
         assertEquals(original, founded);
 
-        // passed just if registry table not exists any rows
-        registryCRUD.add(original);
-        List<ChatRegistryUnit> registryUnits = registryCRUD.getAll(null);
-        assertEquals(1,registryUnits.size());
     }
 
 
@@ -116,8 +75,14 @@ public class RegistryTest {
     @Rollback
     @Transactional
     public void gettingListTest() {
+        chat = chatGenerator.create();
+        chatCRUD.add(chat);
+
+        user = new User();
+        userDAO.addUser(user);
+
         User anotherUser = new User();
-        userCRUD.add(anotherUser);
+        userDAO.addUser(anotherUser);
 
         // write few chats
         int amountEntities = 10;

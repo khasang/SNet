@@ -40,9 +40,6 @@ public class MessageTest {
     private AbstractRegistrySearcher<Chat, User> chatCRUD;
 
     @Autowired
-    private UserDAO userDAO;
-
-    @Autowired
     private Generator<Message> messageGenerator;
 
     @Autowired
@@ -58,14 +55,12 @@ public class MessageTest {
         if (chat==null) {
             this.chat = chatGenerator.create();
             this.chat.setID(1L);
+            this.user = null;
             this.chat = chatCRUD.get(this.chat);
             if (this.chat==null) {
                 this.chat = chatGenerator.create();
                 chatCRUD.add(this.chat);
             }
-        }
-        if (user==null) {
-            user = userDAO.getUserByName("admin");
         }
     }
 
