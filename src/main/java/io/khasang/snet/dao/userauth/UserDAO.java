@@ -18,4 +18,6 @@ public interface UserDAO {
     List<User> getAllUsers(String login);
 
     List<User> getUsersByIdList(List<Long> idList);
+
+    List<User> getUsersNotInIdList(List<Long> idList);
 }

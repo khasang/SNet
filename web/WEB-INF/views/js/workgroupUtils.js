@@ -1,6 +1,7 @@
 function LoadNewsAndMembers(id) {
     callMembers(id);
-    callNews(id)
+    callNews(id);
+    callNotMembers(id);
 }
 
 function callNews(id) {
@@ -54,7 +55,6 @@ function callMembers(id) {
     xhttp.send();
 }
 
-
 function printAllMembers(jsonResponse) {
 
     var members = JSON.parse(jsonResponse);
@@ -62,16 +62,61 @@ function printAllMembers(jsonResponse) {
     var i;
 
     for (i = 0; i < members.length; i++) {
-
-
         out +='<tr>'+
-            '<td>'+ members[i].login + '</td>'+
+            '<td><a href="user?userLogin='+ members[i].login +'" >'+members[i].login +'</a></td>'+
             '</tr>';
-
     }
     out+='</table>';
     if (members.length ==0){
         out= '<p>'+"Workgroup doesn't have members"+'</p>'
     }
     document.getElementById("listMembers").innerHTML = out;
+}
+
+function callNotMembers(id) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState==4 && this.status==200) {
+            printNotMembers(this.responseText);
+        }
+    };
+    xhttp.open("GET", "/notMembers/"+ id, true);
+    xhttp.send();
+}
+
+
+function printNotMembers(jsonResponse) {
+
+    var members = JSON.parse(jsonResponse);
+    var out = '';
+    var i;
+    for (i = 0; i < members.length; i++) {
+        // <option value="id">login</option>
+        out +='<option value="'+members[i].id +'">'+members[i].login + '</option>';
+    }
+    document.getElementById("listNotMembers").innerHTML = out;
+}
+
+function addUserToWorkgroup(workgroupId) {
+    var userId = document.getElementById("listNotMembers").value;
+    if (userId != "" && userId != " ") {
+        var userWorkgroups = {
+            'id':0,
+            'prKey': {
+                'workgroupId':workgroupId,
+                'userId':userId
+            },
+            'admin' : false
+        };
+        var json = JSON.stringify(userWorkgroups);
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState==4 && this.status==200) {
+                callNotMembers(workgroupId);
+                callMembers(workgroupId);
+            }
+        };
+        xhttp.open("POST","/members/new",true);
+        xhttp.send(json);
+    }
 }

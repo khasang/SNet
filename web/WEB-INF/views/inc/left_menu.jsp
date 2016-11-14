@@ -46,7 +46,7 @@
                     <li><a href="/register">Register</a></li>
                 </ul>
             </li>
-
+            <c:if test="${isUSer}">
             <li class="submenu">
                 <a href="#">
                     <i class="glyphicon glyphicon-folder-close"></i> Bootstrap Pages
@@ -59,7 +59,7 @@
                     <li><a href="/forms"><i class="glyphicon glyphicon-tasks"></i> Forms</a></li>
                 </ul>
             </li>
-
+            </c:if>
             <li><a href="/about"><i class="glyphicon glyphicon-info-sign"></i> About</a></li>
         </ul>
     </div>
