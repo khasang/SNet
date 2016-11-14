@@ -57,12 +57,19 @@
                     </div>
                     <div class="col-md-4 text-center">
                         <div class="thumbnail">
-                            <img class="img-responsive" src="http://placehold.it/700x400" alt="">
+                            <img class="img-responsive" height="240" width="240" src="" alt="">
                             <div class="caption">
-                                <h3>Team Member<br>
-                                    <small>Job Title</small>
+                                <h3>Petrov Sergey<br>
+                                    <small>Java developer</small>
                                 </h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste saepe et quisquam nesciunt maxime.</p>
+                                <p>Realize next features:
+                                    User profile (backend + frontend),
+                                    Friends (frontend),
+                                    UserWorkgroups CRUD,
+                                    WorkgroupsNews and UserWorkgroupsNews (backend + frontend).
+                                    <br><br> <br>
+                                </p>
+
                                 <ul class="list-inline">
                                     <li><a href="#"><i class="fa fa-2x fa-facebook-square"></i></a>
                                     </li>
