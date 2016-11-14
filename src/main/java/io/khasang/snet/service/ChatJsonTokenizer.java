@@ -76,12 +76,10 @@ public class ChatJsonTokenizer {
     }
 
     // deletes already existed entity
-    public String deleteExists(String raw, User user) {
+    public String deleteExists(Chat chat, User user) {
         try {
-            Chat chat = chatSerializer.parseToEntity(raw, Chat.class);
-            chatCRUD.delete(chat);
-            ChatRegistryUnit reg = new ChatRegistryUnit(chat,user);
-            registryCRUD.add(reg);
+            registryCRUD.delete(new ChatRegistryUnit(chat, user));
+//            chatCRUD.delete(chat);
         } catch (Exception exc) {
             return String.format("Error while deleting chat occurs: %s", exc.getMessage());
         }
