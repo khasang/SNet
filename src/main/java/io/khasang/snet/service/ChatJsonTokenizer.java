@@ -7,6 +7,7 @@ import io.khasang.snet.entity.Chat;
 import io.khasang.snet.entity.ChatRegistryUnit;
 import io.khasang.snet.entity.userauth.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.StringArrayPropertyEditor;
 import org.springframework.stereotype.Component;
 
 /* This is utils for working with dao and JSON translators */
@@ -50,6 +51,19 @@ public class ChatJsonTokenizer {
         }
     }
 
+    public Chat getExistedDialog(User first, User second) {
+        Chat existingChat = chatCRUD.getExistedDialog(first, second);
+        if (existingChat != null) {
+            return existingChat;
+        } else {
+            Chat chat = new Chat(String.format("%s, %s",first.getLogin(), second.getLogin()));
+            chat = this.saveNewChat(chat);
+            this.addUserIntoChat(first, chat);
+            this.addUserIntoChat(second, chat);
+            return chat;
+        }
+    }
+
     // Returns chat quered by id
     public String getOne(String raw) {
         try {
@@ -62,15 +76,23 @@ public class ChatJsonTokenizer {
     }
 
     // deletes already existed entity
-    public String deleteExists(String raw, User user) {
+    public String deleteExists(Chat chat, User user) {
         try {
-            Chat chat = chatSerializer.parseToEntity(raw, Chat.class);
-            chatCRUD.delete(chat);
-            ChatRegistryUnit reg = new ChatRegistryUnit(chat,user);
-            registryCRUD.add(reg);
+            registryCRUD.delete(new ChatRegistryUnit(chat, user));
+//            chatCRUD.delete(chat);
         } catch (Exception exc) {
             return String.format("Error while deleting chat occurs: %s", exc.getMessage());
         }
         return "";
+    }
+
+    private Chat saveNewChat(Chat chat) {
+        chatCRUD.add(chat);
+        return chat;
+    }
+
+    private void addUserIntoChat(User user, Chat chat) {
+        ChatRegistryUnit registryUnit = new ChatRegistryUnit(chat, user);
+        registryCRUD.add(registryUnit);
     }
 }

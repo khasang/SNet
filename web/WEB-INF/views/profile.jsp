@@ -32,7 +32,7 @@
                                        </div>
                                    </c:if>
                             <c:if test="${!userN.equals(profile.login)}">
-                                       <div style="margin:5px;"><a href="">
+                                       <div style="margin:5px;"><a href="newDialog?login=${profile.login}">
                                            <button class="btn btn-success btn-sm">
                                                <i class="glyphicon glyphicon-pencil"></i>
                                                Написать сообщение
