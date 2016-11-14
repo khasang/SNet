@@ -55,7 +55,6 @@ function callMembers(id) {
     xhttp.send();
 }
 
-
 function printAllMembers(jsonResponse) {
 
     var members = JSON.parse(jsonResponse);
@@ -63,12 +62,9 @@ function printAllMembers(jsonResponse) {
     var i;
 
     for (i = 0; i < members.length; i++) {
-
-
         out +='<tr>'+
             '<td><a href="user?userLogin='+ members[i].login +'" >'+members[i].login +'</a></td>'+
             '</tr>';
-
     }
     out+='</table>';
     if (members.length ==0){
@@ -94,22 +90,15 @@ function printNotMembers(jsonResponse) {
     var members = JSON.parse(jsonResponse);
     var out = '';
     var i;
-
     for (i = 0; i < members.length; i++) {
-
         // <option value="id">login</option>
-
         out +='<option value="'+members[i].id +'">'+members[i].login + '</option>';
-
     }
-
     document.getElementById("listNotMembers").innerHTML = out;
 }
 
-
 function addUserToWorkgroup(workgroupId) {
     var userId = document.getElementById("listNotMembers").value;
-
     if (userId != "" && userId != " ") {
         var userWorkgroups = {
             'id':0,
@@ -119,7 +108,6 @@ function addUserToWorkgroup(workgroupId) {
             },
             'admin' : false
         };
-
         var json = JSON.stringify(userWorkgroups);
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
@@ -128,7 +116,6 @@ function addUserToWorkgroup(workgroupId) {
                 callMembers(workgroupId);
             }
         };
-
         xhttp.open("POST","/members/new",true);
         xhttp.send(json);
     }
