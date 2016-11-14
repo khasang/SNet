@@ -20,7 +20,7 @@ function printAllNews(jsonResponse) {
     var news = JSON.parse(jsonResponse);
     var out = "";
     var i;
-    for (i = 0; i < news.length; i++) {
+    for (i = news.length-1; i >=0 ; i--) {
         // out += '<div class="content-box-large">' +
         //     + '<h4><b><a href="">' + news[i].title +
         //     '</a></b></h4>'
@@ -120,3 +120,32 @@ function addUserToWorkgroup(workgroupId) {
         xhttp.send(json);
     }
 }
+
+
+function addWorkgroupNews(workgroupId) {
+    var newsTitle = document.getElementById("workNewsTitle").value;
+    var newsDescription = document.getElementById("workNewsDescr").value;
+    if (newsTitle != "" && newsTitle != " ") {
+        var userWorkgroupsNews = {
+            'id': 0,
+            'workgroupId': workgroupId,
+            'title': newsTitle,
+            'description': newsDescription
+        };
+        var json = JSON.stringify(userWorkgroupsNews);
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState==4 && this.status==200) {
+                callNews(workgroupId);
+                document.getElementById("workNewsTitle").value = "";
+                document.getElementById("workNewsDescr").value = "";
+            }
+        };
+        xhttp.open("POST","/news/new",true);
+        xhttp.send(json);
+    }
+}
+
+
+
+
