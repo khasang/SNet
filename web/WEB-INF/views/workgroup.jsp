@@ -27,11 +27,30 @@
                                 <div class="panel-body" style="padding: 5px;"><b>Описание: </b><c:out value="${workgroup.description}"/></div>
                         </div>
                         <body onload="LoadNewsAndMembers('${workgroup.id}')">
+                        <div>
+                            <div class="col-md-8 panel-info" style="margin-bottom: 20px;">
+                        <div class="content-box-header panel-heading">
+                            <div class="panel-title"><b>Добавить новость: </b></div>
+                        </div>
+                        <div class="content-box-header  ">
+                            <div >
+                                <label>Заголовок:</label>
+                        <input class="form-control"  id="workNewsTitle" type="text" />
+                                </div>
+                            <div class="form-group">
+                                <label>Содержание:</label>
+                        <textarea class="form-control"  id="workNewsDescr" type="text" ></textarea>
+                                </div>
+                        <button style="margin-bottom: 15px;" type="submit" class="btn btn-primary" onclick=" addWorkgroupNews('${workgroup.id}')">Добавить</button>
+
+                        </div ></div>
+                            <div class="col-md-12">
                         <div class="content-box-header panel-heading">
                             <div class="panel-title"><b>Новости группы:</b></div>
                             <div id="listNews" class="panel-body"></div>
                         <br>
-                        <br>
+                        <br></div>
+                        </div>
                         </div>
                         </body>
                     </div>
