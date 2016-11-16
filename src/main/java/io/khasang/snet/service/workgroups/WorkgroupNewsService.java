@@ -2,6 +2,7 @@ package io.khasang.snet.service.workgroups;
 
 import io.khasang.snet.dao.workgroups.UserWorkgroupDAO;
 import io.khasang.snet.dao.workgroups.WorkgroupNewsDAO;
+import io.khasang.snet.entity.workgroups.Workgroup;
 import io.khasang.snet.entity.workgroups.WorkgroupNews;
 import io.khasang.snet.service.JsonSerializer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +18,16 @@ public class WorkgroupNewsService {
 
     private WorkgroupNewsDAO workgroupNewsDAO;
     private UserWorkgroupDAO userWorkgroupDAO;
+    private WorkgroupService workgroupService;
 
     @Autowired
     private JsonSerializer<WorkgroupNews> workgroupNewsJsonSerializer;
 
     @Autowired
-    public WorkgroupNewsService(WorkgroupNewsDAO workgroupNewsDAO, UserWorkgroupDAO userWorkgroupDAO) {
+    public WorkgroupNewsService(WorkgroupNewsDAO workgroupNewsDAO, UserWorkgroupDAO userWorkgroupDAO, WorkgroupService workgroupService) {
         this.workgroupNewsDAO = workgroupNewsDAO;
         this.userWorkgroupDAO = userWorkgroupDAO;
+        this.workgroupService = workgroupService;
 
     }
 
@@ -45,6 +48,16 @@ public class WorkgroupNewsService {
         }
         else{
             return new ArrayList<WorkgroupNews>();
+        }
+    }
+
+    public List<Workgroup> getAllUserWorkgroupList(long userId) {
+        List<Long> userGroupsListId = userWorkgroupDAO.getWorkgroupsByUser(userId);
+        if (userGroupsListId.size() !=0) {
+            return workgroupService.getWorkgroupListByIdList(userGroupsListId);
+        }
+        else{
+            return new ArrayList<Workgroup>();
         }
     }
 

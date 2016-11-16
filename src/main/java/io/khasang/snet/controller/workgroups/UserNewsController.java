@@ -54,4 +54,20 @@ public class UserNewsController {
         }
     }
 
+
+    @RequestMapping(value = "/userWorkgroups", method = RequestMethod.GET)
+    public String getUserWorkroupList(Principal principal, Model model) {
+
+        try {
+            User myUser = userService.getUserByLogin(principal.getName());
+            List<Workgroup> userWorkNews = workgroupNewsService.getAllUserWorkgroupList((long) (myUser.getID()));
+
+            model.addAttribute("userWorkgroup", userWorkNews);
+            return "userWorkgroups";
+        }
+        catch (Exception e){
+            return "userWorkgroups";
+        }
+    }
+
 }
