@@ -55,7 +55,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/workgroup/**").access("hasRole('USER')")
                 .antMatchers("/workgroupEdit/**").access("hasRole('USER')")
                 .and().formLogin().defaultSuccessUrl("/", false)
-                .defaultSuccessUrl("/", false)
+                .defaultSuccessUrl("/profile", false)
                 .and().csrf().disable()
                 .logout().invalidateHttpSession(true).deleteCookies();
     }
