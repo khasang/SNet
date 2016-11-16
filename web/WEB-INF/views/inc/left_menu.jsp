@@ -4,8 +4,8 @@
     <div class="sidebar content-box" style="display: block;">
         <ul class="nav">
             <!-- Main menu -->
-            <li class="current"><a href="/profile"><i class="glyphicon glyphicon-eye-open"></i> Profile</a></li>
-            <li><a href="/chat"><i class="glyphicon glyphicon-envelope"></i> Chat</a></li>
+            <li class="current"><a href="${pageContext.request.contextPath}/profile"><i class="glyphicon glyphicon-eye-open"></i> Profile</a></li>
+            <li><a href="${pageContext.request.contextPath}/chat"><i class="glyphicon glyphicon-envelope"></i> Chat</a></li>
 
             <li class="submenu">
                 <a href="#">

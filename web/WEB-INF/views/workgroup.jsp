@@ -3,7 +3,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!-- Include HEADER-->
 <jsp:include page="inc/header.jsp"/>
-<script src="js/workgroupUtils.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/js/workgroupUtils.js" type="text/javascript"></script>
 <link href="vendors/datatables/dataTables.bootstrap.css" rel="stylesheet" media="screen">
 <sec:authorize access="hasAnyRole('ROLE_ADMIN')" var="isUSer"/>
 <!--PAGE CONTENT -->
@@ -31,7 +31,7 @@
                                     value="${workgroup.description}"/></div>
                         </div>
 
-                        <body onload="LoadNewsAndMembers('${workgroup.id}')">
+                        <body onload="LoadNewsAndMembers('${pageContext.request.contextPath}/news/${workgroup.id}')">
                         <div>
                             <c:if test="${isUSer}">
                                 <div class="col-md-8 panel-info" style="margin-bottom: 20px;">
@@ -48,7 +48,7 @@
                                             <textarea class="form-control" id="workNewsDescr" type="text"></textarea>
                                         </div>
                                         <button style="margin-bottom: 15px;" type="submit" class="btn btn-primary"
-                                                onclick=" addWorkgroupNews('${workgroup.id}')">Добавить
+                                                onclick=" addWorkgroupNews('${pageContext.request.contextPath}/news/${workgroup.id}')">Добавить
                                         </button>
 
                                     </div>

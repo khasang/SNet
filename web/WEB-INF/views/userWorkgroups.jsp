@@ -26,7 +26,7 @@
                             </c:if>
                             <c:forEach items="${userWorkgroup}" var="workgroups">
                                 <div class="content-box-large">
-                                    <h4><b><a href="/workgroup?id=${workgroups.id}"> <c:out
+                                    <h4><b><a href="${pageContext.request.contextPath}/workgroup?id=${workgroups.id}"> <c:out
                                             value="${workgroups.title}"/> </a></b></h4>
                                     <p><c:out value="${workgroups.description}"/></p>
                                 </div>

@@ -16,14 +16,14 @@ import java.util.List;
 /*
 * Basic tests for entity User Workgroup test
 */
-@RunWith(SpringJUnit4ClassRunner.class)
+/*@RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextConfiguration(classes = {AppConfig.class, WebConfig.class, HibernateConfig.class})
+@ContextConfiguration(classes = {AppConfig.class, WebConfig.class, HibernateConfig.class})*/
 public class UserWorkgroupDAOTest {
 
-    @Autowired
+   /* @Autowired
     UserWorkgroupDAO userWorkgroupDAO;
-
+*/
 /*    @Test
     public void testAddUserWorkgroup(){
         UserWorkgroupsId userWorkgroupsId = new UserWorkgroupsId();

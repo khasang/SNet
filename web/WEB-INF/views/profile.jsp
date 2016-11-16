@@ -23,7 +23,7 @@
                             <div><img style="padding: 8px;" width="200px" src="/ava/${profile.avatar}"/></div>
                             <sec:authentication property="principal.username" var="userN"/>
                                  <c:if test="${userN.equals(profile.login)}">
-                                       <div style="margin:10px;"><a href="upload">
+                                       <div style="margin:10px;"><a href="${pageContext.request.contextPath}/upload">
                                            <button class="btn btn-primary btn-sm">
                                                <i class="glyphicon glyphicon-pencil"></i>
                                                Редактировать

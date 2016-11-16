@@ -11,7 +11,7 @@ function callNews(id) {
             printAllNews(this.responseText);
         }
     };
-    xhttp.open("GET", "/news/"+ id, true);
+    xhttp.open("GET",  id, true);
     xhttp.send();
 }
 
