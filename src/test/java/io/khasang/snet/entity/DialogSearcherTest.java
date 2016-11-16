@@ -56,9 +56,6 @@ public class DialogSearcherTest {
         // Sanity check for test
         assertEquals("Sanity check for test failed: Needles must be 2",2,amountOfNeedles());
 
-
-
-//        List<Chat> dialogs = hayStack.stream().map(ChatRegistryUnit::getChat).collect(Collectors.toList());
         List<Chat> dialogs = searchingAlgorithm();
         int amountParticipants;
         for (Chat dialog : dialogs) {
