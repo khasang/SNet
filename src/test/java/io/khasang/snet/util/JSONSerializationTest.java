@@ -17,6 +17,7 @@ import io.khasang.snet.service.ChatJsonTokenizer;
 import io.khasang.snet.service.ChatSerializer;
 import io.khasang.snet.service.MessageSerializer;
 import io.khasang.snet.service.MessageTokenizer;
+import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -39,6 +40,8 @@ import java.util.Map;
 @WebAppConfiguration
 @ContextConfiguration(classes = {AppConfig.class, WebConfig.class, HibernateConfig.class})
 public class JSONSerializationTest {
+
+    private final Logger LOG = Logger.getLogger(JSONSerializationTest.class);
 
     @Autowired
     private Generator<Message> generator;
@@ -100,26 +103,14 @@ public class JSONSerializationTest {
         try {
             String json = mapper.writeValueAsString(message);
             Map<String, Object> mapResult = mapper.readValue(json,Map.class);
-            System.out.println(mapResult.get("chat").getClass().getName());
+            LOG.debug(String.format("Test for %s as result of parsing JSON",
+                    mapResult.get("chat").getClass().getName()));
         } catch (IOException e) {
-            fail(e.toString());
+            LOG.error("Failed parsing of JSON sample", e);
+            fail();
         }
 
     }
-
-    @Test
-    public void messageSavingTest() {
-        Message message = generator.create();
-        Chat chat = new Chat();
-        chat.setID(1L);
-        message.setChat(chat);
-        User user = new User();
-        user.setID(16);
-        message.setSender(user);
-
-        String raw = messageSerializer.parseToJson(message);
-    }
-
 
     @Test
     public void messageReadingTest() {
@@ -133,12 +124,15 @@ public class JSONSerializationTest {
         message.setID(33L);
 
         String raw = messageSerializer.parseToJson(message);
-        //messageTokenizer.getOne(raw);
-        System.out.println(raw);
-        System.out.println(messageSerializer.parseToEntity(raw,Message.class));
+
+        LOG.debug(String.format("Object %s parse to JSON format: %s", Message.class, raw));
+        LOG.debug(String.format("Raw JSON parsed back into object %s",
+                messageSerializer.parseToEntity(raw,Message.class)));
     }
 
     @Test
+    @Rollback
+    @Transactional
     public void chatSavingTest() {
         Chat chat = chatGenerator.create();
         chat.setDescription("chatSavingTest");
@@ -156,8 +150,10 @@ public class JSONSerializationTest {
 
         String raw = chatSerializer.parseToJson(chat);
         raw = chatJsonTokenizer.getOne(raw);
-        System.out.println(raw);
-        System.out.println(chatSerializer.parseToEntity(raw,Chat.class));
+
+        LOG.debug(String.format("Object %s parse to JSON format: %s", Chat.class, raw));
+        LOG.debug(String.format("Raw JSON parsed back into object %s",
+                chatSerializer.parseToEntity(raw,Chat.class)));
     }
     
 }
