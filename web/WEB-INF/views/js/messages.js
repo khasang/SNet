@@ -1,6 +1,9 @@
 var currentChat = 0;
-function callMessages() {
-    var service = "/messages/list";
+
+function callMessages(workingDir) {
+
+    if (workingDir==null) workingDir = '';
+    var service = workingDir + '/messages/list';
     var ChatObject = {
         'id': currentChat,
         'description' : ""
@@ -14,9 +17,11 @@ function callMessages() {
     };
     xhttp.open("POST", service, true);
     xhttp.send(json);
+
 }
 
 function printMessages(json) {
+
     var messages = JSON.parse(json);
     var out = "";
     var i;
@@ -25,10 +30,14 @@ function printMessages(json) {
             + messages[i].body + '</div>';
     }
     document.getElementById("listMessages").innerHTML = out;
+
 }
 
-function sendMessage() {
+function sendMessage(workingDir) {
+
+    if (workingDir==null) workingDir = '';
     var msgBody = document.getElementById("inputedText").value;
+    var directory = workingDir + '/messages/new';
 
     if (msgBody != "" && msgBody != " ") {
         var Message = {
@@ -54,7 +63,10 @@ function sendMessage() {
             }
         };
 
-        xhttp.open("POST","/messages/new",true);
+        xhttp.open("POST",directory,true);
         xhttp.send(json);
+
+        document.getElementById("inputedText").value = '';
+
     }
 }

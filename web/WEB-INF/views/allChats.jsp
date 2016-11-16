@@ -6,9 +6,9 @@
 <html>
 <head>
     <title>Your chats</title>
-    <script src="./js/chats.js"></script>
+    <script src="${pageContext.request.contextPath}/js/chats.js"></script>
 </head>
-<body onload="callChats()">
+<body onload="callChats(${pageContext.request.contextPath})">
     <div class="page-content">
         <div class="row">
             <!--Left menu-->
