@@ -32,20 +32,26 @@ public class UserNewsController {
 
     @RequestMapping(value = "/userNews", method = RequestMethod.GET)
     public String getUserMessagesList(Principal principal, Model model) {
-        User myUser = userService.getUserByLogin(principal.getName());
-        List<WorkgroupNews> userWorkNews =  workgroupNewsService.getAllUserWorkgroupNewsList((long)(myUser.getID()));
-        List<Workgroup> allGroup = workgroupService.getAllWorkgroupList();
-        Map<WorkgroupNews,String> userNewsList = new HashMap<>();
-        for (WorkgroupNews news: userWorkNews){
-            for (Workgroup wg: allGroup){
-                if (news.getWorkgroupId() == wg.getId()){
-                    userNewsList.put(news,wg.getTitle() );
-                }
-            }
 
+        try {
+            User myUser = userService.getUserByLogin(principal.getName());
+            List<WorkgroupNews> userWorkNews = workgroupNewsService.getAllUserWorkgroupNewsList((long) (myUser.getID()));
+            List<Workgroup> allGroup = workgroupService.getAllWorkgroupList();
+            Map<WorkgroupNews, String> userNewsList = new HashMap<>();
+            for (WorkgroupNews news : userWorkNews) {
+                for (Workgroup wg : allGroup) {
+                    if (news.getWorkgroupId() == wg.getId()) {
+                        userNewsList.put(news, wg.getTitle());
+                    }
+                }
+
+            }
+            model.addAttribute("userNews", userNewsList);
+            return "userWgNews";
         }
-        model.addAttribute("userNews",userNewsList);
-        return "userWgNews";
+        catch (Exception e){
+            return "userWgNews";
+        }
     }
 
 }

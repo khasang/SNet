@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -39,7 +40,12 @@ public class WorkgroupNewsService {
 
     public List<WorkgroupNews> getAllUserWorkgroupNewsList(long userId) {
         List<Long> userGroupsListId = userWorkgroupDAO.getWorkgroupsByUser(userId);
-        return workgroupNewsDAO.getAllUserWorkgroupNewsList(userGroupsListId);
+        if (userGroupsListId.size() !=0) {
+            return workgroupNewsDAO.getAllUserWorkgroupNewsList(userGroupsListId);
+        }
+        else{
+            return new ArrayList<WorkgroupNews>();
+        }
     }
 
     public void deleteWorkgroupNew(WorkgroupNews workgroupNews) {

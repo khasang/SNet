@@ -21,6 +21,9 @@
                             </div>
                         </div>
                         <div class="content-box-header panel-heading">
+                            <c:if test="${empty userNews}">
+                                <p style="margin-left: 15px;margin-top: 10px;">У вас нет новостей!</p>
+                            </c:if>
                             <c:forEach items="${userNews}" var="news">
                                 <div class="content-box-large">
                                     <h4><b><a href=""> <c:out value="${news.key.title}"/> </a></b></h4>
