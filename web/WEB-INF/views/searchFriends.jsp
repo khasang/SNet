@@ -29,7 +29,7 @@
                                 <div >
                                     <div class="panel-title" style="margin-bottom:10px;margin-top:20px;
                             font-style: italic;font-weight:bold; color: #777777;">
-                                        <a href="user?userLogin=${friend.key.login}">
+                                        <a href="${pageContext.request.contextPath}/user?userLogin=${friend.key.login}">
                                             <c:out value ="${friend.key.login}"/>
                                         </a>
                                     </div>
@@ -44,7 +44,7 @@
 
                                     <c:if test="${friend.value.equals('NOT_A_FRIEND')}">
                                         <p>You can invite:</p>
-                                        <a href="/addFriend?friend=${friend.key.login}"><button class="btn btn-success btn-xs">Invite</button></a>
+                                        <a href="${pageContext.request.contextPath}/addFriend?friend=${friend.key.login}"><button class="btn btn-success btn-xs">Invite</button></a>
                                     </c:if>
 
                                     <c:if test="${friend.value.equals('INVITE_SENDED')}">
@@ -53,7 +53,7 @@
 
                                     <c:if test="${friend.value.equals('INVITE_RECEIVED')}">
                                         <p>You have an invite from this Person</p>
-                                        <a href="/approve?friend=${friend.key.login}"><button class="btn btn-success btn-xs">Approve</button></a>
+                                        <a href="${pageContext.request.contextPath}/approve?friend=${friend.key.login}"><button class="btn btn-success btn-xs">Approve</button></a>
                                     </c:if>
 
                                 </div>

@@ -50,9 +50,9 @@
                                 <td class="center"> <c:out value="${workgroups.headWorkgroupId}"/></td>
                                 <td><c:out value="${workgroups.title}"/>
                                     <div class="pull-right">
-                                        <a href="/workgroup?id=${workgroups.id}"><button class="btn btn-default"><i class="glyphicon glyphicon-eye-open"></i> View</button></a>
-                                        <a href="/workgroupEdit?id=${workgroups.id}"><button class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i> Edit</button></a>
-                                        <a href="/workgroupDelete?id=${workgroups.id}"><button class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> Delete</button></a>
+                                        <a href="${pageContext.request.contextPath}/workgroup?id=${workgroups.id}"><button class="btn btn-default"><i class="glyphicon glyphicon-eye-open"></i> View</button></a>
+                                        <a href="${pageContext.request.contextPath}/workgroupEdit?id=${workgroups.id}"><button class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i> Edit</button></a>
+                                        <a href="${pageContext.request.contextPath}/workgroupDelete?id=${workgroups.id}"><button class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> Delete</button></a>
                                     </div>
                                 </td>
                             </tr>

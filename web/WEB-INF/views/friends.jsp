@@ -28,7 +28,7 @@
                         <div >
                             <div class="panel-title" style="margin-bottom:10px;margin-top:20px;
                             font-style: italic;font-weight:bold; color: #777777;">
-                                <a href="user?userLogin=${friend.login}">
+                                <a href="${pageContext.request.contextPath}/user?userLogin=${friend.login}">
                                     <c:out value ="${friend.login}"/>
                                 </a>
                                </div>
@@ -36,7 +36,7 @@
                         <div style="padding: 5px;">
                             <p><strong>Город: </strong> <c:out value ="${friend.city}"/></p>
                         </div>
-                            <div style="margin:5px;"><a href="newDialog?login=${friend.login}">
+                            <div style="margin:5px;"><a href="${pageContext.request.contextPath}/newDialog?login=${friend.login}">
                                 <button class="btn btn-success btn-sm">
                                     <i class="glyphicon glyphicon-pencil"></i>
                                     Написать сообщение

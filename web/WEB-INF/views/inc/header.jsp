@@ -36,13 +36,13 @@
                                 You are not Loged In
                             </c:if>
                         </li>
-                        <li> <a style="color: white; background-color: #2c3742" href="<c:url value="/login"/>"> Log In</a> </li>
+                        <li> <a style="color: white; background-color: #2c3742" href="${pageContext.request.contextPath}/login"> Log In</a> </li>
                     </c:if>
                     <c:if test="${isUSer}">
                         <li style="padding-top: 15px; padding-bottom: 15px; color: lightskyblue">
                             You logged as: <b><sec:authentication property="principal.username"/></b>
                         </li>
-                        <li> <a style="color: whitesmoke;background-color: #2c3742" href="<c:url value="/logout"/>">Logout</a> </li>
+                        <li> <a style="color: whitesmoke;background-color: #2c3742" href="${pageContext.request.contextPath}/logout">Logout</a> </li>
                     </c:if>
                 </ul>
             </div>

@@ -15,7 +15,7 @@
                                 <p><span class="glyphicon glyphicon-chevron-down"></span> You have been logged out successfully.</p>
                             </div>
                         </c:if>
-                        <form action="/j_spring_security_check" method="post">
+                        <form action="${pageContext.request.contextPath}/j_spring_security_check" method="post">
                             <div class="form-group">
                                 <input id="j_username" name="j_username" class="form-control" required="required" type="text" placeholder="Username">
                             </div>
@@ -33,7 +33,7 @@
                         </form>
                     </div>
                 <div class="already">
-                    <p>Don't have an account yet?  <a href="/register"><button class="btn btn-info btn-xs">Register</button></p>
+                    <p>Don't have an account yet?  <a href="${pageContext.request.contextPath}/register"><button class="btn btn-info btn-xs">Register</button></p>
                     </a>
                 </div>
         </div>
