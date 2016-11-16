@@ -32,6 +32,7 @@
                                     <button class="btn btn-primary signup" type="submit">Update</button>
                                 </div>
                             </form:form>
+                            <a href="/allWorkgroups"><button class="btn btn-danger">Cancel</button></a>
                         </div>
                     </div>
                 </div>

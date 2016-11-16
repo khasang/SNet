@@ -41,7 +41,7 @@ public class AppController {
     
     @RequestMapping("/")
     public String index(Model model) {
-        return "index";
+        return "register";
     }
 
 

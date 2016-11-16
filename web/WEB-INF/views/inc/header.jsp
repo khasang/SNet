@@ -31,18 +31,18 @@
                 <sec:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" var="isUSer"/>
                 <ul class="nav navbar-nav navbar-right">
                     <c:if test="${not isUSer}">
-                        <li style="padding-top: 15px; padding-bottom: 15px; color: red">
+                        <li style="padding-top: 15px; padding-bottom: 15px; margin-right:5px; color:#c12e2a">
                             <c:if test="${empty param.error}">
                                 You are not Loged In
                             </c:if>
                         </li>
-                        <li> <a style="color: white;" href="<c:url value="/login"/>"> Log In</a> </li>
+                        <li> <a style="color: white; background-color: #2c3742" href="<c:url value="/login"/>"> Log In</a> </li>
                     </c:if>
                     <c:if test="${isUSer}">
                         <li style="padding-top: 15px; padding-bottom: 15px; color: lightskyblue">
                             You logged as: <b><sec:authentication property="principal.username"/></b>
                         </li>
-                        <li> <a style="color: whitesmoke;" href="<c:url value="/logout"/>">Logout</a> </li>
+                        <li> <a style="color: whitesmoke;background-color: #2c3742" href="<c:url value="/logout"/>">Logout</a> </li>
                     </c:if>
                 </ul>
             </div>
