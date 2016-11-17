@@ -17,7 +17,7 @@
                             <b><div class="panel-title">Edit Workgroup</div></b>
                         </div>
                         <div class="panel-body">
-                            <form:form id="workgroupForm" action="/updateWorkgroup/${workgroup.id}" method="post" modelAttribute="workgroup" accept-charset="UTF-8" enctype="multipart/form-data" >
+                            <form:form id="workgroupForm" action="${pageContext.request.contextPath}/updateWorkgroup/${workgroup.id}" method="post" modelAttribute="workgroup" accept-charset="UTF-8" enctype="multipart/form-data" >
                                 <fieldset>
                                     <div class="form-group">
                                         <label>Title</label>
@@ -32,7 +32,7 @@
                                     <button class="btn btn-primary signup" type="submit">Update</button>
                                 </div>
                             </form:form>
-                            <a href="/allWorkgroups"><button class="btn btn-danger">Cancel</button></a>
+                            <a href="${pageContext.request.contextPath}/allWorkgroups"><button class="btn btn-danger">Cancel</button></a>
                         </div>
                     </div>
                 </div>
