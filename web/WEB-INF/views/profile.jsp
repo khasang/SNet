@@ -20,7 +20,7 @@
                     <div class="col-md-12 panel-warning"
                          style="border:1px solid; border-color:#eee;background-color: #f5f5f5">
                         <div class="col-md-4 panel-warning">
-                            <div><img style="padding: 8px;" width="200px" src="/ava/${profile.avatar}"/></div>
+                            <div><img style="padding: 8px;" width="200px" src="${pageContext.request.contextPath}/ava/${profile.avatar}"/></div>
                             <sec:authentication property="principal.username" var="userN"/>
                                  <c:if test="${userN.equals(profile.login)}">
                                        <div style="margin:10px;"><a href="${pageContext.request.contextPath}/upload">

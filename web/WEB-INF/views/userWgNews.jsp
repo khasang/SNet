@@ -35,7 +35,7 @@
                                     <hr>
                                     <p><c:out value="${news.key.description}"/></p>
                                     <hr>
-                                    <p><b>Источник: </b> <a href="/workgroup?id=${news.key.workgroupId}"> <c:out value="${news.value}"/></a></p>
+                                    <p><b>Источник: </b> <a href="${pageContext.request.contextPath}/workgroup?id=${news.key.workgroupId}"> <c:out value="${news.value}"/></a></p>
                                 </div>
                             </c:forEach>
                             <br>
