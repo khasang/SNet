@@ -25,7 +25,7 @@
         <div class="col-md-4 col-md-offset-4">
             <div class="content-wrap">
                 <h2>Registration</h2>
-                            <form:form id="registrationForm" class="form-horizontal" action="/register" method="post" modelAttribute="user" accept-charset="UTF-8" enctype="multipart/form-data">
+                            <form:form id="registrationForm" class="form-horizontal" action="${pageContext.request.contextPath}/register" method="post" modelAttribute="user" accept-charset="UTF-8" enctype="multipart/form-data">
                                     <c:if test="${not empty message}">
                                     <div class="form-group has-error">
                                         <span class="help-block"><i class="fa fa-warning"></i> <span class="glyphicon glyphicon-remove"></span> You can't register with username:  <b><c:out value="${message}"/></b>, please choose another!</span>
