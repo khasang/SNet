@@ -75,7 +75,7 @@
                                 <b><div class="panel-title">Add new Workgroup</div></b>
                             </div>
                             <div class="panel-body">
-                                <form:form id="workgroupForm" action="/addNewWorkgroup" method="post" modelAttribute="workgroup" accept-charset="UTF-8" enctype="multipart/form-data" >
+                                <form:form id="workgroupForm" action="${pageContext.request.contextPath}/addNewWorkgroup" method="post" modelAttribute="workgroup" accept-charset="UTF-8" enctype="multipart/form-data" >
                                     <fieldset>
                                         <div class="form-group">
                                             <label>Title</label>
