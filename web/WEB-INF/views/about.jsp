@@ -14,7 +14,7 @@
                     </div>
                     <div class="col-md-4">
                         <h2>About SNet</h2>
-                        <p>Snet is a simple example of social network.</p>
+                        <b><p>Snet is a simple example of social network.</p>
                         <p>We use here next technologies:
                         <ul>
                             <li>Spring Framework</li>
@@ -36,7 +36,7 @@
                                 <li>Workgroups and news</li>
                             </ul>
                         </p>
-
+                        </b>
                     </div>
                 </div>
                 <!-- /.row -->
