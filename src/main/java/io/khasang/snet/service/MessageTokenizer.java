@@ -10,6 +10,8 @@ import io.khasang.snet.entity.userauth.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.GregorianCalendar;
+
 /* Function of this utility: parse object by JsonSerializer
 * and work with database */
 @Component
@@ -44,6 +46,7 @@ public class MessageTokenizer {
             Message message = messageSerializer.parseToEntity(raw, Message.class);
             sender = userDAO.getUserByName(sender.getLogin());
             message.setSender(sender);
+            message.setStamp(new GregorianCalendar());
             dataUtilMessages.add(message);
             return messageSerializer.parseToJson(message);
         } catch (Exception exc) {
