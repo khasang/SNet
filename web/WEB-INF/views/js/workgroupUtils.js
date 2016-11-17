@@ -122,7 +122,7 @@ function addUserToWorkgroup(pathToAddMember,workgroupId,membersPath,notMembersPa
 }
 
 
-function addWorkgroupNews(workgroupId) {
+function addWorkgroupNews(pathToAddNew,workgroupId,newsPath) {
     var newsTitle = document.getElementById("workNewsTitle").value;
     var newsDescription = document.getElementById("workNewsDescr").value;
     if (newsTitle != "" && newsTitle != " ") {
@@ -136,12 +136,12 @@ function addWorkgroupNews(workgroupId) {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if (this.readyState==4 && this.status==200) {
-                callNews(workgroupId);
+                callNews(newsPath);
                 document.getElementById("workNewsTitle").value = "";
                 document.getElementById("workNewsDescr").value = "";
             }
         };
-        xhttp.open("POST","/news/new",true);
+        xhttp.open("POST",pathToAddNew,true);
         xhttp.send(json);
     }
 }

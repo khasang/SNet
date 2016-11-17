@@ -48,7 +48,7 @@
                                             <textarea class="form-control" id="workNewsDescr" type="text"></textarea>
                                         </div>
                                         <button style="margin-bottom: 15px;" type="submit" class="btn btn-primary"
-                                                onclick=" addWorkgroupNews('${pageContext.request.contextPath}/news/${workgroup.id}')">Добавить
+                                                onclick=" addWorkgroupNews('${pageContext.request.contextPath}/news/new',${workgroup.id},'${pageContext.request.contextPath}/news/${workgroup.id}')">Добавить
                                         </button>
 
                                     </div>
