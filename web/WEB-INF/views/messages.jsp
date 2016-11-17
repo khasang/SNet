@@ -10,7 +10,7 @@
         currentChat=${chat_id};
     </script>
 </head>
-<body onload="callMessages(${pageContext.request.contextPath})">
+<body onload="callMessages(&apos;${pageContext.request.contextPath}&apos;)">
     <div class="page-content">
         <div class="row">
             <!--Left menu-->
@@ -32,7 +32,7 @@
                                     <div class="form-group">
                                         <label for="inputedText">Type text of new message below:</label>
                                         <textarea class="form-control" rows="5" id="inputedText"></textarea>
-                                        <button onclick="sendMessage(${pageContext.request.contextPath})" type="button" class="btn btn-primary">
+                                        <button onclick="sendMessage(&apos;${pageContext.request.contextPath}&apos;)" type="button" class="btn btn-primary">
                                             Send
                                         </button>
                                     </div>

@@ -8,7 +8,7 @@
     <title>Your chats</title>
     <script src="${pageContext.request.contextPath}/js/chats.js"></script>
 </head>
-<body onload="callChats(${pageContext.request.contextPath})">
+<body onload="callChats(&apos;${pageContext.request.contextPath}&apos;)">
     <div class="page-content">
         <div class="row">
             <!--Left menu-->
