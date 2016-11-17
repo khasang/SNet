@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!-- Add Bootstrap Validation-->
 <link rel="stylesheet" href="css/bootstrapValidator.css"/>
 <script type="text/javascript" src="vendors/jquery/jquery-1.10.2.min.js"></script>
@@ -11,6 +12,15 @@
 <!--PAGE CONTENT -->
 <div class="page-content container">
     <div class="row">
+
+        <sec:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" var="isUSer"/>
+        <c:if test="${isUSer}">
+        <script language="JavaScript" type="text/javascript">
+            <!--
+            location="${pageContext.request.contextPath}/profile"
+            //-->
+        </script>
+        </c:if>
 
         <div class="col-md-4 col-md-offset-4">
             <div class="content-wrap">
