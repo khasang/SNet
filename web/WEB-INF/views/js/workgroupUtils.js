@@ -1,7 +1,7 @@
-function LoadNewsAndMembers(id) {
-    callMembers(id);
-    callNews(id);
-    callNotMembers(id);
+function LoadNewsAndMembers(newsPath,membersPath,notMembersPath) {
+    callMembers(membersPath);
+    callNews(newsPath);
+    callNotMembers(notMembersPath);
 }
 
 function callNews(id) {
@@ -51,7 +51,7 @@ function callMembers(id) {
             printAllMembers(this.responseText);
         }
     };
-    xhttp.open("GET", "/members/"+ id, true);
+    xhttp.open("GET", id, true);
     xhttp.send();
 }
 
@@ -80,7 +80,7 @@ function callNotMembers(id) {
             printNotMembers(this.responseText);
         }
     };
-    xhttp.open("GET", "/notMembers/"+ id, true);
+    xhttp.open("GET", id, true);
     xhttp.send();
 }
 
@@ -97,7 +97,7 @@ function printNotMembers(jsonResponse) {
     document.getElementById("listNotMembers").innerHTML = out;
 }
 
-function addUserToWorkgroup(workgroupId) {
+function addUserToWorkgroup(pathToAddMember,workgroupId,membersPath,notMembersPath) {
     var userId = document.getElementById("listNotMembers").value;
     if (userId != "" && userId != " ") {
         var userWorkgroups = {
@@ -112,11 +112,11 @@ function addUserToWorkgroup(workgroupId) {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if (this.readyState==4 && this.status==200) {
-                callNotMembers(workgroupId);
-                callMembers(workgroupId);
+                callNotMembers(notMembersPath);
+                callMembers(membersPath);
             }
         };
-        xhttp.open("POST","/members/new",true);
+        xhttp.open("POST",pathToAddMember,true);
         xhttp.send(json);
     }
 }

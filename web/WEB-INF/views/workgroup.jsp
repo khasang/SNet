@@ -31,7 +31,7 @@
                                     value="${workgroup.description}"/></div>
                         </div>
 
-                        <body onload="LoadNewsAndMembers('${pageContext.request.contextPath}/news/${workgroup.id}')">
+                        <body onload="LoadNewsAndMembers('${pageContext.request.contextPath}/news/${workgroup.id}','${pageContext.request.contextPath}/members/${workgroup.id}','${pageContext.request.contextPath}/notMembers/${workgroup.id}')">
                         <div>
                             <c:if test="${isUSer}">
                                 <div class="col-md-8 panel-info" style="margin-bottom: 20px;">
@@ -99,7 +99,7 @@
                                     </div>
                                 </form>
                                 <div class="pull-right">
-                                    <button class="btn btn-primary" onclick="addUserToWorkgroup('${workgroup.id}')">
+                                    <button class="btn btn-primary" onclick="addUserToWorkgroup('${pageContext.request.contextPath}/members/new',${workgroup.id},'${pageContext.request.contextPath}/members/${workgroup.id}','${pageContext.request.contextPath}/notMembers/${workgroup.id}')">
                                         Add
                                     </button>
                                 </div>
