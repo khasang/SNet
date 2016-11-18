@@ -124,25 +124,36 @@ To make sure the record was deleted, you can display a list of all companies:
 =======
 
 ### Messaging
-The SNet application provides conversation how a dialogue, but further, as well as dialogue will possible lead conference.
-Dialogs exists as entity **chat**, and serves a _logical_ containers of messages.
 
-#### Creation of new dialogue
-When user click button for creation of new message, on page of user profile, or page of all friends of current user
+Snet provides send and receive messages in real time. At this moment available dialog between two users, but further, planned enable conference between dozens of users.
+
+#### Messages
+
+For access to messages, on the page with list of available chats ( _/chats_ ), just click on button **Read messages**, after click user will load message's page. Also user can remove existed chat, by using buttom **Remove chat**.
+
+![] ()
+
+To send new message, user can use form at lower corner of page messages. Sended message wiil shown last one.
+
+![] ()
+
+#### Chats
+
+Chats contains user's messages, act as _logical_ container. To proceed to chat, user can use buttons in profile of another user, buttons near elemnt of list at page friends and button near each result of searching friends, at a corresponding page.
 
 ![](http://i83.fastpic.ru/big/2016/1116/cf/ef871c010624ec227f7a547dc22ee3cf.png)
 
-in case if **current** user have dialogue with user, current user will open page of existed dialogue, in other case will created new dialogue.
+If user starts new chat with another user, with which current user already have dialog twosome, current user will redirect at existed dialog. Otherwise will be created new chat.
 
->Moreover, if you have a conversation between vary of users, and user which you want chat involved in this conversation, in that case, you can not redirected in conversation when you clikc button for new message. This provides by specal algorithm presented below
+>Moreover, in a situation where _current_ user have conference between vary of users, and exist _another_ user, which involved in to this conference. If _current_ user creates new chat with _another_, he will be redirected in dialog **twosome** with _another_ one. In case of that dialog not exist, it will be created. This feature provides by algorithm below:
 
 ```java
 ...
 
     private List<Chat> searchingAlgorithm() {
         List<Chat> result = new ArrayList<>();
-
-        Map<Chat, List<User>> discusses = new HashMap<>();
+		Map<Chat, List<User>> discusses = new HashMap<>();
+		
         // hayStack - source list of chats
         for (ChatRegistryUnit registryUnit : hayStack) {
             if (discusses.containsKey(registryUnit.getChat())) {
@@ -163,5 +174,9 @@ in case if **current** user have dialogue with user, current user will open page
         return result;
     }
 ...
+
 ```
+As input in this method was given haystack is an List<ChatRegistryUnit>. ChatRegistryUnit - entity which contains users and chats. Given list contains all chats registry, where involve users: _current_ and _another_. Aim of given algorithm is to form list which contains chats, where discuss **only** our _current_ and _another_ users.
+
+More closely you can see this algorithm, and it's testing in DialogSearcherTest at _src/test/java/io/khasang/snet/entity_
 
