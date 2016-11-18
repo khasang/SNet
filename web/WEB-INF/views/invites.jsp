@@ -27,7 +27,7 @@
                                 <div >
                                     <div class="panel-title" style="margin-bottom:10px;margin-top:20px;
                             font-style: italic;font-weight:bold; color: #777777;">
-                                        <a href="user?userLogin=${friend.login}">
+                                        <a href="${pageContext.request.contextPath}/user?userLogin=${friend.login}">
                                             <c:out value ="${friend.login}"/>
                                         </a>
                                     </div>
@@ -36,7 +36,7 @@
                                     <p><strong>Город: </strong> <c:out value ="${friend.city}"/></p>
                                 </div>
                                 <div style="margin:5px;">
-                                    <a href="/approve?friend=${friend.login}"><button class="btn btn-success btn-xs">Approve</button></a>
+                                    <a href="${pageContext.request.contextPath}/approve?friend=${friend.login}"><button class="btn btn-success btn-xs">Approve</button></a>
                                 </div>
                             </div>
                         </div>
