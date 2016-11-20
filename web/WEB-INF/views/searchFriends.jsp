@@ -30,7 +30,6 @@
                             <tr>
                                 <td>
                             <div class="col-md-12" style="margin-top: 15px;margin-bottom: 15px;background-color: #ffffff;">
-
                                 <div class="col-md-3 panel-warning">
                                     <div><img style="padding: 15px;" width="150px" src="/ava/${friend.key.avatar}"/></div>
                                 </div>
@@ -49,21 +48,17 @@
                                         <c:if test="${friend.value.equals('IN_FRIENDS')}">
                                             <p>This person is already in your friends</p>
                                         </c:if>
-
                                         <c:if test="${friend.value.equals('NOT_A_FRIEND')}">
                                             <p>You can invite:</p>
                                             <a href="${pageContext.request.contextPath}/addFriend?friend=${friend.key.login}"><button class="btn btn-success btn-xs">Invite</button></a>
                                         </c:if>
-
                                         <c:if test="${friend.value.equals('INVITE_SENDED')}">
                                             <p>You already send an invite</p>
                                         </c:if>
-
                                         <c:if test="${friend.value.equals('INVITE_RECEIVED')}">
                                             <p>You have an invite from this Person</p>
                                             <a href="${pageContext.request.contextPath}/approve?friend=${friend.key.login}"><button class="btn btn-success btn-xs">Approve</button></a>
                                         </c:if>
-
                                     </div>
                                 </div>
                             </div>
