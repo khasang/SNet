@@ -37,6 +37,7 @@ public class WorkGroupDAOTest {
     WorkgroupNewsDAO workgroupNewsDAO;
 
     @Test
+    @Rollback(true)
     public void addWorkgroupNews(){
         SimpleDateFormat date = new SimpleDateFormat("dd.MM.yyyy");
         WorkgroupNews workgroupNews = new WorkgroupNews();
@@ -62,7 +63,6 @@ public class WorkGroupDAOTest {
 
         for (Workgroup wg: workgroupList) {
            wgIdList.add(wg.getId());
-
         }
         List<Workgroup> expectedList= workgroupDAO.getWorkgroupListByIdList(wgIdList);
         Assert.assertEquals("Not equals",workgroupList,expectedList);

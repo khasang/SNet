@@ -6,6 +6,7 @@ import io.khasang.snet.config.application.WebConfig;
 import io.khasang.snet.dao.workgroups.WorkgroupDAO;
 import io.khasang.snet.dao.workgroups.WorkgroupNewsDAO;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,7 @@ public class WorkgroupNewsExampleTest {
     WorkgroupNewsDAO workgroupNewsDAO;
 
     @Test
+    @Ignore
     public void addSimpleWorkgroupNews(){
         Workgroup workgroup = new Workgroup();
         workgroup.setTitle("IT Department");
