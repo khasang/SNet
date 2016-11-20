@@ -24,7 +24,7 @@
             <div class="col-md-5">
                 <!-- Logo -->
                 <div class="logo">
-                    <h1><a href="/"><i class="glyphicon glyphicon-globe"></i> SNet</a></h1>
+                    <h1><a href="${pageContext.request.contextPath}/"><i class="glyphicon glyphicon-globe"></i> SNet</a></h1>
                 </div>
             </div>
             <div class="col-md-6 pull-right">
