@@ -19,5 +19,6 @@ public class By {
 
     public void setByMessage(String byMessage) {
         this.byMessage = byMessage;
+
     }
 }

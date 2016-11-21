@@ -2,4 +2,8 @@
 /lib/
 /out/
 /target/
+/classes/
 *.iml
+*.log
+*.log.*
+/images/

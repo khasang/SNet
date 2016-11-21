@@ -11,7 +11,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan({"io.khasang.snet.config", "io.khasang.snet.controller", "io.khasang.snet.*"})
+@ComponentScan({"io.khasang.snet.config", "io.khasang.snet.controller.*", "io.khasang.snet.*", "io.khasang.snet.dao", "io.khasang.snet.service"})
 public class WebConfig extends WebMvcConfigurerAdapter {
     @Bean
     public InternalResourceViewResolver viewResolver() {
@@ -25,10 +25,13 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        String myExternalFilePath = "file:///C:/proj/java/images/avatars/";
         registry.addResourceHandler("/css/**").addResourceLocations("/WEB-INF/views/css/");
-        registry.addResourceHandler("/img/**").addResourceLocations("/WEB-INF/views/images/");
+        registry.addResourceHandler("/images/**").addResourceLocations("/WEB-INF/views/images/");
         registry.addResourceHandler("/js/**").addResourceLocations("/WEB-INF/views/js/");
-        registry.addResourceHandler("/font/**").addResourceLocations("/WEB-INF/views/font/");
+        registry.addResourceHandler("/fonts/**").addResourceLocations("/WEB-INF/views/css/fonts/");
+        registry.addResourceHandler("/vendors/**").addResourceLocations("/WEB-INF/views/vendors/");
+        registry.addResourceHandler("/ava/**").addResourceLocations(myExternalFilePath);
     }
 
 }
