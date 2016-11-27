@@ -2,9 +2,6 @@ package io.khasang.snet.config;
 
 import io.khasang.snet.model.*;
 import io.khasang.snet.service.PostService;
-import io.khasang.snet.service.QueryHandler;
-import io.khasang.snet.service.QuestionService;
-import io.khasang.snet.service.UsersPasswordChanger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,14 +9,22 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 @Configuration
 @PropertySource(value = {"classpath:util.properties"})
 @PropertySource(value = {"classpath:auth.properties"})
 @PropertySource(value = {"classpath:backup.properties"})
 public class AppConfig {
+
+    private Environment environment;
+
     @Autowired
-    Environment environment;
+    public AppConfig(Environment environment) {
+        this.environment = environment;
+    }
 
     @Bean
     public UserDetailsService userDetailsService() {
@@ -35,11 +40,6 @@ public class AppConfig {
         CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver();
         commonsMultipartResolver.setMaxUploadSize(1000000);
         return commonsMultipartResolver;
-    }
-
-    @Bean
-    public Hello hello() {
-        return new Hello("This is hello message");
     }
 
     @Bean
@@ -60,11 +60,6 @@ public class AppConfig {
         dataSource.setUsername(environment.getProperty("jdbc.postgresql.username"));
         dataSource.setPassword(environment.getProperty("jdbc.postgresql.password"));
         return dataSource;
-    }
-
-    @Bean
-    public QueryHandler queryHandler() {
-        return new QueryHandler(jdbcTemplate());
     }
 
     @Bean
@@ -93,12 +88,6 @@ public class AppConfig {
     public TruncateTable truncateTable() {
         return new TruncateTable(jdbcTemplate());
     }
-
-    @Bean
-    public UsersPasswordChanger usersPasswordChanger() {
-        return new UsersPasswordChanger(queryHandler());
-    }
-
 
     @Bean
     public PostService postService(){

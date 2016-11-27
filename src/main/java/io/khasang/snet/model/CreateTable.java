@@ -1,8 +1,10 @@
 package io.khasang.snet.model;
 
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class CreateTable {
     private JdbcTemplate jdbcTemplate;

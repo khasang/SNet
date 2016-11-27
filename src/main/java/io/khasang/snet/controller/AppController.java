@@ -1,7 +1,6 @@
 package io.khasang.snet.controller;
 
 import io.khasang.snet.model.*;
-import io.khasang.snet.service.UsersPasswordChanger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.core.Authentication;
@@ -15,31 +14,21 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 
 
 @Controller
 @ComponentScan("io.khasang.snet.model.By")
 public class AppController {
     @Autowired
-    Hello hello;
-    @Autowired
-    By by;
-    @Autowired
     CreateTable createTable;
     @Autowired
     SelectFromTable selectFromTable;
-
-    DeleteTable deleteTable;
     @Autowired
     TruncateTable truncateTable;
  	@Autowired
     BackupBase backupBase;
     @Autowired
     TableConfiguration tableConfiguration;
-
-    @Autowired
-    UsersPasswordChanger usersPasswordChanger;
 
     @RequestMapping("/")
     public String index(Model model) {
@@ -59,22 +48,11 @@ public class AppController {
         return "create";
     }
 
-    @RequestMapping("/delete")
-    public String deleteTableCompany(Model model) {
-        model.addAttribute("create", deleteTable.delete());
-        return "create";
-    }
-
-    @RequestMapping("/delete/{companyId}")
-    public String deleteRecord(@PathVariable int companyId, Model model) {
-        model.addAttribute("delete", deleteTable.deleteRecord(companyId));
-        return "deleteID";
-    }
-
     @RequestMapping("/allCompany")
     public String selectAllCompany(Model model) {
-        List<Company> componies = createTable.selectAll();
-        model.addAttribute("allCompany", componies);
+        // List<Company> componies = createTable.selectAll();
+        //model.addAttribute("allCompany", componies);
+        // FIXME: 27.11.16 Пофиксить или удалить эту опцию
         return "allCompany";
     }
 
@@ -127,12 +105,6 @@ public class AppController {
         return "backUp";
     }
 
-    @RequestMapping("/confidential/page")
-    public String secureTable(Model model) {
-        model.addAttribute("secure", "This is a very secure place");
-        return "secure";
-    }
-
     @RequestMapping(value = {"hello/{name}"}, method = RequestMethod.GET)
     public ModelAndView hello(@PathVariable("name") String name) {
         ModelAndView modelAndView = new ModelAndView();
@@ -140,23 +112,6 @@ public class AppController {
         modelAndView.addObject("crypt", new BCryptPasswordEncoder().encode(name));
         return modelAndView;
 
-    }
-
-    /* @param login: user's login from database
-    *  @param newPassword new password of user, will be automatically encoded
-    *  Request example:
-    *  http://localhost:8080/confidential/changepwd?login=user_login&newPwd=new_password
-    *  were, login = @param login newPwd = @param newPassword
-    *  WARNING: take parameters without any quotes or apostrophe
-    *  */
-    @RequestMapping("/confidential/changepwd")
-    public ModelAndView changepwd(@RequestParam(value = "login") String login,
-                                  @RequestParam(value = "newPwd") String newPassword) {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("change");
-        String response = usersPasswordChanger.change(login, new BCryptPasswordEncoder().encode(newPassword));
-        modelAndView.addObject("response", response);
-        return modelAndView;
     }
 
     @RequestMapping("/register")
@@ -217,11 +172,6 @@ public class AppController {
         return "redirect:/login?logout";//You can redirect wherever you want, but generally it's a good practice to show login screen again.
     }
 
-    @RequestMapping("/create")
-    public String createTableCompany(Model model){
-        model.addAttribute("create", createTable.tableCreation());
-        return "create";
-    }
     @RequestMapping("/select")
     public String selectFromTable(Model model){
         model.addAttribute("select", selectFromTable.selectRowsFromTableInArray() );

@@ -43,19 +43,9 @@ public class Company {
         return age;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public float getSalary() {
-        return salary;
-    }
-}
     public void setAge(int age) {
         this.age = age;
     }
-
-
 
     public double getSalary() {
         return salary;
