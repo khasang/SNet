@@ -14,7 +14,7 @@ import java.util.Calendar;
  * by field chat
  */
 @Entity(name = "message")
-public class Message implements AbstractEntity<Long> {
+public class Message implements AbstractEntity<Long>, Comparable<Message> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -86,6 +86,11 @@ public class Message implements AbstractEntity<Long> {
 
     public void setStamp(Calendar stamp) {
         this.stamp = stamp;
+    }
+
+    @Override
+    public int compareTo(Message o) {
+        return this.stamp.compareTo(o.stamp);
     }
 
     @Override
