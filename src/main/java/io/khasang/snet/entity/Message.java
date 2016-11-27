@@ -8,6 +8,7 @@ import org.hibernate.annotations.NamedQuery;
 import javax.persistence.*;
 import javax.persistence.Entity;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 /**
  * Entity that represents message, linked with @io.khasang.snet.entity.Chat
@@ -37,13 +38,14 @@ public class Message implements AbstractEntity<Long>, Comparable<Message> {
     private Calendar stamp;
 
     public Message() {
+        this.stamp = new GregorianCalendar();
     }
 
-    public Message(User sender, Chat chat, String body, Calendar stamp) {
+    public Message(User sender, Chat chat, String body) {
         this.sender = sender;
         this.chat = chat;
         this.body = body;
-        this.stamp = stamp;
+        this.stamp = new GregorianCalendar();
     }
 
     @Override
@@ -90,6 +92,7 @@ public class Message implements AbstractEntity<Long>, Comparable<Message> {
 
     @Override
     public int compareTo(Message o) {
+        if (this.stamp==null || o.stamp==null) return 0;
         return this.stamp.compareTo(o.stamp);
     }
 
@@ -122,6 +125,7 @@ public class Message implements AbstractEntity<Long>, Comparable<Message> {
     public String toString() {
         return String.format(
                 "#%1$d Sender: %2$s Chat: %3$s Body length: %4$d Timestamp: %5$td.%5$tm.%5$ty %5$tH:%5$tM:%5$tS",
-                id, sender==null ? "" : sender.getLogin(), chat, body.length(),stamp.getTime());
+                id, sender==null ? "" : sender.getLogin(),
+                chat, body==null ? 0 : body.length(), stamp.getTime());
     }
 }

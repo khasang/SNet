@@ -60,6 +60,9 @@ public class JSONSerializationTest {
     @Autowired
     private ChatSerializer chatSerializer;
 
+    @Autowired
+    private MessageTokenizer messageTokenizer;
+
     @Before
     public void setUp() {
         if (mapper==null) mapper = new ObjectMapper();
@@ -155,5 +158,4 @@ public class JSONSerializationTest {
         LOG.debug(String.format("Raw JSON parsed back into object %s",
                 chatSerializer.parseToEntity(raw,Chat.class)));
     }
-    
 }

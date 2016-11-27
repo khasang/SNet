@@ -53,7 +53,7 @@ public class StormyDiscussTest {
     * */
     private void createUserRole() {
         String roleUser = "ROLE_USER";
-        userRole = rolesDAO.getRolesByName(roleUser);
+//        userRole = rolesDAO.getRolesByName(roleUser);
         if (userRole==null) {
             userRole = new Roles();
             userRole.setRole(roleUser);
@@ -141,7 +141,7 @@ public class StormyDiscussTest {
     }
 
     private void sendMessage(User sender, Chat chat, String body) {
-        Message message = new Message(sender,chat,body,new GregorianCalendar());
+        Message message = new Message(sender,chat,body);
         dataUtilMessages.add(message);
     }
 }

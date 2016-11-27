@@ -73,8 +73,7 @@ public class MessageTest {
         Message same = new Message(
                 first.getSender(),
                 first.getChat(),
-                first.getBody(),
-                first.getStamp()
+                first.getBody()
         );
         Message another = messageGenerator.create();
        assertTrue(suite.testEquals(first,same,another));

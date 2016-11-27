@@ -21,7 +21,7 @@ public class MessagesGenerator implements Generator<Message> {
 
     @Override
     public Message create() {
-        return new Message(new User(), new Chat(), stringGenerator.create(), new GregorianCalendar());
+        return new Message(new User(), new Chat(), stringGenerator.create());
     }
 
 }
