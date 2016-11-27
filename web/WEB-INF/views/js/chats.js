@@ -20,9 +20,13 @@ function printAllChats(jsonResponse,workingDir) {
     var i;
     for (i = 0; i < chats.length; i++) {
         out += '<div>Chat: ' + chats[i].description + '<div class="col-sm-4 pull-right">' +
-            '<a href="' + workingDir + '/messages?id=' + chats[i].id +
+            '<a href="'
+            + workingDir + '/messages?id='
+            + chats[i].id +
             '"><button class="btn btn-primary btn-xs">Read messages</button></a>' +
-            '<button onclick="removeOne(' + chats[i].id + ',' + workingDir + ')" class="btn btn-danger btn-xs">Remove chat</button>' +
+            '<button onclick="removeOne('
+            + chats[i].id + ',&apos;'
+            + workingDir + '&apos;)" class="btn btn-danger btn-xs">Remove chat</button>' +
             '</div></div><hr>';
     }
     document.getElementById("listChats").innerHTML = out;
@@ -37,7 +41,7 @@ function removeOne(chatId, workingDir) {
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             if (this.responseText == "") {
-                callChats();
+                callChats(workingDir);
             } else {
                 alert(this.responseText);
             }
