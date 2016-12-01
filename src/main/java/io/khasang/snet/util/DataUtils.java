@@ -17,9 +17,12 @@ import java.util.List;
 public abstract class DataUtils<Entity extends AbstractEntity> {
 
     private SessionFactory sessionFactory;
+    // Entity type mark
+    private Class<Entity> typeMark;
 
-    protected DataUtils(SessionFactory sessionFactory) {
+    protected DataUtils(Class<Entity> type, SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
+        this.typeMark = type;
     }
 
     /* Saving entity in database */
@@ -31,36 +34,33 @@ public abstract class DataUtils<Entity extends AbstractEntity> {
 
     /* Getting existed entity by id
     * To use this method, your entity's id must implements java.io.Serializable
-    * @param entityType - Class of your entity
     * @param id - java.io.Serializable object
     * @return - founded entity
     * */
-    protected Entity get(Class<Entity> entityType, Serializable id) {
-        return sessionFactory.getCurrentSession().get(entityType, id);
+    protected Entity get(Serializable id) {
+        return sessionFactory.getCurrentSession().get(typeMark, id);
     }
 
     /* Getting existed entity by single criterion
     * To use this method, create criterion, use org.hibernate.criterion.Restrictions
-    * @param entityType - Class of your entity
     * @param criterion - searching parameter
     * @return - founded entity
     * */
     @SuppressWarnings("unchecked")
-    protected Entity get(Class<Entity> entityType, Criterion criterion) {
-        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(entityType);
+    protected Entity get(Criterion criterion) {
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(typeMark);
         criteria.add(criterion);
         return (Entity) criteria.uniqueResult();
     }
 
     /* Getting existed entity by few criterions
     * To use this method, create criterion, use org.hibernate.criterion.Restrictions
-    * @param entityType - Class of your entity
     * @param criterions - array of searching parameters
     * @return - founded entity
     * */
     @SuppressWarnings("unchecked")
-    protected Entity get(Class<Entity> entityType, Criterion... criterions) {
-        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(entityType);
+    protected Entity get(Criterion... criterions) {
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(typeMark);
         for (Criterion criterion : criterions) {
             criteria.add(criterion);
         }
@@ -82,37 +82,34 @@ public abstract class DataUtils<Entity extends AbstractEntity> {
     }
 
     /* Creates list of all entities, that have current type
-     * @param entityType - type of searching entity
      * @return list of Entities
      * */
     @SuppressWarnings("unchecked")
-    protected List<Entity> getList(Class<Entity> entityType) {
-        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(entityType);
+    protected List<Entity> getList() {
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(typeMark);
         return (List<Entity>) criteria.list();
     }
 
     /* Creates list of all entities, that have current type,
      * and satisfy given criterion
-     * @param entityType - type of searching entity
      * @param criterion - searching parameter
      * @return list of Entities
      * */
     @SuppressWarnings("unchecked")
-    protected List<Entity> getList(Class<Entity> entityType, Criterion criterion) {
-        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(entityType);
+    protected List<Entity> getList(Criterion criterion) {
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(typeMark);
         criteria.add(criterion);
         return (List<Entity>) criteria.list();
     }
 
     /* Creates list of all entities, that have current type,
      * and satisfy given criterions
-     * @param entityType - type of searching entity
      * @param criterions - searching parameters
      * @return list of Entities
      * */
     @SuppressWarnings("unchecked")
-    protected List<Entity> getList(Class<Entity> entityType, Criterion... criterions) {
-        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(entityType);
+    protected List<Entity> getList(Criterion... criterions) {
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(typeMark);
         for (Criterion criterion : criterions) {
             criteria.add(criterion);
         }
