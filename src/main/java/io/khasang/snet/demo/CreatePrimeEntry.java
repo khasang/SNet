@@ -12,15 +12,16 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CreatePrimeEntry {
-
-    @Autowired
     private UserDAO userDAO;
-
-    @Autowired
     private AuthRulesDAO authRulesDAO;
+    private RolesDAO rolesDAO;
 
     @Autowired
-    private RolesDAO rolesDAO;
+    public CreatePrimeEntry(UserDAO userDAO, AuthRulesDAO authRulesDAO, RolesDAO rolesDAO) {
+        this.userDAO = userDAO;
+        this.authRulesDAO = authRulesDAO;
+        this.rolesDAO = rolesDAO;
+    }
 
     /* Creation ADMIN user account */
     public void createPrimeEntry() {

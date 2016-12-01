@@ -18,8 +18,12 @@ import org.springframework.web.servlet.view.JstlView;
 @ComponentScan({"io.khasang.snet.config", "io.khasang.snet.controller.*", "io.khasang.snet.*", "io.khasang.snet.repository", "io.khasang.snet.service"})
 public class WebConfig extends WebMvcConfigurerAdapter {
 
+    private Environment environment;
+
     @Autowired
-    Environment environment;
+    public WebConfig(Environment environment) {
+        this.environment = environment;
+    }
 
     @Bean
     public InternalResourceViewResolver viewResolver() {

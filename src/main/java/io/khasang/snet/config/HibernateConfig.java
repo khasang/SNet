@@ -30,8 +30,14 @@ import java.util.Properties;
 @PropertySource(value = {"classpath:hibernate.properties"})
 @ComponentScan({"io.khasang.snet.config"})
 public class HibernateConfig {
-    @Autowired
+
     private Environment environment;
+
+    @Autowired
+    public HibernateConfig(Environment environment) {
+        this.environment = environment;
+    }
+
 
     @Bean
     public LocalSessionFactoryBean sessionFactory() {

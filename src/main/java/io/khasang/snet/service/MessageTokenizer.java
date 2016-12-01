@@ -15,19 +15,21 @@ import java.util.GregorianCalendar;
 * and work with database */
 @Component
 public class MessageTokenizer {
-
-    @Autowired
     private JsonSerializer<Message> messageSerializer;
-
-    @Autowired
     private JsonSerializer<Chat> chatJsonSerializer;
-
-    @Autowired
     private AbstractCRUD<Message> dataUtilMessages;
-
-    @Autowired
     private UserDAO userDAO;
 
+    @Autowired
+    public MessageTokenizer(JsonSerializer<Message> messageSerializer,
+                            JsonSerializer<Chat> chatJsonSerializer,
+                            AbstractCRUD<Message> dataUtilMessages,
+                            UserDAO userDAO) {
+        this.messageSerializer = messageSerializer;
+        this.chatJsonSerializer = chatJsonSerializer;
+        this.dataUtilMessages = dataUtilMessages;
+        this.userDAO = userDAO;
+    }
 
     public String getList(String request) {
         Message message = new Message();

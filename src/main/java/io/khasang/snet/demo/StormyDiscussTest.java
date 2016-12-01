@@ -14,6 +14,7 @@ import io.khasang.snet.entity.userauth.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Component;
 
 import java.util.GregorianCalendar;
 
@@ -23,25 +24,28 @@ import java.util.GregorianCalendar;
  * Generates few users, few chats and
  * vary of message
  */
+@Component
 public class StormyDiscussTest {
-
-    @Autowired
     private UserDAO userDAO;
-
-    @Autowired
     private AbstractRegistrySearcher<Chat, User> chatCRUD;
-
-    @Autowired
     private AbstractCRUD<Message> dataUtilMessages;
-
-    @Autowired
     private AbstractCRUD<ChatRegistryUnit> registryCRUD;
-
-    @Autowired
     private AuthRulesDAO authRulesDAO;
+    private RolesDAO rolesDAO;
 
     @Autowired
-    private RolesDAO rolesDAO;
+    public StormyDiscussTest(UserDAO userDAO,
+                             AbstractRegistrySearcher<Chat, User> chatCRUD,
+                             AbstractCRUD<Message> dataUtilMessages,
+                             AbstractCRUD<ChatRegistryUnit> registryCRUD,
+                             AuthRulesDAO authRulesDAO, RolesDAO rolesDAO) {
+        this.userDAO = userDAO;
+        this.chatCRUD = chatCRUD;
+        this.dataUtilMessages = dataUtilMessages;
+        this.registryCRUD = registryCRUD;
+        this.authRulesDAO = authRulesDAO;
+        this.rolesDAO = rolesDAO;
+    }
 
     private Roles userRole;
     private BCryptPasswordEncoder passwordEncoder;

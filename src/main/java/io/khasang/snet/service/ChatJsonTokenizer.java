@@ -12,19 +12,22 @@ import org.springframework.stereotype.Component;
 /* This is utils for working with repository and JSON translators */
 @Component
 public class ChatJsonTokenizer {
-
-    @Autowired
     private AbstractRegistrySearcher<Chat, User> chatCRUD;
-
-    @Autowired
     private AbstractCRUD<ChatRegistryUnit> registryCRUD;
-
     // JSON translator
-    @Autowired
     private JsonSerializer<Chat> chatSerializer;
 
+    @Autowired
+    public ChatJsonTokenizer(AbstractRegistrySearcher<Chat, User> chatCRUD,
+                             AbstractCRUD<ChatRegistryUnit> registryCRUD,
+                             JsonSerializer<Chat> chatSerializer) {
+        this.chatCRUD = chatCRUD;
+        this.registryCRUD = registryCRUD;
+        this.chatSerializer = chatSerializer;
+    }
+
     /*
-    * @param user: filter by chats by user */
+        * @param user: filter by chats by user */
     public String getList(User user) {
         try {
             return chatSerializer.parseToJson(chatCRUD.getListSearched(user));
