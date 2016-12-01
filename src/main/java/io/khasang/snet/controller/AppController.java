@@ -16,12 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 
 @Controller
-@ComponentScan("io.khasang.snet.model.By")
 public class AppController {
-
-
-    @Autowired
-    UsersPasswordChanger usersPasswordChanger;
     
     @RequestMapping("/")
     public String index(Model model) {
@@ -53,23 +48,6 @@ public class AppController {
         modelAndView.addObject("crypt", new BCryptPasswordEncoder().encode(name));
         return modelAndView;
 
-    }
-
-    /* @param login: user's login from database
-    *  @param newPassword new password of user, will be automatically encoded
-    *  Request example:
-    *  http://localhost:8080/confidential/changepwd?login=user_login&newPwd=new_password
-    *  were, login = @param login newPwd = @param newPassword
-    *  WARNING: take parameters without any quotes or apostrophe
-    *  */
-    @RequestMapping("/confidential/changepwd")
-    public ModelAndView changepwd(@RequestParam(value = "login") String login,
-                                  @RequestParam(value = "newPwd") String newPassword) {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("change");
-        String response = usersPasswordChanger.change(login, new BCryptPasswordEncoder().encode(newPassword));
-        modelAndView.addObject("response", response);
-        return modelAndView;
     }
 
     @RequestMapping("/register")
