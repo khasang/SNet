@@ -1,6 +1,6 @@
 package io.khasang.snet.service;
 
-import io.khasang.snet.dao.PostDAO;
+import io.khasang.snet.repository.PostDAO;
 import io.khasang.snet.entity.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

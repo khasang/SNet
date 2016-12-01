@@ -1,8 +1,8 @@
 package io.khasang.snet.config;
 
-import io.khasang.snet.dao.AbstractCRUD;
-import io.khasang.snet.dao.AbstractRegistrySearcher;
-import io.khasang.snet.dao.impl.*;
+import io.khasang.snet.repository.AbstractCRUD;
+import io.khasang.snet.repository.AbstractRegistrySearcher;
+import io.khasang.snet.repository.impl.*;
 import io.khasang.snet.entity.*;
 import io.khasang.snet.entity.userauth.User;
 import org.hibernate.SessionFactory;
@@ -73,16 +73,6 @@ public class HibernateConfig {
     @Bean
     public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
         return new PersistenceExceptionTranslationPostProcessor();
-    }
-
-    @Bean
-    public AbstractCRUD<WeatherReport> weatherReportCRUD() {
-        return new WeatherReportUnils(sessionFactory().getObject());
-    }
-
-    @Bean(name = "picturesUtils")
-    public AbstractCRUD<Picture> pictureAbstractCRUD() {
-        return new PictureUtils(sessionFactory().getObject());
     }
 
     @Bean

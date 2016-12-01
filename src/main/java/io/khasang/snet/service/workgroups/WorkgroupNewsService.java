@@ -1,7 +1,7 @@
 package io.khasang.snet.service.workgroups;
 
-import io.khasang.snet.dao.workgroups.UserWorkgroupDAO;
-import io.khasang.snet.dao.workgroups.WorkgroupNewsDAO;
+import io.khasang.snet.repository.workgroups.UserWorkgroupDAO;
+import io.khasang.snet.repository.workgroups.WorkgroupNewsDAO;
 import io.khasang.snet.entity.workgroups.Workgroup;
 import io.khasang.snet.entity.workgroups.WorkgroupNews;
 import io.khasang.snet.service.JsonSerializer;

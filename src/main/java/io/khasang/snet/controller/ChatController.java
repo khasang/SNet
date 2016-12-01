@@ -1,24 +1,15 @@
 package io.khasang.snet.controller;
 
-import io.khasang.snet.dao.AbstractCRUD;
-import io.khasang.snet.dao.AbstractRegistrySearcher;
-import io.khasang.snet.dao.userauth.UserDAO;
+import io.khasang.snet.repository.AbstractRegistrySearcher;
+import io.khasang.snet.repository.userauth.UserDAO;
 import io.khasang.snet.entity.Chat;
 import io.khasang.snet.entity.userauth.User;
 import io.khasang.snet.service.ChatJsonTokenizer;
 import io.khasang.snet.service.MessageTokenizer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.security.Principal;
-import java.util.Collection;
-import java.util.List;
 
 @RestController
 public class ChatController {

@@ -1,9 +1,6 @@
 package io.khasang.snet.config;
 
-import io.khasang.snet.model.*;
-import io.khasang.snet.service.PostService;
 import io.khasang.snet.service.QueryHandler;
-import io.khasang.snet.service.QuestionService;
 import io.khasang.snet.service.UsersPasswordChanger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -21,6 +18,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 @PropertySource(value = {"classpath:auth.properties"})
 @PropertySource(value = {"classpath:backup.properties"})
 public class AppContext {
+
     @Autowired
     Environment environment;
 
@@ -38,21 +36,6 @@ public class AppContext {
         CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver();
         commonsMultipartResolver.setMaxUploadSize(1000000);
         return commonsMultipartResolver;
-    }
-
-    @Bean
-    public Hello hello() {
-        return new Hello("This is hello message");
-    }
-
-    @Bean
-    public BackupBase backupBase(){
-        return new BackupBase();
-    }
-
-    @Bean
-    public DeleteTable deleteTable(){
-        return new DeleteTable(jdbcTemplate());
     }
 
     @Bean
@@ -78,30 +61,8 @@ public class AppContext {
     }
 
     @Bean
-    public CreateTable createTable(){
-        return new CreateTable(jdbcTemplate());
-    }
-    
-    @Bean
-    public TableConfiguration createTableEmployee(){
-        return new TableConfiguration(jdbcTemplate());
-    }
-
-    @Bean
-    public TruncateTable truncateTable() {
-        return new TruncateTable(jdbcTemplate());
-    }
-
-    @Bean
     public UsersPasswordChanger usersPasswordChanger() {
         return new UsersPasswordChanger(queryHandler());
     }
-
-
-    @Bean
-    public PostService postService(){
-        return new PostService();
-    }
-
 
 }

@@ -1,9 +1,8 @@
 package io.khasang.snet.service;
 
 
-import io.khasang.snet.dao.AbstractCRUD;
-import io.khasang.snet.dao.AbstractRegistrySearcher;
-import io.khasang.snet.dao.userauth.UserDAO;
+import io.khasang.snet.repository.AbstractCRUD;
+import io.khasang.snet.repository.userauth.UserDAO;
 import io.khasang.snet.entity.Chat;
 import io.khasang.snet.entity.Message;
 import io.khasang.snet.entity.userauth.User;

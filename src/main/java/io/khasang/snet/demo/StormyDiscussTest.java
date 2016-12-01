@@ -1,10 +1,10 @@
 package io.khasang.snet.demo;
 
-import io.khasang.snet.dao.AbstractCRUD;
-import io.khasang.snet.dao.AbstractRegistrySearcher;
-import io.khasang.snet.dao.userauth.AuthRulesDAO;
-import io.khasang.snet.dao.userauth.RolesDAO;
-import io.khasang.snet.dao.userauth.UserDAO;
+import io.khasang.snet.repository.AbstractCRUD;
+import io.khasang.snet.repository.AbstractRegistrySearcher;
+import io.khasang.snet.repository.userauth.AuthRulesDAO;
+import io.khasang.snet.repository.userauth.RolesDAO;
+import io.khasang.snet.repository.userauth.UserDAO;
 import io.khasang.snet.entity.Chat;
 import io.khasang.snet.entity.ChatRegistryUnit;
 import io.khasang.snet.entity.Message;

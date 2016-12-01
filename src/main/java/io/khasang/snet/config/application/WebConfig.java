@@ -15,7 +15,7 @@ import org.springframework.web.servlet.view.JstlView;
 @Configuration
 @EnableWebMvc
 @PropertySource(value = {"classpath:static.properties"})
-@ComponentScan({"io.khasang.snet.config", "io.khasang.snet.controller.*", "io.khasang.snet.*", "io.khasang.snet.dao", "io.khasang.snet.service"})
+@ComponentScan({"io.khasang.snet.config", "io.khasang.snet.controller.*", "io.khasang.snet.*", "io.khasang.snet.repository", "io.khasang.snet.service"})
 public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Autowired

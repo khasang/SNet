@@ -1,9 +1,9 @@
 package io.khasang.snet.service;
 
 
-import io.khasang.snet.dao.FriendsDAO;
-import io.khasang.snet.dao.profile.ProfileDAO;
-import io.khasang.snet.dao.userauth.UserDAO;
+import io.khasang.snet.repository.FriendsDAO;
+import io.khasang.snet.repository.profile.ProfileDAO;
+import io.khasang.snet.repository.userauth.UserDAO;
 import io.khasang.snet.entity.Friends;
 import io.khasang.snet.entity.profile.Profile;
 import io.khasang.snet.entity.userauth.User;

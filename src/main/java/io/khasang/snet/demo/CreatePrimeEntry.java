@@ -1,8 +1,8 @@
 package io.khasang.snet.demo;
 
-import io.khasang.snet.dao.userauth.AuthRulesDAO;
-import io.khasang.snet.dao.userauth.RolesDAO;
-import io.khasang.snet.dao.userauth.UserDAO;
+import io.khasang.snet.repository.userauth.AuthRulesDAO;
+import io.khasang.snet.repository.userauth.RolesDAO;
+import io.khasang.snet.repository.userauth.UserDAO;
 import io.khasang.snet.entity.userauth.AuthRules;
 import io.khasang.snet.entity.userauth.Roles;
 import io.khasang.snet.entity.userauth.User;

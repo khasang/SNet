@@ -1,6 +1,6 @@
 package io.khasang.snet.service.profile;
 
-import io.khasang.snet.dao.profile.ProfileDAO;
+import io.khasang.snet.repository.profile.ProfileDAO;
 import io.khasang.snet.entity.profile.Profile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

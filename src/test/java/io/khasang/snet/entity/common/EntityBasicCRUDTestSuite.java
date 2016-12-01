@@ -1,6 +1,6 @@
 package io.khasang.snet.entity.common;
 
-import io.khasang.snet.dao.AbstractCRUD;
+import io.khasang.snet.repository.AbstractCRUD;
 import io.khasang.snet.entity.AbstractEntity;
 
 import java.util.Collection;

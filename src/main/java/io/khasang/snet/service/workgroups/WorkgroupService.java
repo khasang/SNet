@@ -1,6 +1,6 @@
 package io.khasang.snet.service.workgroups;
 
-import io.khasang.snet.dao.workgroups.WorkgroupDAO;
+import io.khasang.snet.repository.workgroups.WorkgroupDAO;
 import io.khasang.snet.entity.workgroups.Workgroup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,16 +1,15 @@
 package io.khasang.snet.service;
 
 
-import io.khasang.snet.dao.AbstractCRUD;
-import io.khasang.snet.dao.AbstractRegistrySearcher;
+import io.khasang.snet.repository.AbstractCRUD;
+import io.khasang.snet.repository.AbstractRegistrySearcher;
 import io.khasang.snet.entity.Chat;
 import io.khasang.snet.entity.ChatRegistryUnit;
 import io.khasang.snet.entity.userauth.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.StringArrayPropertyEditor;
 import org.springframework.stereotype.Component;
 
-/* This is utils for working with dao and JSON translators */
+/* This is utils for working with repository and JSON translators */
 @Component
 public class ChatJsonTokenizer {
 

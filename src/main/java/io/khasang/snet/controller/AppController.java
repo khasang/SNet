@@ -1,6 +1,5 @@
 package io.khasang.snet.controller;
 
-import io.khasang.snet.model.*;
 import io.khasang.snet.service.UsersPasswordChanger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
@@ -12,29 +11,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 
 
 @Controller
 @ComponentScan("io.khasang.snet.model.By")
 public class AppController {
-    @Autowired
-    Hello hello;
-    @Autowired
-    By by;
-    @Autowired
-    CreateTable createTable;
-    @Autowired
-    DeleteTable deleteTable;
-    @Autowired
-    TruncateTable truncateTable;
- 	@Autowired
-    BackupBase backupBase;
-    @Autowired
-    TableConfiguration tableConfiguration;
+
 
     @Autowired
     UsersPasswordChanger usersPasswordChanger;
@@ -42,65 +26,6 @@ public class AppController {
     @RequestMapping("/")
     public String index(Model model) {
         return "register";
-    }
-
-
-    @RequestMapping("/create")
-    public String createTableCompany(Model model) {
-        model.addAttribute("create", createTable.tableCreation());
-        return "create";
-    }
-
-    @RequestMapping("/insert")
-    public String insertInTableCompany(Model model) {
-        model.addAttribute("create", createTable.insert());
-        return "create";
-    }
-
-    @RequestMapping("/delete")
-    public String deleteTableCompany(Model model) {
-        model.addAttribute("create", deleteTable.delete());
-        return "create";
-    }
-
-    @RequestMapping("/delete/{companyId}")
-    public String deleteRecord(@PathVariable int companyId, Model model) {
-        model.addAttribute("delete", deleteTable.deleteRecord(companyId));
-        return "deleteID";
-    }
-
-    @RequestMapping("/allCompany")
-    public String selectAllCompany(Model model) {
-        List<Company> componies = createTable.selectAll();
-        model.addAttribute("allCompany", componies);
-        return "allCompany";
-    }
-
-    @RequestMapping("/createEmployees")
-    public String createTableEmployeesAndCities(Model model) {
-        model.addAttribute("createEmployees", tableConfiguration.employeesTableCreation());
-        model.addAttribute("createCities", tableConfiguration.citiesTableCreation());
-        return "createEmployees";
-    }
-
-    @RequestMapping("/insertEmployees")
-    public String insertInTableEmployeesAndCities(Model model) {
-        model.addAttribute("insertEmployees", tableConfiguration.insertEmployees());
-        model.addAttribute("insertCities", tableConfiguration.insertCities());
-        return "insertEmployees";
-    }
-
-    @RequestMapping("/selectEmployees")
-    public String selectEmployeesByCountry(Model model) {
-        model.addAttribute("selectEmployees", tableConfiguration.selectEmployeesByCountry("Англия"));
-        return "selectEmployees";
-    }
-
-
-    @RequestMapping("/truncate")
-    public String truncateTable(Model model) {
-        model.addAttribute("truncate", truncateTable.truncate());
-        return "truncate";
     }
 
     @RequestMapping("/rest")
@@ -114,16 +39,6 @@ public class AppController {
         return "login";
     }
 
-    @RequestMapping("/posts")
-    public String posts() {
-        return "posts";
-    }
-
-    @RequestMapping("/backup")
-    public String makeBasebackUp(Model model) {
-        model.addAttribute("backUpMessage", backupBase.makeBackUp());
-        return "backUp";
-    }
 
     @RequestMapping("/confidential/page")
     public String secureTable(Model model) {
