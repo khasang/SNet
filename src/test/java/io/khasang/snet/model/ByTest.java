@@ -1,10 +1,7 @@
 package io.khasang.snet.model;
 
-import io.khasang.snet.config.AppConfig;
+import io.khasang.snet.config.AppContext;
 import io.khasang.snet.config.application.WebConfig;
-import io.khasang.snet.entity.Chat;
-import org.hibernate.type.CharacterType;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,7 +16,7 @@ import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextConfiguration(classes = {AppConfig.class, WebConfig.class,})
+@ContextConfiguration(classes = {AppContext.class, WebConfig.class,})
 public class ByTest {
     @Autowired
     By by;

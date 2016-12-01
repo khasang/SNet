@@ -1,22 +1,16 @@
 package io.khasang.snet.util;
 
-import com.fasterxml.jackson.core.JsonFactory;
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.khasang.snet.config.AppConfig;
+import io.khasang.snet.config.AppContext;
 import io.khasang.snet.config.HibernateConfig;
 import io.khasang.snet.config.application.WebConfig;
 import io.khasang.snet.entity.Chat;
 import io.khasang.snet.entity.Message;
-import io.khasang.snet.entity.common.MessagesGenerator;
 import io.khasang.snet.entity.userauth.User;
 import io.khasang.snet.service.ChatJsonTokenizer;
 import io.khasang.snet.service.ChatSerializer;
 import io.khasang.snet.service.MessageSerializer;
-import io.khasang.snet.service.MessageTokenizer;
 import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
@@ -32,13 +26,12 @@ import static org.junit.Assert.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextConfiguration(classes = {AppConfig.class, WebConfig.class, HibernateConfig.class})
+@ContextConfiguration(classes = {AppContext.class, WebConfig.class, HibernateConfig.class})
 public class JSONSerializationTest {
 
     private final Logger LOG = Logger.getLogger(JSONSerializationTest.class);

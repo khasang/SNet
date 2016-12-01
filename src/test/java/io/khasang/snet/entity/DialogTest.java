@@ -1,6 +1,6 @@
 package io.khasang.snet.entity;
 
-import io.khasang.snet.config.AppConfig;
+import io.khasang.snet.config.AppContext;
 import io.khasang.snet.config.HibernateConfig;
 import io.khasang.snet.config.application.WebConfig;
 import io.khasang.snet.dao.AbstractCRUD;
@@ -25,7 +25,7 @@ import org.apache.log4j.Logger;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextConfiguration(classes = {AppConfig.class, WebConfig.class, HibernateConfig.class})
+@ContextConfiguration(classes = {AppContext.class, WebConfig.class, HibernateConfig.class})
 public class DialogTest {
 
     private static final Logger LOG = Logger.getLogger(DialogTest.class);

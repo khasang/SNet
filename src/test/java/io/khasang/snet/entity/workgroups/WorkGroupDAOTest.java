@@ -1,7 +1,7 @@
 package io.khasang.snet.entity.workgroups;
 
 
-import io.khasang.snet.config.AppConfig;
+import io.khasang.snet.config.AppContext;
 import io.khasang.snet.config.HibernateConfig;
 import io.khasang.snet.config.application.WebConfig;
 import io.khasang.snet.dao.workgroups.WorkgroupDAO;
@@ -27,7 +27,7 @@ import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextConfiguration(classes = {AppConfig.class, WebConfig.class, HibernateConfig.class})
+@ContextConfiguration(classes = {AppContext.class, WebConfig.class, HibernateConfig.class})
 public class WorkGroupDAOTest {
 
     @Autowired

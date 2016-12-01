@@ -20,7 +20,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 @PropertySource(value = {"classpath:util.properties"})
 @PropertySource(value = {"classpath:auth.properties"})
 @PropertySource(value = {"classpath:backup.properties"})
-public class AppConfig {
+public class AppContext {
     @Autowired
     Environment environment;
 

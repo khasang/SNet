@@ -1,18 +1,5 @@
 package io.khasang.snet.entity.workgroups;
 
-import io.khasang.snet.config.AppConfig;
-import io.khasang.snet.config.HibernateConfig;
-import io.khasang.snet.config.application.WebConfig;
-
-import io.khasang.snet.dao.workgroups.UserWorkgroupDAO;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
-import java.util.List;
-
 /*
 * Basic tests for entity User Workgroup test
 */

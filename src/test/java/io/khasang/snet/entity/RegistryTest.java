@@ -1,23 +1,17 @@
 package io.khasang.snet.entity;
 
-import io.khasang.snet.config.AppConfig;
+import io.khasang.snet.config.AppContext;
 import io.khasang.snet.config.HibernateConfig;
 import io.khasang.snet.config.application.WebConfig;
 import io.khasang.snet.dao.AbstractCRUD;
 import io.khasang.snet.dao.AbstractRegistrySearcher;
-import io.khasang.snet.dao.userauth.AuthRulesDAO;
-import io.khasang.snet.dao.userauth.RolesDAO;
 import io.khasang.snet.dao.userauth.UserDAO;
-import io.khasang.snet.entity.userauth.AuthRules;
-import io.khasang.snet.entity.userauth.Roles;
 import io.khasang.snet.entity.userauth.User;
 import io.khasang.snet.util.Generator;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import static org.junit.Assert.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -30,7 +24,7 @@ import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextConfiguration(classes = {AppConfig.class, WebConfig.class, HibernateConfig.class})
+@ContextConfiguration(classes = {AppContext.class, WebConfig.class, HibernateConfig.class})
 public class RegistryTest {
 
     @Autowired

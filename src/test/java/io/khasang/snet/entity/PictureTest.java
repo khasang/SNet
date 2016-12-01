@@ -1,6 +1,6 @@
 package io.khasang.snet.entity;
 
-import io.khasang.snet.config.AppConfig;
+import io.khasang.snet.config.AppContext;
 import io.khasang.snet.config.HibernateConfig;
 import io.khasang.snet.config.application.WebConfig;
 import io.khasang.snet.dao.AbstractCRUD;
@@ -9,22 +9,17 @@ import static org.junit.Assert.*;
 
 import io.khasang.snet.entity.common.EntityBasicCRUDTestSuite;
 import io.khasang.snet.util.Generator;
-import io.khasang.snet.entity.common.PicturesGenerator;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import java.util.HashSet;
-import java.util.Set;
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextConfiguration(classes = {AppConfig.class, WebConfig.class, HibernateConfig.class})
+@ContextConfiguration(classes = {AppContext.class, WebConfig.class, HibernateConfig.class})
 public class PictureTest {
 
     @Autowired

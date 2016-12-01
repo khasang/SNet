@@ -1,11 +1,10 @@
 package io.khasang.snet.entity;
 
-import io.khasang.snet.config.AppConfig;
+import io.khasang.snet.config.AppContext;
 import io.khasang.snet.config.HibernateConfig;
 import io.khasang.snet.config.application.WebConfig;
 import io.khasang.snet.dao.AbstractCRUD;
 import io.khasang.snet.dao.AbstractRegistrySearcher;
-import io.khasang.snet.dao.userauth.UserDAO;
 import io.khasang.snet.entity.common.EntityBasicCRUDTestSuite;
 import io.khasang.snet.entity.userauth.User;
 import io.khasang.snet.util.Generator;
@@ -30,7 +29,7 @@ import static org.junit.Assert.*;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextConfiguration(classes = {AppConfig.class, WebConfig.class, HibernateConfig.class})
+@ContextConfiguration(classes = {AppContext.class, WebConfig.class, HibernateConfig.class})
 public class MessageTest {
 
     @Autowired

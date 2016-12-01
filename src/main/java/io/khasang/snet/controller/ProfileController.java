@@ -4,6 +4,8 @@ import io.khasang.snet.entity.profile.Profile;
 import io.khasang.snet.service.profile.ProfileService;
 import io.khasang.snet.service.userauth.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Controller
+@PropertySource(value = {"classpath:static.properties"})
 public class ProfileController {
 
     @Autowired
@@ -25,6 +28,9 @@ public class ProfileController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    Environment environment;
 
     @RequestMapping( value = "/profile", method = RequestMethod.GET)
     @Transactional
@@ -89,43 +95,43 @@ public class ProfileController {
         return "editProfile";
     }
 
-        @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
-        @ResponseBody
-        public String handleFileUpload(@RequestParam("uploadfile") MultipartFile file) {
-            final String name =  SecurityContextHolder.getContext().getAuthentication().getName();
-            if (!file.isEmpty()) {
-                try {
-                    byte[] fileBytes = file.getBytes();
+    @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
+    @ResponseBody
+    public String handleFileUpload(@RequestParam("uploadfile") MultipartFile file) {
+        final String name = SecurityContextHolder.getContext().getAuthentication().getName();
+        if (!file.isEmpty()) {
+            try {
+                byte[] fileBytes = file.getBytes();
 
-                    if(!(file.getContentType().toLowerCase().equals("image/jpg")
-                            || file.getContentType().toLowerCase().equals("image/jpeg")
-                            || file.getContentType().toLowerCase().equals("image/png"))){
-                        return " only jpg/png file types are supported";
-                    }
-
-                    String rootPath = "C:\\proj\\java\\images\\avatars";
-                    System.out.println("Server rootPath: " + rootPath);
-                    System.out.println("File original name: " + file.getOriginalFilename());
-                    System.out.println("File content type: " + file.getContentType());
-                    System.out.println(name);
-                    String filename = file.getOriginalFilename();
-                    filename = filename.substring(filename.lastIndexOf("."), filename.length());
-                    profileService.updateAvatar(name + filename, name);
-                    File newFile = new File(rootPath + File.separator + name + filename);
-                    BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(newFile));
-                    stream.write(fileBytes);
-                    stream.close();
-                    System.out.println("File is saved under: " + rootPath + File.separator + file.getOriginalFilename());
-                    return "Foto upload.";
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    return "The selected file does not meet the requirements.";
+                if (!(file.getContentType().toLowerCase().equals("image/jpg")
+                        || file.getContentType().toLowerCase().equals("image/jpeg")
+                        || file.getContentType().toLowerCase().equals("image/png"))) {
+                    return " only jpg/png file types are supported";
                 }
-            } else {
-                return "Select the file.";
+
+                String rootPath = environment.getProperty("external.path.images.save");
+                System.out.println("Server rootPath: " + rootPath);
+                System.out.println("File original name: " + file.getOriginalFilename());
+                System.out.println("File content type: " + file.getContentType());
+                System.out.println(name);
+                String filename = file.getOriginalFilename();
+                filename = filename.substring(filename.lastIndexOf("."), filename.length());
+                profileService.updateAvatar(name + filename, name);
+                File newFile = new File(rootPath + File.separator + name + filename);
+                BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(newFile));
+                stream.write(fileBytes);
+                stream.close();
+                System.out.println("File is saved under: " + rootPath + File.separator + file.getOriginalFilename());
+                return "Foto upload.";
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                return "The selected file does not meet the requirements.";
             }
+        } else {
+            return "Select the file.";
         }
+    }
 
 }
 
