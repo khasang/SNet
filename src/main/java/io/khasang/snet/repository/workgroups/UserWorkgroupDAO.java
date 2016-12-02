@@ -7,13 +7,9 @@ import java.util.List;
 public interface UserWorkgroupDAO {
 
     void addUserWorkgroups(UserWorkgroups userWorkgroupDAO);
-
     void updateUserWorkgroups(UserWorkgroups userWorkgroupDAO);
-
     void deleteUserWorkgroups(UserWorkgroups userWorkgroupDAO);
-
     List<Long> getWorkgroupsByUser(long userId);
-
     List<Long> getUsersByWorkgroup(long workGroupId);
 
 }

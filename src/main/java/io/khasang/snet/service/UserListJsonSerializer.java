@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class UserListJsonSerializer extends JsonSerializer<User> {
-
     public UserListJsonSerializer() {
         super();
     }

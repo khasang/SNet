@@ -1,5 +1,6 @@
 package io.khasang.snet.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.stereotype.Component;
 
@@ -7,8 +8,10 @@ import java.sql.PreparedStatement;
 
 @Component
 public class UsersPasswordChanger {
+
     private QueryHandler queryHandler;
 
+    @Autowired
     public UsersPasswordChanger(QueryHandler queryHandler) {
         this.queryHandler = queryHandler;
     }

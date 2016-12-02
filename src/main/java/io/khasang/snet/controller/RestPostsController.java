@@ -11,8 +11,12 @@ import java.util.List;
 @RequestMapping("/api/post")
 public class RestPostsController {
 
+    private PostService postService;
+
     @Autowired
-    PostService postService;
+    public RestPostsController(PostService postService) {
+        this.postService = postService;
+    }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody

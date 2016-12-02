@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ChatSerializer extends JsonSerializer<Chat> {
-
     public ChatSerializer() {
         super();
     }

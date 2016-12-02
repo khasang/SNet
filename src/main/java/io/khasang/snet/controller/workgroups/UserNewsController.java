@@ -21,14 +21,16 @@ import java.util.Map;
 @Transactional
 public class UserNewsController {
 
-    @Autowired
-    WorkgroupNewsService workgroupNewsService;
+    private WorkgroupNewsService workgroupNewsService;
+    private UserService userService;
+    private WorkgroupService workgroupService;
 
     @Autowired
-    UserService userService;
-
-    @Autowired
-    WorkgroupService workgroupService;
+    public UserNewsController(WorkgroupNewsService workgroupNewsService,UserService userService, WorkgroupService workgroupService ) {
+        this.workgroupNewsService = workgroupNewsService;
+        this.userService = userService;
+        this.workgroupService = workgroupService;
+    }
 
     @RequestMapping(value = "/userNews", method = RequestMethod.GET)
     public String getUserMessagesList(Principal principal, Model model) {

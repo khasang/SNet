@@ -5,6 +5,7 @@ import io.khasang.snet.entity.ChatRegistryUnit;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,6 +19,7 @@ public class RegistryUtils implements AbstractCRUD<ChatRegistryUnit> {
 
     private SessionFactory sessionFactory;
 
+    @Autowired
     public RegistryUtils(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }

@@ -24,7 +24,6 @@ public class WorkgroupDAOImpl implements WorkgroupDAO {
         this.sessionFactory = sessionFactory;
     }
 
-
     @Override
     public void addWorkgroup(Workgroup workgroup) {
         sessionFactory.getCurrentSession().save(workgroup);
@@ -100,4 +99,5 @@ public class WorkgroupDAOImpl implements WorkgroupDAO {
         criteria.add(Restrictions.eq("headWorkgroupId", workgroupId));
         return (List<Workgroup>) criteria.list();
     }
+
 }

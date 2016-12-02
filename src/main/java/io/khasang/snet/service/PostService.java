@@ -12,8 +12,12 @@ import java.util.List;
 @Transactional
 public class PostService {
 
+    private PostDAO postDAO;
+
     @Autowired
-    PostDAO postDAO;
+    public PostService(PostDAO postDAO) {
+        this.postDAO = postDAO;
+    }
 
     public void addPost(Post post) {
        postDAO.addPost(post);

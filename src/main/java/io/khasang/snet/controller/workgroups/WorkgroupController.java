@@ -1,7 +1,5 @@
 package io.khasang.snet.controller.workgroups;
 
-
-import io.khasang.snet.entity.Message;
 import io.khasang.snet.entity.workgroups.Workgroup;
 import io.khasang.snet.entity.workgroups.WorkgroupType;
 import io.khasang.snet.service.workgroups.WorkgroupService;
@@ -9,15 +7,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class WorkgroupController {
 
+    private WorkgroupService workgroupService;
+
     @Autowired
-    WorkgroupService workgroupService;
+    public WorkgroupController(WorkgroupService workgroupService) {
+        this.workgroupService = workgroupService;
+    }
 
     @RequestMapping(value = "/allWorkgroups", method = RequestMethod.GET)
     public ModelAndView manageWorkgroups() {

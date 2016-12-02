@@ -23,14 +23,16 @@ import java.util.Date;
 @PropertySource(value = {"classpath:static.properties"})
 public class ProfileController {
 
-    @Autowired
-    ProfileService profileService;
+    private ProfileService profileService;
+    private UserService userService;
+    private Environment environment;
 
     @Autowired
-    UserService userService;
-
-    @Autowired
-    Environment environment;
+    public ProfileController(ProfileService profileService, UserService userService, Environment environment) {
+        this.profileService = profileService;
+        this.userService = userService;
+        this.environment = environment;
+    }
 
     @RequestMapping( value = "/profile", method = RequestMethod.GET)
     @Transactional

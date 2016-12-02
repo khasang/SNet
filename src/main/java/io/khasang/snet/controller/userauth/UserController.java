@@ -16,8 +16,12 @@ import javax.servlet.http.HttpServletResponse;
 @RestController
 public class UserController {
 
+    private UserService userService;
+
     @Autowired
-    UserService userService;
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ModelAndView addNewUser(@ModelAttribute ("user") User user){

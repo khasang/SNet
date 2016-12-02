@@ -1,13 +1,11 @@
 package io.khasang.snet.controller.workgroups;
 
-
 import io.khasang.snet.entity.workgroups.WorkgroupNews;
 import io.khasang.snet.service.JsonSerializer;
 import io.khasang.snet.service.userauth.UserService;
 import io.khasang.snet.service.workgroups.WorkgroupNewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -16,14 +14,16 @@ import java.util.Date;
 @RequestMapping("/news")
 public class WorkgroupNewsController {
 
-    @Autowired
-    WorkgroupNewsService workgroupNewsService;
-
-    @Autowired
-    UserService userService;
-
-    @Autowired
+    private WorkgroupNewsService workgroupNewsService;
+    private UserService userService;
     private JsonSerializer<WorkgroupNews> userWorkgroupsNewsJsonSerializer;
+
+    @Autowired
+    public WorkgroupNewsController(WorkgroupNewsService workgroupNewsService,UserService userService, JsonSerializer<WorkgroupNews> userWorkgroupsNewsJsonSerializer ) {
+        this.workgroupNewsService = workgroupNewsService;
+        this.userService = userService;
+        this.userWorkgroupsNewsJsonSerializer = userWorkgroupsNewsJsonSerializer;
+    }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     @ResponseBody

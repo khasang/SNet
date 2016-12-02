@@ -14,17 +14,18 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 public class ChatController {
 
-    @Autowired
     private AbstractRegistrySearcher<Chat, User> chatCRUD;
-
-    @Autowired
     private UserDAO userDAO;
-
-    @Autowired
     private ChatJsonTokenizer chatJsonTokenizer;
+    private MessageTokenizer messageTokenizer;
 
     @Autowired
-    private MessageTokenizer messageTokenizer;
+    public ChatController(AbstractRegistrySearcher<Chat, User> chatCRUD, UserDAO userDAO, ChatJsonTokenizer chatJsonTokenizer, MessageTokenizer messageTokenizer) {
+        this.chatCRUD = chatCRUD;
+        this.userDAO = userDAO;
+        this.chatJsonTokenizer = chatJsonTokenizer;
+        this.messageTokenizer = messageTokenizer;
+    }
 
     @RequestMapping(value = "/chat/all", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     @ResponseBody
@@ -73,5 +74,13 @@ public class ChatController {
             return String.format("Wrong parameter: %s", chatId);
         }
         return chatJsonTokenizer.deleteExists(willRemoved, current);
+    }
+
+    public AbstractRegistrySearcher<Chat, User> getChatCRUD() {
+        return chatCRUD;
+    }
+
+    public void setChatCRUD(AbstractRegistrySearcher<Chat, User> chatCRUD) {
+        this.chatCRUD = chatCRUD;
     }
 }

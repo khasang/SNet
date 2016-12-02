@@ -19,16 +19,14 @@ public class WorkgroupNewsService {
     private WorkgroupNewsDAO workgroupNewsDAO;
     private UserWorkgroupDAO userWorkgroupDAO;
     private WorkgroupService workgroupService;
-
-    @Autowired
     private JsonSerializer<WorkgroupNews> workgroupNewsJsonSerializer;
 
     @Autowired
-    public WorkgroupNewsService(WorkgroupNewsDAO workgroupNewsDAO, UserWorkgroupDAO userWorkgroupDAO, WorkgroupService workgroupService) {
+    public WorkgroupNewsService(WorkgroupNewsDAO workgroupNewsDAO, UserWorkgroupDAO userWorkgroupDAO, WorkgroupService workgroupService, JsonSerializer<WorkgroupNews> workgroupNewsJsonSerializer) {
         this.workgroupNewsDAO = workgroupNewsDAO;
         this.userWorkgroupDAO = userWorkgroupDAO;
         this.workgroupService = workgroupService;
-
+        this.workgroupNewsJsonSerializer = workgroupNewsJsonSerializer;
     }
 
     public void addWorkgroupNews(WorkgroupNews workgroupNews) {

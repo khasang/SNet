@@ -1,7 +1,6 @@
 package io.khasang.snet.repository;
 
 import io.khasang.snet.entity.Friends;
-
 import java.util.List;
 
 public interface FriendsDAO {

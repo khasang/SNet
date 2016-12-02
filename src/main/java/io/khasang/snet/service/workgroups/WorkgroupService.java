@@ -12,8 +12,12 @@ import java.util.List;
 @Transactional
 public class WorkgroupService {
 
+    private WorkgroupDAO workgroupDAO;
+
     @Autowired
-    WorkgroupDAO workgroupDAO;
+    public WorkgroupService(WorkgroupDAO workgroupDAO) {
+        this.workgroupDAO = workgroupDAO;
+    }
 
     public void addWorkgroup(Workgroup workgroup){
         workgroupDAO.addWorkgroup(workgroup);
@@ -50,4 +54,5 @@ public class WorkgroupService {
     public List<Workgroup> getDependentGroups(long workgroupId) {
         return workgroupDAO.getDependentGroups(workgroupId);
     }
+
 }

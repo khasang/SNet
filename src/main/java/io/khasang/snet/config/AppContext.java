@@ -19,8 +19,12 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 @PropertySource(value = {"classpath:backup.properties"})
 public class AppContext {
 
+   private Environment environment;
+
     @Autowired
-    Environment environment;
+    public AppContext(Environment environment) {
+        this.environment = environment;
+    }
 
     @Bean
     public UserDetailsService userDetailsService() {

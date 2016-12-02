@@ -18,14 +18,16 @@ import java.util.List;
 @Transactional
 public class FriendsService {
 
-    @Autowired
-    FriendsDAO friendsDAO;
+    private FriendsDAO friendsDAO;
+    private UserDAO userDAO;
+    private ProfileDAO profileDAO;
 
     @Autowired
-    UserDAO userDAO;
-
-    @Autowired
-    ProfileDAO profileDAO;
+    public FriendsService(FriendsDAO friendsDAO, UserDAO userDAO, ProfileDAO profileDAO) {
+        this.friendsDAO = friendsDAO;
+        this.userDAO = userDAO;
+        this.profileDAO = profileDAO;
+    }
 
     // add invite to friends
     public void addInvite(String login, String friend){

@@ -28,7 +28,6 @@ public class UserWorkgroupDAOImpl implements UserWorkgroupDAO {
     @Override
     public void updateUserWorkgroups(UserWorkgroups userWorkgroupDAO) {
         sessionFactory.getCurrentSession().update(userWorkgroupDAO);
-
     }
 
     @Override

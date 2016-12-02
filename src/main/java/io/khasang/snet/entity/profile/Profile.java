@@ -1,15 +1,17 @@
 package io.khasang.snet.entity.profile;
 
 
+import io.khasang.snet.entity.AbstractEntity;
+
 import javax.persistence.*;
 
 @Entity
 @Table (name = "user_profile")
-public class Profile {
+public class Profile implements AbstractEntity<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private long id;
 
     private String login;
 
@@ -31,11 +33,11 @@ public class Profile {
     public Profile() {
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -101,5 +103,15 @@ public class Profile {
 
     public void setCreated(String created) {
         this.created = created;
+    }
+
+    @Override
+    public void setID(Long id) {
+        this.id = id;
+    }
+
+    @Override
+    public Long getID() {
+        return null;
     }
 }

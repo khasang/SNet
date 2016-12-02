@@ -16,12 +16,16 @@ import java.util.List;
 @Transactional
 public class UserService {
 
+   private UserDAO userDAO;
+   private AuthRulesDAO authRulesDAO;
+   private RolesDAO rolesDAO;
+
     @Autowired
-    UserDAO userDAO;
-    @Autowired
-    AuthRulesDAO authRulesDAO;
-    @Autowired
-    RolesDAO rolesDAO;
+    public UserService(UserDAO userDAO, AuthRulesDAO authRulesDAO, RolesDAO rolesDAO) {
+        this.userDAO = userDAO;
+        this.authRulesDAO = authRulesDAO;
+        this.rolesDAO = rolesDAO;
+    }
 
     // User
     public void addUser(User user){
@@ -83,4 +87,5 @@ public class UserService {
     public Roles getRolesByName(String name){
         return rolesDAO.getRolesByName(name);
     }
+
 }

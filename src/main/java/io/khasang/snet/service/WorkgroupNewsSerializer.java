@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class WorkgroupNewsSerializer extends JsonSerializer<WorkgroupNews> {
-
     public WorkgroupNewsSerializer() {
         super();
     }

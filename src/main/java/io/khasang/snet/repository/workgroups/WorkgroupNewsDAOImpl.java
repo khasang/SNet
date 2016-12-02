@@ -67,5 +67,4 @@ public class WorkgroupNewsDAOImpl implements WorkgroupNewsDAO {
         return (List<WorkgroupNews>) query.list();
     }
 
-
 }

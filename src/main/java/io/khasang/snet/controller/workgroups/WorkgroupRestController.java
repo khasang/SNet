@@ -7,24 +7,23 @@ import io.khasang.snet.service.userauth.UserService;
 import io.khasang.snet.service.workgroups.UserWorkgroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
 public class WorkgroupRestController {
 
-    @Autowired
-    UserWorkgroupService userWorkgroupService;
-
-
-    @Autowired
+    private UserWorkgroupService userWorkgroupService;
     private JsonSerializer<User> userListJsonSerializer;
-
-    @Autowired
     private JsonSerializer<UserWorkgroups>  userWorkgroupsJsonSerializer;
+    private UserService userService;
 
     @Autowired
-    UserService userService;
+    public WorkgroupRestController(UserWorkgroupService userWorkgroupService, JsonSerializer<User> userListJsonSerializer, JsonSerializer<UserWorkgroups> userWorkgroupsJsonSerializer, UserService userService) {
+        this.userWorkgroupService = userWorkgroupService;
+        this.userListJsonSerializer = userListJsonSerializer;
+        this.userWorkgroupsJsonSerializer = userWorkgroupsJsonSerializer;
+        this.userService = userService;
+    }
 
     @RequestMapping(value = "members/{id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     @ResponseBody

@@ -22,14 +22,16 @@ import java.util.Map;
 @Controller
 public class FriendsController {
 
-    @Autowired
-    FriendsService friendsService;
+   private FriendsService friendsService;
+   private UserService userService;
+   private ProfileService profileService;
 
     @Autowired
-    UserService userService;
-
-    @Autowired
-    ProfileService profileService;
+    public FriendsController(FriendsService friendsService, UserService userService, ProfileService profileService) {
+        this.friendsService = friendsService;
+        this.userService = userService;
+        this.profileService = profileService;
+    }
 
     @RequestMapping(value = "/friends", method = RequestMethod.GET)
     public ModelAndView friends() {

@@ -4,6 +4,7 @@ import io.khasang.snet.repository.AbstractCRUD;
 import io.khasang.snet.entity.userauth.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,6 +19,7 @@ import java.util.List;
 public class UserCRUD implements AbstractCRUD<User> {
     private final SessionFactory sessionFactory;
 
+    @Autowired
     public UserCRUD(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
