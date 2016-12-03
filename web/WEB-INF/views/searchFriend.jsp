@@ -19,7 +19,7 @@
                      style="margin-top:10px;border:1px solid; border-color:#eee;background-color: #f5f5f5">
                     <body onload="callUsers('${pageContext.request.contextPath}')">
                     <div class="col-md-6 panel-warning">
-                        <input class="form-control" id="searchLike">
+                        <input oninput="autoFind('${pageContext.request.contextPath}')" class="form-control" id="searchLike">
                     </div>
                     <div class="col-md-6 panel-warning">
                         <button onclick="findUserLike('${pageContext.request.contextPath}')" type="button"
