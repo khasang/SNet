@@ -54,7 +54,9 @@ function printSameUsers(jsonResponse,workingDir) {
                     '<div class="col-md-12 panel-warning"><div class="col-md-3 panel-warning">' +
                     '<div><img style="padding8px;" width="120px" border="1px"' +
                     ' src="' + workingDir + '/ava/' + my.avatar + '"></div></div>' +
-                    '<div class="col-md-9 panel-info"><div class="panel-title"><b>' + my.login + '</b></div><br><br>' + status +
+                    '<div class="col-md-9 panel-info"><div class="panel-title"><b>'+
+                    '<a href=' + workingDir + '/user?userLogin=' + my.login + '>' +
+                    my.login + '</a></b></div><br><br>' + status +
                     '</div></div></div></div>';
             }
         }
