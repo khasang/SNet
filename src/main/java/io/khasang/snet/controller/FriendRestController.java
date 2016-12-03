@@ -39,11 +39,10 @@ public class FriendRestController {
         return getProfiles(currentLogin, allUsers);
     }
 
-    @RequestMapping(value = "/searchFriendsLike/{like}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/searchFriendsLike/{like}", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
     public Object searchFriendsLike(@PathVariable(value = "like") String searchLike) {
         String currentLogin = SecurityContextHolder.getContext().getAuthentication().getName();
         List<Profile> searchUsers = profileService.getProfileLike(searchLike,currentLogin);
-
         return getProfiles(currentLogin, searchUsers);
     }
 
