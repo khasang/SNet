@@ -20,11 +20,6 @@ public class AppController {
         return "register";
     }
 
-    @RequestMapping("/rest")
-    public String rest() {
-        return "rest";
-    }
-
     // add login page for Spring Security
     @RequestMapping("/login")
     public String login() {
@@ -61,6 +56,11 @@ public class AppController {
     @RequestMapping("/profile")
     public String profile(Model model) {
         return "profile";
+    }
+
+    @RequestMapping("/searchFriends")
+    public String searUser(Model model) {
+        return "searchFriend";
     }
 
     @RequestMapping("/chat")

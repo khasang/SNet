@@ -21,17 +21,6 @@ function printAllNews(jsonResponse) {
     var out = "";
     var i;
     for (i = news.length-1; i >=0 ; i--) {
-        // out += '<div class="content-box-large">' +
-        //     + '<h4><b><a href="">' + news[i].title +
-        //     '</a></b></h4>'
-        //     + '<p><i class="glyphicon glyphicon-dashboard"></i>' +news[i].newsDate + '</p>' +
-        //     '<hr>'+
-        //     '<a href="blog-post.html">'+
-        //     '<img class="img-responsive img-hover" src="http://placehold.it/900x300" alt="">'+
-        //     '</a><hr>'+
-        //     + '<p>' +news[i].description + '</p>'+
-        //     '<hr> </div>';
-        // Не трогать , работает почемуто. но не знаю почему!
         out += '<div class="content-box-large">'  + '<h4><b><a href="">' + news[i].title + '</a></b></h4>'
             + '<p><i class="glyphicon glyphicon-dashboard"></i>' + ' ' + news[i].newsDate + '</p>' +
             '<hr>'+
