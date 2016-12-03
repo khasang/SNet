@@ -1,23 +1,16 @@
 package io.khasang.snet.controller;
 
-import io.khasang.snet.entity.profile.Profile;
-import io.khasang.snet.entity.userauth.User;
 import io.khasang.snet.service.FriendsService;
 import io.khasang.snet.service.profile.ProfileService;
 import io.khasang.snet.service.userauth.UserService;
-import io.khasang.snet.util.FriendStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @Controller
 public class FriendsController {
@@ -59,11 +52,14 @@ public class FriendsController {
         return "redirect:/searchFriends";
     }
 
-    @RequestMapping(value = "/searchFriends",method = RequestMethod.GET)
+/*    @RequestMapping(value = "/searchFriends",method = RequestMethod.GET)
     public ModelAndView searchFriends(){
-        String currentLogin = SecurityContextHolder.getContext().getAuthentication().getName();
+       String currentLogin = SecurityContextHolder.getContext().getAuthentication().getName();
         // Map for jsp Key - Profile : Value - eNum of FriendStatus
         List<User> allUsers=userService.getAllUsers(currentLogin);
+        for(User s : allUsers){
+            System.out.println(s.getLogin());
+        }
         Map<Profile,String> friends = new HashMap<>();
         List<Profile> friendsList = friendsService.getFriendsList(currentLogin);
         List<Profile> inviteList = friendsService.getInviteList(currentLogin);
@@ -84,14 +80,14 @@ public class FriendsController {
             }
         }
         return new ModelAndView("searchFriends","friends",friends);
-    }
+    }*/
 
-    private boolean searchInList(Profile toSearch,List<Profile> listToSearch){
+  /*  private boolean searchInList(Profile toSearch,List<Profile> listToSearch){
         for (Profile profile: listToSearch) {
             if (profile.getLogin().equals(toSearch.getLogin())){
                 return true;
             }
         }
         return false;
-    }
+    }*/
 }

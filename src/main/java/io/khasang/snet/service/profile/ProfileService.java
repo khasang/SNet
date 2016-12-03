@@ -5,6 +5,7 @@ import io.khasang.snet.entity.profile.Profile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import java.util.List;
 
 @Service
 @Transactional
@@ -31,6 +32,14 @@ public class ProfileService {
 
     public Profile getProfileByUserLogin(String userLogin){
        return profileDAO.getProfileByUserLogin(userLogin);
+    }
+
+    public List<Profile> getSameUsers(String login){
+        return profileDAO.getSameProfile(login);
+    }
+
+    public List<Profile> getProfileLike(String userLoginLike, String userLogin) {
+       return profileDAO.getProfileLike(userLoginLike,userLogin);
     }
 
 }
