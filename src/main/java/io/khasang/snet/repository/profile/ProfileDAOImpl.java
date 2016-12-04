@@ -74,7 +74,8 @@ public class ProfileDAOImpl implements ProfileDAO {
     @Override
     public List<Profile> getProfileLike(String userLoginLike, String userLogin) {
         Session session =  sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from io.khasang.snet.entity.profile.Profile u where u.login != :login and u.login like lower(:firstName)");
+        Query query = session.createQuery("from io.khasang.snet.entity.profile.Profile u where u.login != :login " +
+                "and (lower (u.login) like lower(:firstName) or lower(u.name) like lower(:firstName) or lower(u.surname) like lower(:firstName))");
         query.setParameter("login",userLogin);
         query.setString("firstName", "%" + userLoginLike + "%");
         query.setMaxResults(20);

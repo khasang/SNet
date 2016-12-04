@@ -1,6 +1,6 @@
 function findUserLike(workingDir) {
     if (workingDir == null) workingDir = '';
-    var searchBody = document.getElementById("searchLike").value;;
+    var searchBody = document.getElementById("searchLike").value;
     var service2 = workingDir + '/searchFriendsLike/' + searchBody;
     if (searchBody != "" && searchBody != " ") {
         var xhttp = new XMLHttpRequest();
@@ -28,6 +28,12 @@ function callUsers(workingDir) {
     xhttp.send();
 
 }
+function autoFind(workingDir){
+    var searchBody = document.getElementById("searchLike").value;
+    if (searchBody.length >= 3){
+        findUserLike(workingDir);
+    }
+}
 
 function printSameUsers(jsonResponse,workingDir) {
     var out = "";
@@ -54,7 +60,9 @@ function printSameUsers(jsonResponse,workingDir) {
                     '<div class="col-md-12 panel-warning"><div class="col-md-3 panel-warning">' +
                     '<div><img style="padding8px;" width="120px" border="1px"' +
                     ' src="' + workingDir + '/ava/' + my.avatar + '"></div></div>' +
-                    '<div class="col-md-9 panel-info"><div class="panel-title"><b>' + my.login + '</b></div><br><br>' + status +
+                    '<div class="col-md-9 panel-info"><div class="panel-title"><b>'+
+                    '<a href=' + workingDir + '/user?userLogin=' + my.login + '>' +
+                    my.login + '</a></b></div><br><br>' + status +
                     '</div></div></div></div>';
             }
         }
