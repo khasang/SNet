@@ -1,7 +1,7 @@
 function findUserLike(workingDir) {
     if (workingDir == null) workingDir = '';
     var searchBody = document.getElementById("searchLike").value;
-    var service2 = workingDir + '/searchFriendsLike/' + searchBody;
+    var service2 = workingDir + '/searchFriendsLike';
     if (searchBody != "" && searchBody != " ") {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
@@ -9,8 +9,8 @@ function findUserLike(workingDir) {
                 printSameUsers(this.responseText, workingDir);
             }
         };
-        xhttp.open("GET", service2, true);
-        xhttp.send();
+        xhttp.open("POST", service2, true);
+        xhttp.send(searchBody);
     }
 }
 
