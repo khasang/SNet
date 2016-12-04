@@ -7,10 +7,7 @@ import io.khasang.snet.service.profile.ProfileService;
 import io.khasang.snet.util.FriendStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -39,10 +36,10 @@ public class FriendRestController {
         return getProfiles(currentLogin, allUsers);
     }
 
-    @RequestMapping(value = "/searchFriendsLike/{like}", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
-    public Object searchFriendsLike(@PathVariable(value = "like") String searchLike) {
+    @RequestMapping(value = "/searchFriendsLike", method = RequestMethod.POST)
+    public Object searchFriendsLike(@RequestBody  String searchBody) {
         String currentLogin = SecurityContextHolder.getContext().getAuthentication().getName();
-        List<Profile> searchUsers = profileService.getProfileLike(searchLike,currentLogin);
+        List<Profile> searchUsers = profileService.getProfileLike(searchBody,currentLogin);
         return getProfiles(currentLogin, searchUsers);
     }
 
