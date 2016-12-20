@@ -1,4 +1,4 @@
-package io.khasang.snet.util;
+package io.khasang.snet.repository;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
