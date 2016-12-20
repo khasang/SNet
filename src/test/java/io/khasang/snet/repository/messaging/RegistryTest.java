@@ -38,41 +38,41 @@ public class RegistryTest {
     @Autowired
     private AbstractRegistrySearcher<Chat, User> chatUtils;
 
+    /* Test for saving and load entity */
     @Test
     @Rollback
     @Transactional
     public void saveTest() {
-        Chat chat = new Chat("Saving Test Chat");
-        chatUtils.add(chat);
-        LOGGER.debug(String.format("Saved new chat entity: [%s]", chat));
-
-        User user = new User();
-        user.setLogin("Saving Test User");
-        userDAO.addUser(user);
-        LOGGER.debug(String.format("Saved new user entity: [%s]", user));
-
+        // Creating test entities
+        Chat chat = saveTestChat("Saving Test Chat");
+        User user = saveTestUser("Saving Test User");
         ChatRegistryUnit registry = new ChatRegistryUnit(chat, user);
         registryUtils.saveRegistry(registry);
         LOGGER.debug(String.format("Saved new registry entity: [%s]", registry));
 
+        // Assert if saved test entity differ from load
         assertEquals(registry, registryUtils.getRegistryByChatAndUser(chat, user));
     }
 
+    /* Filter and load test entities of one user */
     @Test
     @Rollback
     @Transactional
     public void obtainListTest() {
-        User user = saveTestUser("Listing Test User");
-
+        // Creating test entities
+        User user1 = saveTestUser("Listing Test User #1");
+        User user2 = saveTestUser("Listing Test User #2");
         List<Chat> chats = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             chats.add(saveTestChat(String.format("Listing test chat #%d",i+1)));
         }
 
-        chats.forEach((chat -> registryUtils.saveRegistry(new ChatRegistryUnit(chat, user))));
+        chats.forEach((chat -> registryUtils.saveRegistry(new ChatRegistryUnit(chat, user1))));
+        chats.forEach((chat -> registryUtils.saveRegistry(new ChatRegistryUnit(chat, user2))));
         LOGGER.debug("Saved registries entity");
 
-        List<ChatRegistryUnit> registry = registryUtils.getRegistriesByUser(user);
+        // Load list registries of user1 only
+        List<ChatRegistryUnit> registry = registryUtils.getRegistriesByUser(user1);
         LOGGER.debug(String.format("Obtained registry entities: [%s]", registry));
         assertTrue(registry.size() == chats.size());
     }
@@ -81,9 +81,9 @@ public class RegistryTest {
     @Rollback
     @Transactional
     public void deletingTest() {
+        // Creating test entities
         User user = saveTestUser("Deleting Test User");
         Chat chat = saveTestChat("Deleting Test Chat");
-
         registryUtils.saveRegistry(new ChatRegistryUnit(chat, user));
         LOGGER.debug("Saved test registry entity.");
 

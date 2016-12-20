@@ -13,6 +13,11 @@ import org.springframework.transaction.annotation.Transactional;
 import java.io.Serializable;
 import java.util.List;
 
+/* Implementation of io.khasang.snet.repository.messaging.Registry
+* based on io.khasang.snet.repository.DataUtils provides obtain objects
+* from db, using ancestor's generic method, respectively, decreasing amount
+ * of code that will written
+ * */
 @Repository
 @Transactional
 public class RegistryUtilsImpl extends DataUtils<ChatRegistryUnit> implements RegistryUtils {
@@ -22,6 +27,7 @@ public class RegistryUtilsImpl extends DataUtils<ChatRegistryUnit> implements Re
         super(ChatRegistryUnit.class, sessionFactory);
     }
 
+    /* Saves new entity in database, check for duplicate before */
     @Override
     public void saveRegistry(ChatRegistryUnit registry) {
         ChatRegistryUnit duplicate = this.getRegistryByChatAndUser(
