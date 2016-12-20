@@ -26,7 +26,6 @@ import java.util.List;
 @WebAppConfiguration
 @ContextConfiguration(classes = {AppContext.class, HibernateConfig.class, WebConfig.class})
 public class RegistryTest {
-
     private static final Logger LOGGER = Logger.getLogger(RegistryTest.class);
 
     @Autowired
