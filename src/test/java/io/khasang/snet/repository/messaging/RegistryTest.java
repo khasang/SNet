@@ -11,6 +11,8 @@ import io.khasang.snet.repository.userauth.UserDAO;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import static io.khasang.snet.repository.messaging.MessagingSuite.*;
 import static org.junit.Assert.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
@@ -43,8 +45,8 @@ public class RegistryTest {
     @Transactional
     public void saveTest() {
         // Creating test entities
-        Chat chat = saveTestChat("Saving Test Chat");
-        User user = saveTestUser("Saving Test User");
+        Chat chat = getSampleChat(LOGGER, chatUtils, "Saving Test Chat");
+        User user = getSampleUser(LOGGER, userDAO, "Saving Test User");
         ChatRegistryUnit registry = new ChatRegistryUnit(chat, user);
         registryUtils.saveRegistry(registry);
         LOGGER.debug(String.format("Saved new registry entity: [%s]", registry));
@@ -59,11 +61,11 @@ public class RegistryTest {
     @Transactional
     public void obtainListTest() {
         // Creating test entities
-        User user1 = saveTestUser("Listing Test User #1");
-        User user2 = saveTestUser("Listing Test User #2");
+        User user1 = getSampleUser(LOGGER, userDAO, "Listing Test User #1");
+        User user2 = getSampleUser(LOGGER, userDAO, "Listing Test User #2");
         List<Chat> chats = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
-            chats.add(saveTestChat(String.format("Listing test chat #%d",i+1)));
+            chats.add(getSampleChat(LOGGER, chatUtils, String.format("Listing test chat #%d",i+1)));
         }
 
         chats.forEach((chat -> registryUtils.saveRegistry(new ChatRegistryUnit(chat, user1))));
@@ -81,8 +83,8 @@ public class RegistryTest {
     @Transactional
     public void deletingTest() {
         // Creating test entities
-        User user = saveTestUser("Deleting Test User");
-        Chat chat = saveTestChat("Deleting Test Chat");
+        User user = getSampleUser(LOGGER, userDAO, "Deleting Test User");
+        Chat chat = getSampleChat(LOGGER, chatUtils, "Deleting Test Chat");
         registryUtils.saveRegistry(new ChatRegistryUnit(chat, user));
         LOGGER.debug("Saved test registry entity.");
 
@@ -92,20 +94,5 @@ public class RegistryTest {
         ChatRegistryUnit registry = registryUtils.getRegistryByChatAndUser(chat, user);
         LOGGER.debug(String.format("Registry from DataBase must be null, factual: %s", registry));
         assertNull(registry);
-    }
-
-    private Chat saveTestChat(String desc) {
-        Chat chat = new Chat(desc);
-        chatUtils.add(chat);
-        LOGGER.debug(String.format("Saved new chat entity: [%s]", chat));
-        return chat;
-    }
-
-    private User saveTestUser(String login) {
-        User user = new User();
-        user.setLogin(login);
-        userDAO.addUser(user);
-        LOGGER.debug(String.format("Saved new user entity: [%s]", user.getLogin()));
-        return user;
     }
 }
