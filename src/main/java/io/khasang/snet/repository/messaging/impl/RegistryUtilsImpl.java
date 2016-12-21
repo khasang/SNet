@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.io.Serializable;
 import java.util.List;
 
-/* Implementation of io.khasang.snet.repository.messaging.Registry
+/* Implementation of io.khasang.snet.repository.messaging.RegistryUtils
 * based on io.khasang.snet.repository.DataUtils provides obtain objects
 * from db, using ancestor's generic method, respectively, decreasing amount
  * of code that will written

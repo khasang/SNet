@@ -14,6 +14,11 @@ import org.springframework.transaction.annotation.Transactional;
 import java.io.Serializable;
 import java.util.*;
 
+/* Implementation of io.khasang.snet.repository.messaging.ChatUtils
+* based on io.khasang.snet.repository.DataUtils provides obtain objects
+* from db, using ancestor's generic method, respectively, decreasing amount
+ * of code that will written
+ * */
 @Repository
 @Transactional
 public class ChatUtilsImpl extends DataUtils<Chat> implements ChatUtils {
@@ -42,6 +47,7 @@ public class ChatUtilsImpl extends DataUtils<Chat> implements ChatUtils {
         this.delete(willRemoved);
     }
 
+    /* Get list of chats for current user */
     @Override
     public List<Chat> getUsersChatsById(User user) {
         List<Chat> result = new ArrayList<>();
@@ -50,6 +56,9 @@ public class ChatUtilsImpl extends DataUtils<Chat> implements ChatUtils {
         return result;
     }
 
+    /* Returns dialog of two users, if exist, otherwise returns null
+    * @param first and @param second user's that (probably) have dialog
+    * */
     @Override
     public Chat getDialogByIds(User first, User second) {
         List<ChatRegistryUnit> usersRegistries = registryUtils.getRegistriesByUser(first);
@@ -62,6 +71,7 @@ public class ChatUtilsImpl extends DataUtils<Chat> implements ChatUtils {
         return result;
     }
 
+    /* Takes as parameter list registries, and search dialog */
     private Chat dialogSearcher(List<ChatRegistryUnit> original) {
         Map<Chat, List<User>> discusses = new HashMap<>();
 
