@@ -44,7 +44,10 @@ public class ChatUtilsImpl extends DataUtils<Chat> implements ChatUtils {
 
     @Override
     public List<Chat> getUsersChatsById(User user) {
-        return this.getList(this.createEqualsExpression("user", user));
+        List<Chat> result = new ArrayList<>();
+        List<ChatRegistryUnit> units = registryUtils.getRegistriesByUser(user);
+        units.forEach(registryUnit -> result.add(this.get(registryUnit.getChat().getID())));
+        return result;
     }
 
     @Override
